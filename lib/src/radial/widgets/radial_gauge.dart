@@ -1,10 +1,9 @@
 // lib/src/radial/widgets/radial_gauge.dart
 
 import 'package:flutter/material.dart';
-
-import '../../common/models/gauge_value.dart';
-import '../models/radial_gauge_style.dart';
-import '../painters/radial_gauge_painter.dart';
+import 'package:girix_shape/src/common/models/gauge_value.dart';
+import 'package:girix_shape/src/radial/models/radial_gauge_style.dart';
+import 'package:girix_shape/src/radial/painters/radial_gauge_painter.dart';
 
 /// The [RadialGauge] widget is used to display a radial gauge.
 ///
@@ -22,7 +21,6 @@ import '../painters/radial_gauge_painter.dart';
 class RadialGauge extends StatelessWidget {
   final GaugeValue value;
   final RadialGaugeStyle style;
-
   const RadialGauge({super.key, required this.value, required this.style});
 
   @override

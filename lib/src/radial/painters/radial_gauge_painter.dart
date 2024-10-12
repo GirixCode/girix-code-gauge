@@ -1,9 +1,8 @@
 // lib/src/radial/painters/radial_gauge_painter.dart
 
 import 'package:flutter/material.dart';
-
-import '../../common/models/gauge_value.dart';
-import '../models/radial_gauge_style.dart';
+import 'package:girix_shape/src/common/models/gauge_value.dart';
+import 'package:girix_shape/src/radial/models/radial_gauge_style.dart';
 
 /// The [RadialGaugePainter] is used to paint the radial gauge.
 ///
@@ -18,7 +17,6 @@ import '../models/radial_gauge_style.dart';
 class RadialGaugePainter extends CustomPainter {
   final GaugeValue value;
   final RadialGaugeStyle style;
-
   RadialGaugePainter({required this.value, required this.style});
 
   @override

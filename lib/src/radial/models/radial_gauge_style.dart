@@ -15,15 +15,14 @@ import 'package:flutter/material.dart';
 /// - [strokeWidth]: The stroke width of the RadialGauge widget. It is set to 10.0 by default.
 ///
 class RadialGaugeStyle {
-  final Size size;
-  final Color backgroundColor;
-  final Color foregroundColor;
-  final double strokeWidth;
-
   RadialGaugeStyle({
     required this.size,
     this.backgroundColor = Colors.grey,
     this.foregroundColor = Colors.blue,
     this.strokeWidth = 10.0,
   });
+  final Size size;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final double strokeWidth;
 }

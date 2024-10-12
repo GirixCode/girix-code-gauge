@@ -20,8 +20,10 @@ class AnimationUtils {
     required double end,
     required Duration duration,
   }) {
-    final controller = AnimationController(vsync: vsync, duration: duration);
-    final animation = Tween<double>(begin: begin, end: end).animate(controller);
+    final AnimationController controller =
+        AnimationController(vsync: vsync, duration: duration);
+    final Animation<double> animation =
+        Tween<double>(begin: begin, end: end).animate(controller);
     controller.forward();
     return animation;
   }
