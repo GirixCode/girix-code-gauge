@@ -1,17 +1,39 @@
+enum LinearElementPosition {
+  /// Element position inside the gauge bounds
+  ///
+  /// Horizontal: top of the Gauge.
+  ///
+  /// Vertical: Right of the Gauge.
+  inside,
+
+  /// Element position outside the gauge bounds.
+  /// Horizontal: bottom of the Gauge.
+  ///
+  /// Vertical: Left of the Gauge.
+  outside,
+
+  /// Element position at the start of the gauge
+  ///
+  cross,
+
+  /// Element position
+  inAndOut,
+
+  /// Element position
+  outAndIn,
+}
+
 enum LinearGaugeAxisPosition { start, end, center }
 
 enum LinearGaugeDirection { horizontal, vertical }
 
 enum LinearGaugeLabelPosition {
-  start,
-
-  /// Label position at the start of the gauge
-  end,
-
-  /// Label position at the end of the gauge
-  center
-
-  /// Label position at the center of the gauge
+  // topRight,
+  // topLeft,
+  // bottomRight,
+  // bottomLeft,
+  topCenter,
+  bottomCenter,
 }
 
 enum LinearGaugeNeedlePosition {
@@ -48,19 +70,15 @@ enum LinearGaugeNeedleType {
   pipe
 }
 
-// Category: Linear Gauge
-enum LinearGaugeShape {
-  progress, // Standard linear gauge with a progress bar
-  defaultGauge, // Standard linear gauge with ticks and labels
-  segmentedColor, // Gauge with segments in different colors
-  gradientColor, // Gauge with a smooth gradient
-  pyramid, // Gauge with increasing/decreasing width in a pyramid shape
-  triangleMarker, // Gauge with a triangle pointer/marker
-  blockSegments, // Gauge divided into block-like segments
-  bandedColor, // Gauge with distinct color bands along the bar
-  barWithMarker, // Bar gauge with a pointer/marker
-  horizontalStrip, // Gauge with horizontal strips in different shades
-  thickSegmented, // Thick segmented gauge with color-coded sections
-  arrowPointer, // Gauge with an arrow pointer
-  flatMinimal, // Flat, minimal gauge with simple slider
+enum LinearGaugeOrientation {
+  horizontal,
+  vertical,
+}
+
+enum ScaleLinearGaugeType {
+  defaultGauge,
+  exponential,
+  concave,
+  gradient,
+  multiRange,
 }

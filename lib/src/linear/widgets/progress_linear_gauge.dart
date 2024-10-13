@@ -1,7 +1,6 @@
 // lib/src/linear/widgets/linear_gauge.dart
 
 import 'package:flutter/material.dart';
-import 'package:girix_shape/src/common/models/enums.dart';
 import 'package:girix_shape/src/common/models/gauge_value.dart';
 import 'package:girix_shape/src/linear/models/linear_gauge_style.dart';
 import 'package:girix_shape/src/linear/models/linear_needle_model.dart';
@@ -22,7 +21,6 @@ class ProgressLinearGauge extends StatelessWidget {
   final GaugeValue value;
   final LinearGaugeStyle? foregroundStyle;
   final LinearGaugeStyle? backgroundStyle;
-  final LinearGaugeShape shape;
   final LinearNeedle? needle;
   final void Function(Canvas canvas, Offset position)? customDrawNeedle;
   const ProgressLinearGauge(
@@ -30,7 +28,6 @@ class ProgressLinearGauge extends StatelessWidget {
       required this.value,
       this.foregroundStyle,
       this.backgroundStyle,
-      this.shape = LinearGaugeShape.progress,
       this.needle,
       this.customDrawNeedle})
       :

@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:examples/screens/progress_linear_gauge.dart';
+import 'package:examples/screens/scale_linear_gauge_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +18,9 @@ class ExampleApp extends StatefulWidget {
 }
 
 class _ExampleAppState extends State<ExampleApp> {
-  bool reRender = false;
+  bool reRender = true;
+
+  late final ScrollController _scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +40,29 @@ class _ExampleAppState extends State<ExampleApp> {
           ),
           body: reRender
               ? ListView(
+                  controller: _scrollController,
                   // physics: const ClampingScrollPhysics(),
                   // shrinkWrap: true,
                   children: const [
                     MyProgressLinearGauge(),
+                    SizedBox(height: 100),
+                    MyScaleLinearGaugeScreen()
                   ],
                 )
               : const Center(
                   child: Text('Click on the refresh icon to reload the page'),
                 )),
     );
+  }
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollToBottom();
+    });
   }
 
   void refreshPage() {
@@ -58,6 +74,19 @@ class _ExampleAppState extends State<ExampleApp> {
       setState(() {
         reRender = !reRender;
       });
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        scrollToBottom();
+      });
     });
+  }
+
+  // Scroll to the last item in the list
+  void scrollToBottom() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeOut,
+    );
   }
 }
