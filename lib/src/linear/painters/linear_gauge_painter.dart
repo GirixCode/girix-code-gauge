@@ -125,14 +125,13 @@ class LinearGaugeProgressPainter extends CustomPainter {
         foregroundPaint,
       );
     } else {
-      final double frontWidth =
-          (value - minValue) / (maxValue - minValue) * gaugeSizeWith;
+      final double frontWidth = progress * gaugeSizeWith;
       if (kDebugMode) {
         log('frontWidth: $frontWidth and progress: $progress and gaugeSizeWith: $gaugeSizeWith');
       }
 
       /// here left padding is -5 to make the progress bar start from the beginning
-      final Rect valueRect = Rect.fromLTWH(-10, 0, frontWidth, sizeHeight);
+      final Rect valueRect = Rect.fromLTWH(0, 0, frontWidth, sizeHeight);
       final RRect valueRRect = RRect.fromRectAndRadius(
           valueRect, foregroundStyle.radius ?? const Radius.circular(10));
 
