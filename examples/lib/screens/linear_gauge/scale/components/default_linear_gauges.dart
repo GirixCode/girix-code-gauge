@@ -1,16 +1,16 @@
-import 'package:examples/widgets/page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:girix_shape/girix_shape.dart';
 
-class MyScaleLinearGaugeScreen extends StatefulWidget {
-  const MyScaleLinearGaugeScreen({super.key});
+class DefaultScaleLinearGaugeBody extends StatefulWidget {
+  const DefaultScaleLinearGaugeBody({super.key});
 
   @override
-  State<MyScaleLinearGaugeScreen> createState() =>
-      _MyScaleLinearGaugeScreenState();
+  State<DefaultScaleLinearGaugeBody> createState() =>
+      _DefaultScaleLinearGaugeBodyState();
 }
 
-class _MyScaleLinearGaugeScreenState extends State<MyScaleLinearGaugeScreen> {
+class _DefaultScaleLinearGaugeBodyState
+    extends State<DefaultScaleLinearGaugeBody> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -18,8 +18,6 @@ class _MyScaleLinearGaugeScreenState extends State<MyScaleLinearGaugeScreen> {
       physics: const ClampingScrollPhysics(),
       key: const Key('scale_linear_gauge_list'),
       children: [
-        const PageHeader(title: 'Scale Linear Gauge'),
-        const SizedBox(height: 30),
         ...[
           buildCard(
             'Default Scale Linear Gauge',
@@ -189,6 +187,157 @@ class _MyScaleLinearGaugeScreenState extends State<MyScaleLinearGaugeScreen> {
                   color: Colors.primaries[index % Colors.primaries.length],
                 );
               },
+            ),
+          ),
+          buildCard(
+            'With Customized Linear Needle',
+            ScaleLinearGauge(
+              height: 80,
+              minimum: 0,
+              maximum: 100,
+              interval: 10,
+              minorTicksPerInterval: 2,
+              axisLabelStyle: const TextStyle(
+                color: Colors.deepOrange,
+                fontSize: 14,
+              ),
+              valueToLabelFormatCallback: (value, index) => value,
+              labelPosition: LinearGaugeLabelPosition.topCenter,
+              majorTickStyle: const LinearTickStyle(
+                length: 40,
+                thickness: 2,
+                color: Colors.deepOrange,
+              ),
+              axisTrackStyle: const LinearAxisTrackStyle(
+                color: Colors.deepOrange,
+              ),
+              minorTickStyle: const LinearTickStyle(
+                  color: Colors.deepOrange, thickness: 2, length: 18),
+              value: const GaugeValue(
+                value: 80,
+              ),
+              needle: const LinearNeedle(
+                  enabled: true,
+                  color: Colors.deepOrange,
+                  size: Size(20, 20),
+                  position: LinearGaugeNeedlePosition.bottom,
+                  needleType: LinearGaugeNeedleType.triangle,
+                  offset: 10),
+            ),
+          ),
+          buildCard(
+            'With Marker Pointers',
+            ScaleLinearGauge(
+                height: 100,
+                tickPosition: LinearElementPosition.outAndIn,
+                minorTickStyle: const LinearTickStyle(
+                  length: 10,
+                  thickness: 1,
+                ),
+                majorTickStyle: const LinearTickStyle(
+                    length: 60, thickness: 1, color: Colors.black26),
+                axisTrackStyle: const LinearAxisTrackStyle(
+                    thickness: 2,
+                    strokeCap: StrokeCap.round,
+                    color: Colors.black26),
+                showMinorTicks: false,
+                valueToLabelFormatCallback: (value, index) =>
+                    value.length == 1 ? '0$value' : value,
+                markerPointers: [
+                  LinearMarkerPointer(
+                    value: 10,
+                    // marker:
+                    //     const Icon(Icons.circle, color: Colors.red, size: 10),
+                    needle: const LinearNeedle(
+                      enabled: true,
+                      color: Colors.blueGrey,
+                      size: Size(2, 70),
+                      position: LinearGaugeNeedlePosition.center,
+                      needleType: LinearGaugeNeedleType.pipe,
+                      offset: 10,
+                    ),
+                  ),
+                  LinearMarkerPointer(
+                    value: 70,
+                    needle: const LinearNeedle(
+                      enabled: true,
+                      color: Colors.blueGrey,
+                      size: Size(2, 70),
+                      position: LinearGaugeNeedlePosition.center,
+                      needleType: LinearGaugeNeedleType.pipe,
+                      offset: 10,
+                    ),
+                  ),
+                ]),
+          ),
+          buildCard(
+            'With Filled area and Marker Pointers',
+            ScaleLinearGauge(
+              height: 100,
+              tickPosition: LinearElementPosition.outAndIn,
+              minorTickStyle: const LinearTickStyle(
+                length: 10,
+                thickness: 1,
+              ),
+              majorTickStyle: const LinearTickStyle(
+                length: 60,
+                thickness: 1,
+              ),
+              axisTrackStyle: const LinearAxisTrackStyle(
+                  thickness: 2,
+                  strokeCap: StrokeCap.round,
+                  color: Colors.black26),
+              showMinorTicks: false,
+              valueToMajorTickStyleCallback: (value, index) {
+                return LinearTickStyle(
+                  length: 60,
+                  thickness: (value == 30 || value == 80) ? 4 : 1,
+                  color: (value == 30 || value == 80)
+                      ? Colors.green
+                      : Colors.black26,
+                );
+              },
+              valueToLabelFormatCallback: (value, index) =>
+                  value.length == 1 ? '0$value' : value,
+              markerPointers: [
+                LinearMarkerPointer(
+                  value: 10,
+                  // marker:
+                  //     const Icon(Icons.circle, color: Colors.red, size: 10),
+                  needle: const LinearNeedle(
+                    enabled: true,
+                    color: Colors.blueGrey,
+                    size: Size(2, 70),
+                    position: LinearGaugeNeedlePosition.center,
+                    needleType: LinearGaugeNeedleType.pipe,
+                    offset: 10,
+                  ),
+                ),
+                LinearMarkerPointer(
+                  value: 70,
+                  needle: const LinearNeedle(
+                    enabled: true,
+                    color: Colors.blueGrey,
+                    size: Size(2, 70),
+                    position: LinearGaugeNeedlePosition.center,
+                    needleType: LinearGaugeNeedleType.pipe,
+                    offset: 10,
+                  ),
+                ),
+              ],
+              valueToLabelStyleCallback: (value, index) => TextStyle(
+                color: (value == 10 || value == 70)
+                    ? Colors.black
+                    : Colors.black38,
+                fontWeight: (value == 10 || value == 70)
+                    ? FontWeight.bold
+                    : FontWeight.normal,
+              ),
+              fillAreaPointer: FillAreaPointer(
+                  thickness: 60,
+                  startValue: 30,
+                  endValue: 80,
+                  color: Colors.green.withOpacity(0.3)),
             ),
           ),
           const SizedBox(

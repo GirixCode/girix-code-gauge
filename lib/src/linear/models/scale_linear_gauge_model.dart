@@ -1,4 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:girix_shape/girix_shape.dart';
+
+class FillAreaPointer {
+  final double startValue;
+  final double endValue;
+  final Color color;
+  final double thickness;
+  final LinearElementPosition position;
+  Shader Function(Rect)? shaderCallback;
+  final Color? borderColor;
+  final double borderWidth;
+  final double offset;
+  FillAreaPointer({
+    required this.startValue,
+    required this.endValue,
+    required this.color,
+    this.thickness = 5.0,
+    this.position = LinearElementPosition.cross,
+    this.shaderCallback,
+    this.borderColor,
+    this.borderWidth = 5.0,
+    this.offset = 0.0,
+  });
+}
 
 class LinearAxisTrackStyle {
   final double thickness;
@@ -15,12 +39,22 @@ class LinearAxisTrackStyle {
 
 class LinearBarPointer {
   final double value;
-  final Color color;
+  final Color? color;
   final double thickness;
+  final LinearElementPosition position;
+  Shader Function(Rect)? shaderCallback;
+  final Color? borderColor;
+  final double borderWidth;
+  final double offset;
   LinearBarPointer({
     required this.value,
-    required this.color,
-    required this.thickness,
+    this.color,
+    this.thickness = 5.0,
+    this.position = LinearElementPosition.cross,
+    this.shaderCallback,
+    this.borderColor,
+    this.borderWidth = 5.0,
+    this.offset = 0.0,
   });
 }
 
@@ -39,10 +73,12 @@ class LinearGaugeRange {
 
 class LinearMarkerPointer {
   final double value;
-  final Widget marker;
+  final Widget? marker;
+  final LinearNeedle? needle;
   LinearMarkerPointer({
     required this.value,
-    required this.marker,
+    this.marker,
+    this.needle,
   });
 }
 

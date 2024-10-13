@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:girix_shape/src/linear/models/scale_linear_gauge_model.dart';
 
 /// Callback to format the value to be displayed as label.
@@ -15,6 +16,8 @@ import 'package:girix_shape/src/linear/models/scale_linear_gauge_model.dart';
 /// ```
 ///
 typedef ValueToLabelFormatCallback = String Function(String value, int index);
+
+typedef ValueToLabelStyleCallback = TextStyle Function(double value, int index);
 
 /// Callback to format the value to be displayed as major tick.
 ///

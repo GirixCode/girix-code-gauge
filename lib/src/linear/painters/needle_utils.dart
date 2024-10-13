@@ -5,21 +5,24 @@ import 'package:flutter/foundation.dart';
 import 'package:girix_shape/girix_shape.dart';
 
 class NeedleUtils {
-  static void drawNeedle(
-      {required Canvas canvas,
-      required Size size,
-      required GaugeValue gaugeValue,
-      bool dense = false,
-      required LinearGaugeStyle style,
-      required LinearNeedle needle,
-      void Function(Canvas canvas, Offset position)? customDrawNeedle}) {
-    // Calculate the needle's x-position based on the needle position
-    final double progress = ((gaugeValue.value - gaugeValue.min) /
-            (gaugeValue.max - gaugeValue.min))
-        .clamp(0.0, 1.0);
+  static void drawIt({
+    required Canvas canvas,
+    required Size size,
+    required double minValue,
+    required double maxValue,
+    required double value,
+    bool dense = false,
+    required LinearNeedle needle,
+    required double thickness,
+    void Function(Canvas canvas, Offset position)? customDrawNeedle,
+  }) {
+// Calculate the needle's x-position based on the needle position
+    final double progress =
+        ((value - minValue) / (maxValue - minValue)).clamp(0.0, 1.0);
 
     // To allign nnedle with center position 0: Start after progress
-    final double denseValue = dense ? -5 : needle.size.width / 2;
+    // final double denseValue = dense ? -5 : needle.size.width / 2;
+    const double denseValue = 0;
     final double needleX = (size.width * progress) - denseValue;
     double needleY = size.height / 2;
 
@@ -38,13 +41,13 @@ class NeedleUtils {
     log('ProgressLinearGauge: needlePosition: $needlePosition');
     switch (needlePosition) {
       case LinearGaugeNeedlePosition.top:
-        needleY = style.dense ? style.thickness : -style.thickness;
+        needleY = dense ? thickness : -thickness;
         break;
       case LinearGaugeNeedlePosition.bottom:
-        if (style.dense && size.height > style.thickness) {
-          needleY = size.height - style.thickness;
+        if (dense && size.height > thickness) {
+          needleY = size.height - thickness;
         } else {
-          needleY = size.height + style.thickness;
+          needleY = size.height + thickness;
         }
         break;
       case LinearGaugeNeedlePosition.center:
@@ -107,5 +110,26 @@ class NeedleUtils {
         canvas.drawRect(rect, needlePaint);
         break;
     }
+  }
+
+  static void drawNeedle(
+      {required Canvas canvas,
+      required Size size,
+      required GaugeValue gaugeValue,
+      bool dense = false,
+      required LinearGaugeStyle style,
+      required LinearNeedle needle,
+      void Function(Canvas canvas, Offset position)? customDrawNeedle}) {
+    return drawIt(
+      canvas: canvas,
+      size: size,
+      minValue: gaugeValue.min,
+      maxValue: gaugeValue.max,
+      value: gaugeValue.value,
+      dense: dense,
+      needle: needle,
+      thickness: style.thickness,
+      customDrawNeedle: customDrawNeedle,
+    );
   }
 }

@@ -116,9 +116,12 @@ class LinearGaugeProgressPainter extends CustomPainter {
 
     if (foregroundStyle.dense) {
       // Draw the progress line
+      // P2 x: (size.width * progress) this value can be used directly
+      // P1 x: (size.width * progress) - (foregroundStyle.thickness / 2) due to the thickness provided
       canvas.drawLine(
         Offset(0, size.height / 2),
-        Offset(size.width * progress, size.height / 2),
+        Offset((size.width * progress) - (foregroundStyle.thickness / 2),
+            size.height / 2),
         foregroundPaint,
       );
     } else {

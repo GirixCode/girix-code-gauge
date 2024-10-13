@@ -1,10 +1,13 @@
 import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:girix_shape/src/common/models/models.dart';
 import 'package:girix_shape/src/common/utils/typedef.dart';
+import 'package:girix_shape/src/linear/models/linear_needle_model.dart';
 import 'package:girix_shape/src/linear/models/scale_linear_gauge_model.dart';
+import 'package:girix_shape/src/linear/painters/needle_utils.dart';
 
 /// The [ScaleLinearGauge] widget is used to display a linear gauge with a scale.
 ///
@@ -409,6 +412,8 @@ class ScaleLinearGauge extends StatelessWidget {
   ///
   /// The default value is null.
   ///
+  ///  The [majorTickStyle] argument will be ignored if the [valueToMajorTickStyleCallback] is not null.
+  ///
   /// ```dart
   /// LinearTickStyle majorTickStyle(double value, int index) {
   ///  return LinearTickStyle(
@@ -420,6 +425,66 @@ class ScaleLinearGauge extends StatelessWidget {
   /// ```
   ///
   final ValueToMajorTickStyleCallback? valueToMajorTickStyleCallback;
+
+  /// Specifies the needle of the gauge.
+  ///
+  /// The default value is null.
+  ///
+  /// ```dart
+  /// ScaleLinearGauge(
+  ///   needle: LinearNeedle(
+  ///      enabled: true,
+  ///      position: LinearGaugeNeedlePosition.bottom,
+  ///      size: const Size(20, 20),
+  ///      color: Colors.blueGrey,
+  ///     needleType: LinearGaugeNeedleType.triangle),
+  /// )
+  /// ```
+  ///
+  final LinearNeedle? needle;
+
+  /// Specifies the value of the gauge.
+  ///
+  /// The default value is null.
+  ///
+  /// ```dart
+  /// ScaleLinearGauge(
+  ///  value: const GaugeValue(value: 50, min: 0, max: 100),
+  /// )
+  /// ```
+  ///
+  final GaugeValue? value;
+
+  /// Specifies the start value of the filled area between two ticks.
+  ///
+  /// The default value is null.
+  ///
+  /// ```dart
+  /// ScaleLinearGauge(
+  ///  fillAreaPointer: FillAreaPointer(
+  ///   startFillValue: 20.0,
+  ///   endFillValue: 80.0,
+  ///   fillColor: Colors.green,
+  ///  ),
+  /// )
+  /// ```
+  ///
+  final FillAreaPointer? fillAreaPointer;
+
+  /// Specifies the value to label style callback of the gauge.
+  ///
+  /// The default value is null.
+  ///
+  /// ```dart
+  /// TextStyle valueToLabelStyle(double value) {
+  ///   return TextStyle(
+  ///   color: Colors.black,
+  ///   fontSize: 12,
+  ///  );
+  /// }
+  /// ```
+  ///
+  final ValueToLabelStyleCallback? valueToLabelStyleCallback;
 
   const ScaleLinearGauge({
     super.key,
@@ -447,6 +512,10 @@ class ScaleLinearGauge extends StatelessWidget {
     this.showAxisTrack = true,
     this.showAxisLabel = true,
     this.valueToMajorTickStyleCallback,
+    this.needle,
+    this.value,
+    this.fillAreaPointer,
+    this.valueToLabelStyleCallback,
   });
 
   @override
@@ -478,6 +547,10 @@ class ScaleLinearGauge extends StatelessWidget {
           showAxisTrack: showAxisTrack,
           showAxisLabel: showAxisLabel,
           valueToMajorTickStyleCallback: valueToMajorTickStyleCallback,
+          value: value,
+          needle: needle,
+          fillAreaPointer: fillAreaPointer,
+          valueToLabelStyleCallback: valueToLabelStyleCallback,
         ),
         size: Size.infinite,
       ),
@@ -508,6 +581,10 @@ class _ScaleLinearGaugePainter extends CustomPainter {
   final bool showAxisTrack;
   final bool showAxisLabel;
   final ValueToMajorTickStyleCallback? valueToMajorTickStyleCallback;
+  final GaugeValue? value;
+  final LinearNeedle? needle;
+  final FillAreaPointer? fillAreaPointer;
+  final ValueToLabelStyleCallback? valueToLabelStyleCallback;
   _ScaleLinearGaugePainter({
     required this.gaugeType,
     required this.orientation,
@@ -531,6 +608,10 @@ class _ScaleLinearGaugePainter extends CustomPainter {
     this.markerPointers,
     this.valueToLabelFormatCallback,
     this.valueToMajorTickStyleCallback,
+    this.value,
+    this.needle,
+    this.fillAreaPointer,
+    this.valueToLabelStyleCallback,
   });
 
   @override
@@ -560,7 +641,28 @@ class _ScaleLinearGaugePainter extends CustomPainter {
   }
 
   void _drawConcaveGauge(Canvas canvas, Size size) {
-    // Implement drawing methods for each gauge type
+    final Paint trackPaint = Paint()
+      ..color = axisTrackStyle.color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = axisTrackStyle.thickness;
+
+    final double startX = axisSpaceExtent;
+    final double endX = size.width - axisSpaceExtent;
+    final double centerY = size.height / 2;
+
+    final Path path = Path()
+      ..moveTo(startX, centerY)
+      ..quadraticBezierTo(
+        size.width / 2,
+        centerY - (size.height / 2),
+        endX,
+        centerY,
+      );
+
+    canvas.drawPath(path, trackPaint);
+
+    // Draw ticks and labels if needed
+    // _drawTicksAndLabelsOnPath(canvas, path);
   }
 
   // Implement drawing methods for each gauge type
@@ -584,17 +686,131 @@ class _ScaleLinearGaugePainter extends CustomPainter {
 
     // Draw ticks and labels
     _drawTicksAndLabels(canvas, size, startX, endX);
+
+    // Draw Needle
+    _drawNeedle(canvas, size);
+
+    // Draw Marker Pointer
+    _drawLinearMarkerPointer(canvas, size);
+
+    // Draw the filled area between two ticks
+    _drawFilledArea(canvas, size);
   }
 
   void _drawExponentialGauge(Canvas canvas, Size size) {
-    // Implement drawing methods for each gauge type
+    // Similar to default gauge, but vary the thickness exponentially
+    final Paint trackPaint = Paint()
+      ..strokeWidth = axisTrackStyle.thickness
+      ..style = PaintingStyle.stroke;
+
+    final double startX = axisSpaceExtent;
+    final double endX = size.width - axisSpaceExtent;
+
+    final Path path = Path();
+    path.moveTo(startX, size.height / 2);
+
+    for (double x = startX; x <= endX; x += 1) {
+      final double progress = (x - startX) / (endX - startX);
+      final double exponentialThickness =
+          axisTrackStyle.thickness * math.pow(progress, 2);
+
+      trackPaint.strokeWidth = exponentialThickness;
+
+      if (x > startX) {
+        canvas.drawLine(
+          Offset(x - 1, size.height / 2),
+          Offset(x, size.height / 2),
+          trackPaint,
+        );
+      }
+    }
+
+    // Draw ticks and labels if needed
+    _drawTicksAndLabels(canvas, size, startX, endX);
+  }
+
+  void _drawFilledArea(Canvas canvas, Size size) {
+    if (fillAreaPointer == null) {
+      return;
+    }
+    if (kDebugMode) {
+      log('ScaleLinearGauge: Fill Area Pointer: ${fillAreaPointer!.startValue} - ${fillAreaPointer!.endValue}');
+    }
+    final double startFillValue = fillAreaPointer!.startValue;
+    final double endFillValue = fillAreaPointer!.endValue;
+    final Color fillColor = fillAreaPointer!.color;
+    final double axisThickness = fillAreaPointer!.thickness;
+    final double totalRange = maximum - minimum;
+    final double startRatio = (startFillValue - minimum) / totalRange;
+    final double endRatio = (endFillValue - minimum) / totalRange;
+
+    final double startX = startRatio * size.width;
+    final double endX = endRatio * size.width;
+
+    final Paint fillPaint = Paint()
+      ..color = fillColor
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.butt
+      ..strokeWidth = axisThickness;
+
+    canvas.drawLine(
+      Offset(startX, size.height / 2),
+      Offset(endX, size.height / 2),
+      fillPaint,
+    );
   }
 
   void _drawGradientGauge(Canvas canvas, Size size) {
     // Implement drawing methods for each gauge type
   }
 
+  void _drawLinearMarkerPointer(Canvas canvas, Size size) {
+    if (markerPointers != null && markerPointers!.isNotEmpty) {
+      for (final LinearMarkerPointer markerPointer in markerPointers!) {
+        final double markerX = size.width / 2;
+        final double markerY = size.height / 2;
+
+        // Draw the marker
+        if (kDebugMode) {
+          log('ScaleLinearGauge: Marker Pointer: markerX: $markerX, markerY: $markerY');
+        }
+
+        // Check Needle is enabled
+        if (markerPointer.needle != null && markerPointer.needle!.enabled) {
+          // Draw the needle
+          NeedleUtils.drawIt(
+              canvas: canvas,
+              size: size,
+              maxValue: maximum,
+              minValue: minimum,
+              value: markerPointer.value,
+              needle: markerPointer.needle!,
+              thickness: markerPointer.needle!.offset,
+              dense: true);
+        }
+      }
+    }
+  }
+
   void _drawMultiRangeGauge(Canvas canvas, Size size) {}
+
+  void _drawNeedle(Canvas canvas, Size size) {
+    if (needle != null && value != null) {
+      // Draw the needle if enabled
+      if (needle!.enabled) {
+        // Draw the needle
+        NeedleUtils.drawIt(
+            canvas: canvas,
+            size: size,
+            maxValue: maximum,
+            minValue: minimum,
+            value: value!.value,
+            needle: needle!,
+            thickness: needle!.offset,
+            dense: true);
+      }
+    }
+  }
 
   void _drawTicksAndLabels(
       Canvas canvas, Size size, double startX, double endX) {
@@ -609,11 +825,6 @@ class _ScaleLinearGaugePainter extends CustomPainter {
 
     // Calculate the tick spacing based on the start and end x values and the number of divisions
     final double tickSpacing = (endX - startX) / divisions;
-
-    if (kDebugMode) {
-      log('ScaleLinearGauge: divisions: $divisions, tickSpacing: $tickSpacing, actualInterval: $actualInterval, totalInterval: $totalInterval');
-      log('ScaleLinearGauge: ------------------------------------');
-    }
 
     for (int i = 0; i <= divisions; i++) {
       // Determine if the current tick is odd or even
@@ -666,12 +877,13 @@ class _ScaleLinearGaugePainter extends CustomPainter {
         }
       }
 
-      // Draw major tick
+      // Filter Major Tick Style based on the value and index
       final LinearTickStyle filterMajorTickStyle =
           valueToMajorTickStyleCallback != null
               ? valueToMajorTickStyleCallback!(minimum + actualInterval * i, i)
               : majorTickStyle;
 
+      // Draw major tick
       canvas.drawLine(
         majorTickP1,
         majorTickP2,
@@ -700,6 +912,10 @@ class _ScaleLinearGaugePainter extends CustomPainter {
 
       // Draw labels
       if (showAxisLabel) {
+        final TextStyle labelStyle = valueToLabelStyleCallback != null
+            ? valueToLabelStyleCallback!(minimum + actualInterval * i, i)
+            : axisLabelStyle ??
+                const TextStyle(color: Colors.black, fontSize: 12);
         // Check Tick Position is InAndOut
         final bool isTickPositionOutInAndTickIsOdd =
             tickPosition == LinearElementPosition.outAndIn && isOdd;
@@ -723,8 +939,7 @@ class _ScaleLinearGaugePainter extends CustomPainter {
             text: valueToLabelFormatCallback != null
                 ? valueToLabelFormatCallback!(label, i)
                 : label,
-            style: axisLabelStyle ??
-                const TextStyle(color: Colors.black, fontSize: 12),
+            style: labelStyle,
           )
           ..layout();
 

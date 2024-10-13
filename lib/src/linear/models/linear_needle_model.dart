@@ -10,6 +10,7 @@ class LinearNeedle extends Equatable {
   final Color color;
   final bool enabled;
   final LinearNeedleLabel? label;
+  final double offset;
   const LinearNeedle({
     this.needleType = LinearGaugeNeedleType.rectangle,
     this.position = LinearGaugeNeedlePosition.center,
@@ -17,11 +18,12 @@ class LinearNeedle extends Equatable {
     this.color = const Color(0xFF000000),
     this.enabled = true,
     this.label,
+    this.offset = 2,
   });
 
   @override
   List<Object?> get props =>
-      <Object?>[needleType, position, size, color, enabled, label];
+      <Object?>[needleType, position, size, color, enabled, label, offset];
 }
 
 // Needle Label
