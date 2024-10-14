@@ -100,18 +100,18 @@ class _DefaultScaleLinearGaugeBodyState
           buildCard(
             'With Tick inside',
             const ScaleLinearGauge(
-              height: 80,
+              height: 120,
               tickPosition: LinearElementPosition.inside,
               minorTickStyle: LinearTickStyle(
-                length: 30,
+                length: 50,
                 thickness: 1,
               ),
               majorTickStyle: LinearTickStyle(
-                length: 60,
+                length: 70,
                 thickness: 1,
               ),
               axisTrackStyle: LinearAxisTrackStyle(
-                  thickness: 10,
+                  thickness: 20,
                   strokeCap: StrokeCap.round,
                   color: Colors.orange),
               // showAxisLabel: false,
@@ -333,11 +333,91 @@ class _DefaultScaleLinearGaugeBodyState
                     ? FontWeight.bold
                     : FontWeight.normal,
               ),
-              fillAreaPointer: FillAreaPointer(
-                  thickness: 60,
-                  startValue: 30,
-                  endValue: 80,
-                  color: Colors.green.withOpacity(0.3)),
+              fillAreaPointers: [
+                FillAreaPointer(
+                    thickness: 60,
+                    startValue: 30,
+                    endValue: 80,
+                    color: Colors.green.withOpacity(0.3))
+              ],
+            ),
+          ),
+          buildCard(
+            'With Multiple Filled area and Marker Pointers',
+            ScaleLinearGauge(
+              height: 100,
+              width: double.infinity,
+              tickPosition: LinearElementPosition.outAndIn,
+              minorTickStyle: const LinearTickStyle(
+                length: 10,
+                thickness: 1,
+              ),
+              majorTickStyle: const LinearTickStyle(
+                length: 60,
+                thickness: 1,
+              ),
+              axisTrackStyle: const LinearAxisTrackStyle(
+                  thickness: 2,
+                  strokeCap: StrokeCap.round,
+                  color: Colors.black26),
+              showMinorTicks: false,
+              valueToMajorTickStyleCallback: (value, index) {
+                return LinearTickStyle(
+                  length: 60,
+                  thickness: (value == 30 || value == 80) ? 4 : 1,
+                  color: (value == 30 || value == 80)
+                      ? Colors.orange
+                      : Colors.black26,
+                );
+              },
+              valueToLabelFormatCallback: (value, index) =>
+                  value.length == 1 ? '0$value' : value,
+              markerPointers: [
+                LinearMarkerPointer(
+                  value: 10,
+                  // marker:
+                  //     const Icon(Icons.circle, color: Colors.red, size: 10),
+                  needle: const LinearNeedle(
+                    enabled: true,
+                    color: Colors.blueGrey,
+                    size: Size(2, 70),
+                    position: LinearGaugeNeedlePosition.center,
+                    needleType: LinearGaugeNeedleType.pipe,
+                    offset: 10,
+                  ),
+                ),
+                LinearMarkerPointer(
+                  value: 70,
+                  needle: const LinearNeedle(
+                    enabled: true,
+                    color: Colors.blueGrey,
+                    size: Size(2, 70),
+                    position: LinearGaugeNeedlePosition.center,
+                    needleType: LinearGaugeNeedleType.pipe,
+                    offset: 10,
+                  ),
+                ),
+              ],
+              valueToLabelStyleCallback: (value, index) => TextStyle(
+                color: (value == 10 || value == 70)
+                    ? Colors.black
+                    : Colors.black38,
+                fontWeight: (value == 10 || value == 70)
+                    ? FontWeight.bold
+                    : FontWeight.normal,
+              ),
+              fillAreaPointers: [
+                FillAreaPointer(
+                    thickness: 60,
+                    startValue: 10,
+                    endValue: 70,
+                    color: Colors.grey.withOpacity(0.3)),
+                FillAreaPointer(
+                    thickness: 48,
+                    startValue: 30,
+                    endValue: 80,
+                    color: Colors.orange.withOpacity(0.3))
+              ],
             ),
           ),
           const SizedBox(

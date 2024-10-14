@@ -455,21 +455,24 @@ class ScaleLinearGauge extends StatelessWidget {
   ///
   final GaugeValue? value;
 
-  /// Specifies the start value of the filled area between two ticks.
+  /// Specifies the list of fill area pointer of the gauge.
   ///
   /// The default value is null.
   ///
   /// ```dart
   /// ScaleLinearGauge(
-  ///  fillAreaPointer: FillAreaPointer(
-  ///   startFillValue: 20.0,
-  ///   endFillValue: 80.0,
-  ///   fillColor: Colors.green,
-  ///  ),
+  ///  fillAreaPointers: [
+  ///    FillAreaPointer(
+  ///     startValue: 0.0,
+  ///     endValue: 50.0,
+  ///     color: Colors.green,
+  ///     thickness: 10.0,
+  ///   ),
+  ///  ],
   /// )
   /// ```
   ///
-  final FillAreaPointer? fillAreaPointer;
+  final List<FillAreaPointer>? fillAreaPointers;
 
   /// Specifies the value to label style callback of the gauge.
   ///
@@ -514,7 +517,7 @@ class ScaleLinearGauge extends StatelessWidget {
     this.valueToMajorTickStyleCallback,
     this.needle,
     this.value,
-    this.fillAreaPointer,
+    this.fillAreaPointers,
     this.valueToLabelStyleCallback,
   });
 
@@ -524,36 +527,37 @@ class ScaleLinearGauge extends StatelessWidget {
       width: width,
       height: height,
       child: CustomPaint(
-        painter: _ScaleLinearGaugePainter(
-          gaugeType: gaugeType,
-          orientation: orientation,
-          minimum: minimum,
-          maximum: maximum,
-          interval: interval,
-          axisSpaceExtent: axisSpaceExtent,
-          axisLabelStyle: axisLabelStyle,
-          axisTrackStyle: axisTrackStyle,
-          minorTicksPerInterval: minorTicksPerInterval,
-          majorTickStyle: majorTickStyle,
-          minorTickStyle: minorTickStyle,
-          ranges: ranges,
-          barPointers: barPointers,
-          markerPointers: markerPointers,
-          valueToLabelFormatCallback: valueToLabelFormatCallback,
-          labelPosition: labelPosition,
-          tickPosition: tickPosition,
-          showMajorTicks: showMajorTicks,
-          showMinorTicks: showMinorTicks,
-          showAxisTrack: showAxisTrack,
-          showAxisLabel: showAxisLabel,
-          valueToMajorTickStyleCallback: valueToMajorTickStyleCallback,
-          value: value,
-          needle: needle,
-          fillAreaPointer: fillAreaPointer,
-          valueToLabelStyleCallback: valueToLabelStyleCallback,
-        ),
-        size: Size.infinite,
-      ),
+          painter: _ScaleLinearGaugePainter(
+            gaugeType: gaugeType,
+            orientation: orientation,
+            minimum: minimum,
+            maximum: maximum,
+            interval: interval,
+            axisSpaceExtent: axisSpaceExtent,
+            axisLabelStyle: axisLabelStyle,
+            axisTrackStyle: axisTrackStyle,
+            minorTicksPerInterval: minorTicksPerInterval,
+            majorTickStyle: majorTickStyle,
+            minorTickStyle: minorTickStyle,
+            ranges: ranges,
+            barPointers: barPointers,
+            markerPointers: markerPointers,
+            valueToLabelFormatCallback: valueToLabelFormatCallback,
+            labelPosition: labelPosition,
+            tickPosition: tickPosition,
+            showMajorTicks: showMajorTicks,
+            showMinorTicks: showMinorTicks,
+            showAxisTrack: showAxisTrack,
+            showAxisLabel: showAxisLabel,
+            valueToMajorTickStyleCallback: valueToMajorTickStyleCallback,
+            value: value,
+            needle: needle,
+            fillAreaPointers: fillAreaPointers,
+            valueToLabelStyleCallback: valueToLabelStyleCallback,
+          ),
+          size: height == null || width == null
+              ? Size.infinite
+              : Size(width!, height!)),
     );
   }
 }
@@ -583,7 +587,7 @@ class _ScaleLinearGaugePainter extends CustomPainter {
   final ValueToMajorTickStyleCallback? valueToMajorTickStyleCallback;
   final GaugeValue? value;
   final LinearNeedle? needle;
-  final FillAreaPointer? fillAreaPointer;
+  final List<FillAreaPointer>? fillAreaPointers;
   final ValueToLabelStyleCallback? valueToLabelStyleCallback;
   _ScaleLinearGaugePainter({
     required this.gaugeType,
@@ -610,7 +614,7 @@ class _ScaleLinearGaugePainter extends CustomPainter {
     this.valueToMajorTickStyleCallback,
     this.value,
     this.needle,
-    this.fillAreaPointer,
+    this.fillAreaPointers,
     this.valueToLabelStyleCallback,
   });
 
@@ -730,34 +734,37 @@ class _ScaleLinearGaugePainter extends CustomPainter {
   }
 
   void _drawFilledArea(Canvas canvas, Size size) {
-    if (fillAreaPointer == null) {
+    if (fillAreaPointers == null) {
       return;
     }
-    if (kDebugMode) {
-      log('ScaleLinearGauge: Fill Area Pointer: ${fillAreaPointer!.startValue} - ${fillAreaPointer!.endValue}');
+
+    for (final FillAreaPointer fillAreaPointer in fillAreaPointers!) {
+      if (kDebugMode) {
+        log('ScaleLinearGauge: Fill Area Pointer: ${fillAreaPointer.startValue} - ${fillAreaPointer.endValue}');
+      }
+      final double startFillValue = fillAreaPointer.startValue;
+      final double endFillValue = fillAreaPointer.endValue;
+      final Color fillColor = fillAreaPointer.color;
+      final double axisThickness = fillAreaPointer.thickness;
+      final double totalRange = maximum - minimum;
+      final double startRatio = (startFillValue - minimum) / totalRange;
+      final double endRatio = (endFillValue - minimum) / totalRange;
+
+      final double startX = startRatio * size.width;
+      final double endX = endRatio * size.width;
+
+      final Paint fillPaint = Paint()
+        ..color = fillColor
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.butt
+        ..strokeWidth = axisThickness;
+
+      canvas.drawLine(
+        Offset(startX, size.height / 2),
+        Offset(endX, size.height / 2),
+        fillPaint,
+      );
     }
-    final double startFillValue = fillAreaPointer!.startValue;
-    final double endFillValue = fillAreaPointer!.endValue;
-    final Color fillColor = fillAreaPointer!.color;
-    final double axisThickness = fillAreaPointer!.thickness;
-    final double totalRange = maximum - minimum;
-    final double startRatio = (startFillValue - minimum) / totalRange;
-    final double endRatio = (endFillValue - minimum) / totalRange;
-
-    final double startX = startRatio * size.width;
-    final double endX = endRatio * size.width;
-
-    final Paint fillPaint = Paint()
-      ..color = fillColor
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.butt
-      ..strokeWidth = axisThickness;
-
-    canvas.drawLine(
-      Offset(startX, size.height / 2),
-      Offset(endX, size.height / 2),
-      fillPaint,
-    );
   }
 
   void _drawGradientGauge(Canvas canvas, Size size) {
