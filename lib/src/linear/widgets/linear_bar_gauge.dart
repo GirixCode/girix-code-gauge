@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:girix_shape/girix_shape.dart';
-import 'package:girix_shape/src/linear/painters/linear_bar_painter.dart';
+import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/src/linear/painters/linear_bar_painter.dart';
 
 class LinearBarGauge extends StatelessWidget {
   final GaugeValue value;

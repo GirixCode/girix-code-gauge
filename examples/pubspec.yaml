@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  girix_shape:
+  girix_code_gauge:
     path: ../
 
 dev_dependencies:

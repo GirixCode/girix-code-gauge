@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:girix_shape/src/common/models/enums.dart';
+import 'package:girix_code_gauge/src/common/models/enums.dart';
 
 /// Gauge value model
 ///

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:girix_shape/girix_shape.dart';
+import 'package:girix_code_gauge/gauges.dart';
 
 class LinearBarPainter extends CustomPainter {
   final GaugeValue gaugeValue;

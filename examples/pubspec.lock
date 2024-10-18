@@ -83,7 +83,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  girix_shape:
+  girix_code_gauge:
     dependency: "direct main"
     description:
       path: ".."

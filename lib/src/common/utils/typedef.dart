@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:girix_shape/src/linear/models/scale_linear_gauge_model.dart';
+import 'package:girix_code_gauge/src/linear/models/scale_linear_gauge_model.dart';
 
 /// Callback to format the value to be displayed as label.
 ///

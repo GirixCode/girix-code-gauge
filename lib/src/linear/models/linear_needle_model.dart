@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
-import 'package:girix_shape/src/common/models/enums.dart';
+import 'package:girix_code_gauge/src/common/models/enums.dart';
 
 class LinearNeedle extends Equatable {
   final LinearGaugeNeedleType needleType;

@@ -3,11 +3,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:girix_shape/src/common/models/models.dart';
-import 'package:girix_shape/src/common/utils/typedef.dart';
-import 'package:girix_shape/src/linear/models/linear_needle_model.dart';
-import 'package:girix_shape/src/linear/models/scale_linear_gauge_model.dart';
-import 'package:girix_shape/src/linear/painters/needle_utils.dart';
+import 'package:girix_code_gauge/src/common/models/models.dart';
+import 'package:girix_code_gauge/src/common/utils/typedef.dart';
+import 'package:girix_code_gauge/src/linear/models/linear_needle_model.dart';
+import 'package:girix_code_gauge/src/linear/models/scale_linear_gauge_model.dart';
+import 'package:girix_code_gauge/src/linear/painters/needle_utils.dart';
 
 /// The [ScaleLinearGauge] widget is used to display a linear gauge with a scale.
 ///

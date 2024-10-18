@@ -1,11 +1,11 @@
 // // lib/src/linear/widgets/linear_gauge.dart
 
 // import 'package:flutter/material.dart';
-// import 'package:girix_shape/src/common/models/enums.dart';
-// import 'package:girix_shape/src/common/models/gauge_value.dart';
-// import 'package:girix_shape/src/linear/models/linear_gauge_style.dart';
-// import 'package:girix_shape/src/linear/models/linear_needle_model.dart';
-// import 'package:girix_shape/src/linear/painters/linear_gauge_painter.dart';
+// import 'package:girix_code_gauge/src/common/models/enums.dart';
+// import 'package:girix_code_gauge/src/common/models/gauge_value.dart';
+// import 'package:girix_code_gauge/src/linear/models/linear_gauge_style.dart';
+// import 'package:girix_code_gauge/src/linear/models/linear_needle_model.dart';
+// import 'package:girix_code_gauge/src/linear/painters/linear_gauge_painter.dart';
 
 // /// The [LinearGauge] widget is used to display a linear gauge.
 // ///

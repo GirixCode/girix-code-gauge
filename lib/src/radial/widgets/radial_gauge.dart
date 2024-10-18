@@ -1,9 +1,9 @@
 // lib/src/radial/widgets/radial_gauge.dart
 
 import 'package:flutter/material.dart';
-import 'package:girix_shape/src/common/models/linear_gauge_common_model.dart';
-import 'package:girix_shape/src/radial/models/radial_gauge_style.dart';
-import 'package:girix_shape/src/radial/painters/radial_gauge_painter.dart';
+import 'package:girix_code_gauge/src/common/models/linear_gauge_common_model.dart';
+import 'package:girix_code_gauge/src/radial/models/radial_gauge_style.dart';
+import 'package:girix_code_gauge/src/radial/painters/radial_gauge_painter.dart';
 
 /// The [RadialGauge] widget is used to display a radial gauge.
 ///
