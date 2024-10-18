@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:examples/screens/linear_gauge/bar/bar_linear_gauge_screen.dart';
 import 'package:examples/screens/linear_gauge/progress/progress_linear_gauge.dart';
 import 'package:examples/screens/linear_gauge/scale/scale_linear_gauge_screen.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +56,11 @@ class _ExampleAppState extends State<ExampleApp> {
       code: 'MyScaleLinearGaugeScreen()',
       leading: const Icon(Icons.linear_scale),
     ),
+    FeatureItem(
+        title: 'Bar Linear Gauge',
+        widget: () => const MyBarLinearGaugeScreen(),
+        code: 'MyBarLinearGaugeScreen()',
+        leading: const Icon(Icons.bar_chart_sharp)),
   ];
 
   @override

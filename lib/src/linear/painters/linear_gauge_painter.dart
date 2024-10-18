@@ -4,7 +4,7 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:girix_shape/src/common/models/gauge_value.dart';
+import 'package:girix_shape/src/common/models/linear_gauge_common_model.dart';
 import 'package:girix_shape/src/linear/models/linear_gauge_style.dart';
 import 'package:girix_shape/src/linear/models/linear_needle_model.dart';
 import 'package:girix_shape/src/linear/painters/needle_utils.dart';

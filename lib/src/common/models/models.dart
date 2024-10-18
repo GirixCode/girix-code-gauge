@@ -1,2 +1,2 @@
 export 'enums.dart';
-export 'gauge_value.dart';
+export 'linear_gauge_common_model.dart';

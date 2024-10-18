@@ -451,4 +451,6 @@ class _DefaultScaleLinearGaugeBodyState
       ),
     );
   }
+
 }
+
