@@ -6,9 +6,9 @@ import 'package:girix_code_gauge/src/linear/models/linear_gauge_style.dart';
 import 'package:girix_code_gauge/src/linear/models/linear_needle_model.dart';
 import 'package:girix_code_gauge/src/linear/painters/linear_gauge_painter.dart';
 
-/// The [ProgressLinearGauge] widget is used to display a linear gauge.
+/// The [GxProgressLinearGauge] widget is used to display a linear gauge.
 ///
-/// The [ProgressLinearGauge] widget requires the following properties:
+/// The [GxProgressLinearGauge] widget requires the following properties:
 ///
 /// - [value]: An instance of the [GaugeValue] class that holds the value of the gauge.
 ///
@@ -17,13 +17,13 @@ import 'package:girix_code_gauge/src/linear/painters/linear_gauge_painter.dart';
 /// - [shape]: An instance of the [LinearGaugeShape] enum that holds the shape of the gauge.
 ///
 /// - [needle]: An instance of the [LinearNeedle] class that holds the needle properties of the Needle.
-class ProgressLinearGauge extends StatelessWidget {
+class GxProgressLinearGauge extends StatelessWidget {
   final GaugeValue value;
   final LinearGaugeStyle? foregroundStyle;
   final LinearGaugeStyle? backgroundStyle;
   final LinearNeedle? needle;
   final void Function(Canvas canvas, Offset position)? customDrawNeedle;
-  const ProgressLinearGauge(
+  const GxProgressLinearGauge(
       {super.key,
       required this.value,
       this.foregroundStyle,

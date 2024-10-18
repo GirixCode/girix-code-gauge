@@ -27,7 +27,7 @@ class NeedleUtils {
     double needleY = size.height / 2;
 
     if (kDebugMode) {
-      log('ProgressLinearGauge: Before needleX: $needleX and needleY: $needleY and progress: $progress');
+      log('GxProgressLinearGauge: Before needleX: $needleX and needleY: $needleY and progress: $progress');
     }
 
     final LinearGaugeNeedlePosition needlePosition = needle.position;
@@ -38,7 +38,7 @@ class NeedleUtils {
     //    |
     // -------- X+
     //    | Y+ needle
-    log('ProgressLinearGauge: needlePosition: $needlePosition');
+    log('GxProgressLinearGauge: needlePosition: $needlePosition');
     switch (needlePosition) {
       case LinearGaugeNeedlePosition.top:
         needleY = dense ? thickness : -thickness;
@@ -57,7 +57,7 @@ class NeedleUtils {
     }
 
     if (kDebugMode) {
-      log('ProgressLinearGauge: After needleX: $needleX and needleY: $needleY height: ${size.height}');
+      log('GxProgressLinearGauge: After needleX: $needleX and needleY: $needleY height: ${size.height}');
     }
 
     final Paint needlePaint = Paint()

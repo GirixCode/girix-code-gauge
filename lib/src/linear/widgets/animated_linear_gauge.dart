@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/gauges.dart';
 
-class AnimatedProgressLinearGauge extends StatefulWidget {
+class GxAnimatedProgressLinearGauge extends StatefulWidget {
   final double value;
   final GaugeAnimationType animationType;
   final Duration duration;
@@ -13,7 +13,7 @@ class AnimatedProgressLinearGauge extends StatefulWidget {
   final LinearGaugeStyle backgroundStyle;
   final LinearNeedle? needle;
   final void Function(Canvas canvas, Offset position)? customDrawNeedle;
-  const AnimatedProgressLinearGauge({
+  const GxAnimatedProgressLinearGauge({
     super.key,
     required this.value,
     this.animationType = GaugeAnimationType.linear,
@@ -30,7 +30,7 @@ class AnimatedProgressLinearGauge extends StatefulWidget {
 }
 
 class _AnimatedProgressLinearGaugeState
-    extends State<AnimatedProgressLinearGauge>
+    extends State<GxAnimatedProgressLinearGauge>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -38,8 +38,8 @@ class _AnimatedProgressLinearGaugeState
 
   @override
   Widget build(BuildContext context) {
-    log('ProgressLinearGauge: [Animated] ${_animation.value}');
-    return ProgressLinearGauge(
+    log('GxProgressLinearGauge: [Animated] ${_animation.value}');
+    return GxProgressLinearGauge(
       value: GaugeValue(value: _animation.value),
       foregroundStyle: widget.foregroundStyle,
       backgroundStyle: widget.backgroundStyle,
@@ -49,7 +49,7 @@ class _AnimatedProgressLinearGaugeState
   }
 
   @override
-  void didUpdateWidget(covariant AnimatedProgressLinearGauge oldWidget) {
+  void didUpdateWidget(covariant GxAnimatedProgressLinearGauge oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.value != widget.value ||
         oldWidget.animationType != widget.animationType) {

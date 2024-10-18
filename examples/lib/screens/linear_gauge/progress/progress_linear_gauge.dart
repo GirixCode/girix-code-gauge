@@ -40,7 +40,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
           ...[
             const Text('Default Linear Gauge'),
             const SizedBox(height: 10),
-            ProgressLinearGauge(
+            GxProgressLinearGauge(
               value: const GaugeValue(value: 50, min: 0, max: 100),
               foregroundStyle: foregroundStyleOne,
               backgroundStyle: backgroundStyleOne,
@@ -50,7 +50,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
 
             // Different Needle Types
             const Text('Diamond Needle (Center)'),
-            ProgressLinearGauge(
+            GxProgressLinearGauge(
               value: const GaugeValue(value: 80, min: 00, max: 100),
               foregroundStyle: LinearGaugeStyle(
                   size: const Size(300, 0),
@@ -75,7 +75,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
 
             // Different Needle Types
             const Text('Circle Needle (Top)'),
-            ProgressLinearGauge(
+            GxProgressLinearGauge(
               value: const GaugeValue(value: 40, min: 10, max: 100),
               foregroundStyle: LinearGaugeStyle(
                   size: Size.zero,
@@ -102,7 +102,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
 
             // Different Needle Types
             const Text('Triangle Needle (Bottom)'),
-            ProgressLinearGauge(
+            GxProgressLinearGauge(
               value: const GaugeValue(value: 60, min: 10, max: 100),
               foregroundStyle: LinearGaugeStyle(
                   size: Size.zero,
@@ -129,7 +129,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
             const SizedBox(height: 30),
 
             const Text('Pipe Needle (Center)'),
-            ProgressLinearGauge(
+            GxProgressLinearGauge(
               value: const GaugeValue(value: 70, min: 0, max: 100),
               foregroundStyle: LinearGaugeStyle(
                 size: Size.zero,
@@ -152,7 +152,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
             const SizedBox(height: 30),
 
             const Text('Pipe Needle (bottom)'),
-            ProgressLinearGauge(
+            GxProgressLinearGauge(
               value: const GaugeValue(value: 45, min: 0, max: 100),
               foregroundStyle: LinearGaugeStyle(
                 size: Size.zero,
@@ -178,7 +178,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
             const SizedBox(height: 30),
 
             const Text('Custom Needle (Center)'),
-            ProgressLinearGauge(
+            GxProgressLinearGauge(
               value: const GaugeValue(value: 50, min: 0, max: 100),
               foregroundStyle: LinearGaugeStyle(
                 size: Size.zero,
@@ -200,11 +200,11 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
               customDrawNeedle: _drawCustomNeedle,
             ),
 
-            // AnimatedProgressLinearGauge
+            // GxAnimatedProgressLinearGauge
             const SizedBox(height: 30),
             const Text('Animated Progress Linear Gauge'),
             const SizedBox(height: 10),
-            AnimatedProgressLinearGauge(
+            GxAnimatedProgressLinearGauge(
               value: 60,
               backgroundStyle: LinearGaugeStyle(
                   size: const Size(300, 0),
@@ -233,7 +233,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
 
 // My Custom Needle
   void _drawCustomNeedle(Canvas canvas, Offset position) {
-    log('ProgressLinearGauge: Custom Needle');
+    log('GxProgressLinearGauge: Custom Needle');
     final Paint customPaint = Paint()
       ..color = Colors.green.shade600
       ..style = PaintingStyle.fill;

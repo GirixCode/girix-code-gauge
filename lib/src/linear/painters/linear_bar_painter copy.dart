@@ -39,11 +39,11 @@ class LinearBarPainter extends CustomPainter {
     double startValue = 0;
     double endValue = 0;
 
-    log('LinearBarGauge: Size: $size');
+    log('GxLinearBarGauge: Size: $size');
 
     for (int index = 0; index < barPointers.length; index++) {
       final LinearBarPointer barPointer = barPointers[index];
-      log('LinearBarGauge: Index: $index, BarValue: ${barPointer.value}');
+      log('GxLinearBarGauge: Index: $index, BarValue: ${barPointer.value}');
       final Paint paintAxis = Paint()
         ..color = barPointer.color
         ..strokeWidth = barPointer.thickness
@@ -57,8 +57,8 @@ class LinearBarPainter extends CustomPainter {
       final double barEndValue =
           ((endValue - minValue) / (maxValue - minValue)) * size.width;
 
-      log('LinearBarGauge: Start Value: $startValue => $barStartValue');
-      log('LinearBarGauge: End Value: $endValue => $barEndValue');
+      log('GxLinearBarGauge: Start Value: $startValue => $barStartValue');
+      log('GxLinearBarGauge: End Value: $endValue => $barEndValue');
       final Rect rect =
           Rect.fromLTWH(barStartValue, 0, barEndValue, size.height);
       final RRect rRect =
@@ -68,7 +68,7 @@ class LinearBarPainter extends CustomPainter {
 
       startValue = endValue;
 
-      log('LinearBarGauge: Bar Drawn ======================');
+      log('GxLinearBarGauge: Bar Drawn ======================');
     }
   }
 }

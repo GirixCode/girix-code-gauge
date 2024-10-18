@@ -14,15 +14,13 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
     final double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bar Linear Gauge $width'),
+        title: const Text('Bar Linear Gauge'),
       ),
       body: ListView(
         children: [
-          Text('Max Width Query: $width'),
-          const Text('Max Width Maz Double: ${double.minPositive}'),
           buildCard(
               'Default Linear Bar Gauge',
-              LinearBarGauge(
+              GxLinearBarGauge(
                 size: Size(width, 40),
                 value: const GaugeValue(
                   value: 60,
@@ -37,14 +35,14 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
               )),
           buildCard(
               "With Gap Between Bars",
-              LinearBarGauge(
+              GxLinearBarGauge(
                 size: const Size(410, 40),
                 value: const GaugeValue(
                   value: 60,
                   min: 0,
                   max: 200,
                 ),
-                gapBetweenBars: 2,
+                gapBetweenBars: 6,
                 barPointers: [
                   LinearBarPointer(
                       // strokeCap: StrokeCap.square,
@@ -64,7 +62,7 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
           // Customized Bar Gauge Style with Gap
           buildCard(
               "Customized Bar Gauge Style with Gap",
-              LinearBarGauge(
+              GxLinearBarGauge(
                 size: const Size(410, 40),
                 value: const GaugeValue(
                   value: 130,
@@ -98,8 +96,8 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
               )),
           const SizedBox(height: 10),
           buildCard(
-              "With a needle",
-              LinearBarGauge(
+              "With a needle and Gap",
+              GxLinearBarGauge(
                 size: const Size(410, 25),
                 value: const GaugeValue(
                   value: 70,
@@ -132,6 +130,81 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
               )),
 
           const SizedBox(height: 10),
+          buildCard(
+              'With Labels',
+              GxLinearBarGauge(
+                size: Size(width, 40),
+                value: const GaugeValue(
+                  value: 60,
+                  min: 0,
+                  max: 100,
+                ),
+                barPointers: [
+                  LinearBarPointer(
+                      label: const GaugeLabel(
+                        label: 'Low',
+                      ),
+                      value: 20,
+                      thickness: 5,
+                      color: Colors.deepOrangeAccent),
+                  LinearBarPointer(
+                      label: const GaugeLabel(
+                        label: 'Medium',
+                      ),
+                      color: Colors.yellow.shade800,
+                      value: 50,
+                      thickness: 5),
+                  LinearBarPointer(
+                      label: const GaugeLabel(
+                        label: 'High',
+                      ),
+                      color: Colors.greenAccent.shade700,
+                      value: 30,
+                      thickness: 5),
+                ],
+              )),
+          const SizedBox(height: 10),
+          buildCard(
+              'With TextAlign and Offset of Labels',
+              GxLinearBarGauge(
+                size: Size(width, 40),
+                value: const GaugeValue(
+                  value: 60,
+                  min: 0,
+                  max: 100,
+                ),
+                gapBetweenBars: 5,
+                barPointers: [
+                  LinearBarPointer(
+                      label: const GaugeLabel(
+                          style: TextStyle(color: Colors.black87),
+                          label: 'TextAlign',
+                          textAlign: TextAlign.end),
+                      value: 20,
+                      thickness: 2,
+                      paintingStyle: PaintingStyle.stroke,
+                      color: Colors.black45),
+                  LinearBarPointer(
+                      paintingStyle: PaintingStyle.stroke,
+                      label: const GaugeLabel(
+                          offset: Offset(0, -10),
+                          style: TextStyle(color: Colors.black87),
+                          label: 'Offset',
+                          textAlign: TextAlign.center),
+                      color: Colors.black45,
+                      value: 50,
+                      thickness: 2),
+                  LinearBarPointer(
+                      paintingStyle: PaintingStyle.stroke,
+                      label: const GaugeLabel(
+                        label: 'Default',
+                        style: TextStyle(color: Colors.black87),
+                      ),
+                      color: Colors.black45,
+                      value: 30,
+                      thickness: 2),
+                ],
+              )),
         ],
       ),
     );

@@ -21,14 +21,14 @@ class _ExponentialScaleLinearGaugeBodyState
         ...[
           buildCard(
             'Default Scale Linear Gauge',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               height: 80,
               gaugeType: ScaleLinearGaugeType.exponential,
             ),
           ),
           buildCard(
             'With basic Customized Style',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               gaugeType: ScaleLinearGaugeType.exponential,
               height: 80,
               minimum: 0,
@@ -45,7 +45,7 @@ class _ExponentialScaleLinearGaugeBodyState
           ),
           buildCard(
               'With Customized Label and Axis',
-              ScaleLinearGauge(
+              GxScaleLinearGauge(
                 gaugeType: ScaleLinearGaugeType.exponential,
                 height: 80,
                 minimum: 0,
@@ -72,7 +72,7 @@ class _ExponentialScaleLinearGaugeBodyState
               )),
           buildCard(
             'With Tick outside',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
               gaugeType: ScaleLinearGaugeType.exponential,
               height: 80,
               minimum: 0,
@@ -103,7 +103,7 @@ class _ExponentialScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Tick inside',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               gaugeType: ScaleLinearGaugeType.exponential,
               height: 80,
               tickPosition: LinearElementPosition.inside,
@@ -125,7 +125,7 @@ class _ExponentialScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Tick Out and In',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               gaugeType: ScaleLinearGaugeType.exponential,
               height: 80,
               tickPosition: LinearElementPosition.outAndIn,
@@ -148,7 +148,7 @@ class _ExponentialScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Tick In and Out',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               gaugeType: ScaleLinearGaugeType.exponential,
               height: 80,
               tickPosition: LinearElementPosition.inAndOut,
@@ -171,7 +171,7 @@ class _ExponentialScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Customized Major Tick Style',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
               gaugeType: ScaleLinearGaugeType.exponential,
               height: 100,
               tickPosition: LinearElementPosition.inAndOut,
@@ -199,7 +199,7 @@ class _ExponentialScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Customized Linear Needle',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
               gaugeType: ScaleLinearGaugeType.exponential,
               height: 80,
               minimum: 0,
@@ -236,7 +236,7 @@ class _ExponentialScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Marker Pointers',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
                 gaugeType: ScaleLinearGaugeType.exponential,
                 height: 100,
                 tickPosition: LinearElementPosition.outAndIn,
@@ -300,7 +300,7 @@ class _ExponentialScaleLinearGaugeBodyState
     );
   }
 
-  // Build a Card with a ScaleLinearGauge
+  // Build a Card with a GxScaleLinearGauge
   Widget buildCard(
     String title,
     Widget child,

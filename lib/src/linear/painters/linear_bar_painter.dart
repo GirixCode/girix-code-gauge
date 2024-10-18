@@ -32,7 +32,11 @@ class LinearBarPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant LinearBarPainter oldDelegate) {
     return gaugeValue != oldDelegate.gaugeValue ||
-        barPointers != oldDelegate.barPointers;
+        _isBarPointersChanged(oldDelegate.barPointers) ||
+        direction != oldDelegate.direction ||
+        gapBetweenBars != oldDelegate.gapBetweenBars ||
+        needle != oldDelegate.needle ||
+        showNeedleInsideBar != oldDelegate.showNeedleInsideBar;
   }
 
   void _drawBars(
@@ -42,11 +46,10 @@ class LinearBarPainter extends CustomPainter {
     // Gauge Value
     final double minValue = gaugeValue.min;
     final double maxValue = gaugeValue.max;
-    final double currentValue = gaugeValue.value;
     final double height = size.height;
     final double width = size.width;
 
-    log('LinearBarGauge: Size: $size, minValue: $minValue, maxValue: $maxValue');
+    log('GxLinearBarGauge: Size: $size, minValue: $minValue, maxValue: $maxValue');
     double startValue = minValue;
     final double gapValue = (gapBetweenBars / maxValue) * width;
 
@@ -60,7 +63,7 @@ class LinearBarPainter extends CustomPainter {
         ..strokeCap = barPointer.strokeCap
         ..style = barPointer.paintingStyle;
       double barToDrawnWidth = (barToDrawnValue / maxValue) * width;
-      log('LinearBarGauge: Bar Value: $barToDrawnValue => $barToDrawnWidth and Gap $gapBetweenBars => $gapValue');
+      log('GxLinearBarGauge: Bar Value: $barToDrawnValue => $barToDrawnWidth and Gap $gapBetweenBars => $gapValue');
 
       //Allowing the bar to be drawn with a gap between them
       final bool isGap =
@@ -85,7 +88,56 @@ class LinearBarPainter extends CustomPainter {
       canvas.drawRRect(rRect, paintAxis);
       startValue += barToDrawnWidth;
 
-      log('LinearBarGauge: ======================$index======================');
+      log('GxLinearBarGauge: ======================$index======================');
+
+      // Text label and style
+
+      if (barPointer.label != null) {
+        final GaugeLabel label = barPointer.label!;
+        final TextPainter textPainter = TextPainter(
+            text: TextSpan(
+              text: label.label,
+              style: label.style,
+            ),
+            textDirection: TextDirection.rtl,
+            textAlign: barPointer.label?.textAlign ?? TextAlign.center);
+
+        textPainter.layout();
+        final double textWidth = textPainter.width;
+        final double textHeight = textPainter.height;
+
+        double textX = barRect.left + (barRect.width - textWidth) / 2;
+        double textY = barRect.top + (barRect.height - textHeight) / 2;
+
+        if (barPointer.label!.offset != null) {
+          textX += barPointer.label!.offset!.dx;
+          textY += barPointer.label!.offset!.dy;
+          log('GxLinearBarGauge: Text Offset: $textX, $textY');
+        } else {
+          switch (barPointer.label!.textAlign!) {
+            case TextAlign.center:
+            case TextAlign.justify:
+              break;
+            case TextAlign.left:
+              textX = barRect.left;
+              break;
+            case TextAlign.right:
+              textX = barRect.right - textWidth;
+              break;
+
+            case TextAlign.start:
+              textY = 5;
+              break;
+            case TextAlign.end:
+              textY = barRect.height - textHeight - 5;
+              break;
+          }
+        }
+
+        log('GxLinearBarGauge: Text: $textX, $textY=>');
+
+        textPainter.paint(canvas, Offset(textX, textY));
+      }
     }
   }
 
@@ -108,7 +160,7 @@ class LinearBarPainter extends CustomPainter {
             final double endValue = startValue + gapBetweenBars;
 
             if (needleValue > startValue && needleValue < endValue) {
-              log('LinearBarGauge: Needle Value: $needleValue is inside the gap range');
+              log('GxLinearBarGauge: Needle Value: $needleValue is inside the gap range');
               needleValue += gapBetweenBars;
               break;
             }
@@ -116,7 +168,7 @@ class LinearBarPainter extends CustomPainter {
         }
       }
 
-      log('LinearBarGauge: Needle Value: $needleValue');
+      log('GxLinearBarGauge: Needle Value: $needleValue');
 
       // Draw the needle
       NeedleUtils.drawIt(
@@ -129,5 +181,31 @@ class LinearBarPainter extends CustomPainter {
         needle: needle!,
       );
     }
+  }
+
+  // Check List of BarPointers changes
+  bool _isBarPointersChanged(List<LinearBarPointer> oldBarPointers) {
+    if (barPointers.length != oldBarPointers.length) {
+      return true;
+    }
+
+    for (int index = 0; index < barPointers.length; index++) {
+      final LinearBarPointer barPointer = barPointers[index];
+      final LinearBarPointer oldBarPointer = oldBarPointers[index];
+
+      if (barPointer.value != oldBarPointer.value ||
+          barPointer.color != oldBarPointer.color ||
+          barPointer.thickness != oldBarPointer.thickness ||
+          barPointer.position != oldBarPointer.position ||
+          barPointer.offset != oldBarPointer.offset ||
+          barPointer.radius != oldBarPointer.radius ||
+          barPointer.paintingStyle != oldBarPointer.paintingStyle ||
+          barPointer.strokeCap != oldBarPointer.strokeCap ||
+          barPointer.label != oldBarPointer.label) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

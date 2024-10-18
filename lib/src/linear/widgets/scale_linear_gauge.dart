@@ -9,9 +9,9 @@ import 'package:girix_code_gauge/src/linear/models/linear_needle_model.dart';
 import 'package:girix_code_gauge/src/linear/models/scale_linear_gauge_model.dart';
 import 'package:girix_code_gauge/src/linear/painters/needle_utils.dart';
 
-/// The [ScaleLinearGauge] widget is used to display a linear gauge with a scale.
+/// The [GxScaleLinearGauge] widget is used to display a linear gauge with a scale.
 ///
-/// The [ScaleLinearGauge] widget requires the following properties:
+/// The [GxScaleLinearGauge] widget requires the following properties:
 ///
 /// - [gaugeType]: An instance of the [ScaleLinearGaugeType] enum that holds the type of gauge to be drawn.
 ///
@@ -43,7 +43,7 @@ import 'package:girix_code_gauge/src/linear/painters/needle_utils.dart';
 ///
 ///
 /// ```dart
-/// ScaleLinearGauge(
+/// GxScaleLinearGauge(
 ///  gaugeType: ScaleLinearGaugeType.defaultGauge,
 ///  orientation: LinearGaugeOrientation.horizontal,
 ///  minimum: 0.0,
@@ -90,13 +90,13 @@ import 'package:girix_code_gauge/src/linear/painters/needle_utils.dart';
 /// )
 /// ```
 ///
-class ScaleLinearGauge extends StatelessWidget {
-  /// Specifies the type of gauge to be drawn of the [ScaleLinearGauge].
+class GxScaleLinearGauge extends StatelessWidget {
+  /// Specifies the type of gauge to be drawn of the [GxScaleLinearGauge].
   ///
   /// The default value is [ScaleLinearGaugeType.defaultGauge].
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  gaugeType: ScaleLinearGaugeType.defaultGauge,
   /// )
   /// ```
@@ -108,7 +108,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is [LinearGaugeOrientation.horizontal].
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   /// orientation: LinearGaugeOrientation.horizontal,
   /// )
   /// ```
@@ -120,7 +120,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is 0.0.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   /// minimum: 0.0,
   /// )
   /// ```
@@ -132,7 +132,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is 100.0.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   /// maximum: 100.0,
   /// )
   /// ```
@@ -144,7 +144,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is 10.0
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   /// interval: 10.0,
   /// )
   /// ```
@@ -162,7 +162,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// When 10: SizeStart__10__AxisTrack__10__SizeEnd
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   /// axisSpaceExtent: 0.0,
   /// )
   /// ```
@@ -174,7 +174,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   /// axisLabelStyle: TextStyle(color: Colors.black, fontSize: 12),
   /// )
   /// ```
@@ -186,7 +186,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is [LinearAxisTrackStyle()].
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   /// axisTrackStyle: const LinearAxisTrackStyle(
   ///   thickness = 5.0,
   ///   color = Colors.grey,
@@ -201,7 +201,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is 1.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///   minorTicksPerInterval: 1,
   /// )
   /// ```
@@ -213,7 +213,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is [LinearTickStyle()].
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///   majorTickStyle: const LinearTickStyle(
   ///     length = 8.0,
   ///     thickness = 1.0,
@@ -229,7 +229,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is [LinearTickStyle()].
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  minorTickStyle: const LinearTickStyle(
   ///   length = 8.0,
   ///   thickness = 1.0,
@@ -245,7 +245,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  ranges: [
   ///   LinearGaugeRange(
   ///     startValue: 0.0,
@@ -271,7 +271,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///   barPointers: [
   ///     LinearBarPointer(
   ///       value: 50.0,
@@ -289,7 +289,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  markerPointers: [
   ///   LinearMarkerPointer(
   ///       value: 50.0,
@@ -306,7 +306,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  width: 300.0,
   /// )
   /// ```
@@ -318,7 +318,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   /// height: 100.0,
   /// )
   /// ```
@@ -330,7 +330,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  valueToLabelFormatCallback: (value) => value.toStringAsFixed(0),
   /// )
   /// ```
@@ -342,7 +342,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is [LinearGaugeLabelPosition.bottomCenter].
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///   labelPosition: LinearGaugeLabelPosition.bottomCenter,
   /// )
   /// ```
@@ -354,7 +354,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is [LinearElementPosition.cross].
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  tickPosition: LinearElementPosition.cross,
   /// )
   /// ```
@@ -366,7 +366,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is true.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  showMajorTicks: true,
   /// )
   /// ```
@@ -378,7 +378,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is true.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  showMinorTicks: true,
   /// )
   /// ```
@@ -390,7 +390,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is true.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  showAxisTrack: true,
   /// )
   /// ```
@@ -402,7 +402,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is true.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  showAxisLabel: true,
   /// )
   /// ```
@@ -431,7 +431,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///   needle: LinearNeedle(
   ///      enabled: true,
   ///      position: LinearGaugeNeedlePosition.bottom,
@@ -448,7 +448,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  value: const GaugeValue(value: 50, min: 0, max: 100),
   /// )
   /// ```
@@ -460,7 +460,7 @@ class ScaleLinearGauge extends StatelessWidget {
   /// The default value is null.
   ///
   /// ```dart
-  /// ScaleLinearGauge(
+  /// GxScaleLinearGauge(
   ///  fillAreaPointers: [
   ///    FillAreaPointer(
   ///     startValue: 0.0,
@@ -489,7 +489,7 @@ class ScaleLinearGauge extends StatelessWidget {
   ///
   final ValueToLabelStyleCallback? valueToLabelStyleCallback;
 
-  const ScaleLinearGauge({
+  const GxScaleLinearGauge({
     super.key,
     this.gaugeType = ScaleLinearGaugeType.defaultGauge,
     this.orientation = LinearGaugeOrientation.horizontal,
@@ -740,7 +740,7 @@ class _ScaleLinearGaugePainter extends CustomPainter {
 
     for (final FillAreaPointer fillAreaPointer in fillAreaPointers!) {
       if (kDebugMode) {
-        log('ScaleLinearGauge: Fill Area Pointer: ${fillAreaPointer.startValue} - ${fillAreaPointer.endValue}');
+        log('GxScaleLinearGauge: Fill Area Pointer: ${fillAreaPointer.startValue} - ${fillAreaPointer.endValue}');
       }
       final double startFillValue = fillAreaPointer.startValue;
       final double endFillValue = fillAreaPointer.endValue;
@@ -779,7 +779,7 @@ class _ScaleLinearGaugePainter extends CustomPainter {
 
         // Draw the marker
         if (kDebugMode) {
-          log('ScaleLinearGauge: Marker Pointer: markerX: $markerX, markerY: $markerY');
+          log('GxScaleLinearGauge: Marker Pointer: markerX: $markerX, markerY: $markerY');
         }
 
         // Check Needle is enabled

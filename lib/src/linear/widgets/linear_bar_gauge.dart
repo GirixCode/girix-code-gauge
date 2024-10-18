@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/gauges.dart';
 import 'package:girix_code_gauge/src/linear/painters/linear_bar_painter.dart';
 
-class LinearBarGauge extends StatelessWidget {
+class GxLinearBarGauge extends StatelessWidget {
   final GaugeValue value;
   final List<LinearBarPointer> barPointers;
   final bool showTooltip;
@@ -12,7 +12,7 @@ class LinearBarGauge extends StatelessWidget {
   final AlignmentGeometry alignment;
   final double gapBetweenBars;
   final bool showNeedleInsideBar;
-  const LinearBarGauge({
+  const GxLinearBarGauge({
     super.key,
     this.direction = LinearGaugeDirection.horizontal,
     required this.value,

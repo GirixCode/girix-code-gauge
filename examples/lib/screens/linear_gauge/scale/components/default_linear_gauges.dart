@@ -21,13 +21,13 @@ class _DefaultScaleLinearGaugeBodyState
         ...[
           buildCard(
             'Default Scale Linear Gauge',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               height: 80,
             ),
           ),
           buildCard(
             'With basic Customized Style',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               height: 80,
               minimum: 0,
               maximum: 100,
@@ -43,7 +43,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
               'With Customized Label and Axis',
-              ScaleLinearGauge(
+              GxScaleLinearGauge(
                 height: 80,
                 minimum: 0,
                 maximum: 100,
@@ -69,7 +69,7 @@ class _DefaultScaleLinearGaugeBodyState
               )),
           buildCard(
             'With Tick outside',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
               height: 80,
               minimum: 0,
               maximum: 100,
@@ -99,7 +99,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Tick inside',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               height: 120,
               tickPosition: LinearElementPosition.inside,
               minorTickStyle: LinearTickStyle(
@@ -120,7 +120,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Tick Out and In',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               height: 80,
               tickPosition: LinearElementPosition.outAndIn,
               minorTickStyle: LinearTickStyle(
@@ -142,7 +142,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Tick In and Out',
-            const ScaleLinearGauge(
+            const GxScaleLinearGauge(
               height: 80,
               tickPosition: LinearElementPosition.inAndOut,
               minorTickStyle: LinearTickStyle(
@@ -164,7 +164,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Customized Major Tick Style',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
               height: 100,
               tickPosition: LinearElementPosition.inAndOut,
               minorTickStyle: const LinearTickStyle(
@@ -191,7 +191,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Customized Linear Needle',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
               height: 80,
               minimum: 0,
               maximum: 100,
@@ -227,7 +227,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Marker Pointers',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
                 height: 100,
                 tickPosition: LinearElementPosition.outAndIn,
                 minorTickStyle: const LinearTickStyle(
@@ -272,7 +272,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Filled area and Marker Pointers',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
               height: 100,
               tickPosition: LinearElementPosition.outAndIn,
               minorTickStyle: const LinearTickStyle(
@@ -344,7 +344,7 @@ class _DefaultScaleLinearGaugeBodyState
           ),
           buildCard(
             'With Multiple Filled area and Marker Pointers',
-            ScaleLinearGauge(
+            GxScaleLinearGauge(
               height: 100,
               width: double.infinity,
               tickPosition: LinearElementPosition.outAndIn,
@@ -429,7 +429,7 @@ class _DefaultScaleLinearGaugeBodyState
     );
   }
 
-  // Build a Card with a ScaleLinearGauge
+  // Build a Card with a GxScaleLinearGauge
   Widget buildCard(
     String title,
     Widget child,
