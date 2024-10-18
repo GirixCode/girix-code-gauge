@@ -22,15 +22,13 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
               'Default Linear Bar Gauge',
               GxLinearBarGauge(
                 size: Size(width, 40),
-                value: const GaugeValue(
-                  value: 60,
-                ),
+                value: const GaugeValue(value: 60, max: 99),
                 barPointers: [
-                  LinearBarPointer(value: 50, thickness: 5, color: Colors.teal),
+                  LinearBarPointer(value: 33, thickness: 5, color: Colors.teal),
                   LinearBarPointer(
-                      color: Colors.lightBlue, value: 30, thickness: 5),
+                      color: Colors.lightBlue, value: 33, thickness: 5),
                   LinearBarPointer(
-                      color: Colors.amber, value: 20, thickness: 5),
+                      color: Colors.cyanAccent, value: 33, thickness: 5),
                 ],
               )),
           buildCard(

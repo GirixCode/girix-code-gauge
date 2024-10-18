@@ -24,6 +24,7 @@ class FeatureItem {
   final Widget Function() widget;
   final Widget? leading;
   final String code;
+  final String? imagePath;
 
   FeatureItem({
     required this.title,
@@ -31,6 +32,7 @@ class FeatureItem {
     required this.widget,
     this.leading,
     required this.code,
+    this.imagePath,
   });
 }
 
@@ -47,6 +49,7 @@ class _ExampleAppState extends State<ExampleApp> {
       widget: () => const MyProgressLinearGauge(),
       code: 'MyProgressLinearGauge()',
       leading: const Icon(Icons.linear_scale_rounded),
+      imagePath: 'assets/images/features/linear_progress_gauge.jpeg',
     ),
     FeatureItem(
       title: 'Scale Linear Gauge',
@@ -55,12 +58,16 @@ class _ExampleAppState extends State<ExampleApp> {
       widget: () => const MyScaleLinearGaugeScreen(),
       code: 'MyScaleLinearGaugeScreen()',
       leading: const Icon(Icons.linear_scale),
+      imagePath: 'assets/images/features/linear_scale_gauge.jpeg',
     ),
     FeatureItem(
         title: 'Bar Linear Gauge',
+        description:
+            'The Bar Linear Gauge is used to display a linear gauge with bars.',
         widget: () => const MyBarLinearGaugeScreen(),
         code: 'MyBarLinearGaugeScreen()',
-        leading: const Icon(Icons.bar_chart_sharp)),
+        leading: const Icon(Icons.bar_chart_sharp),
+        imagePath: 'assets/images/features/linear_bar_gauge.jpeg'),
   ];
 
   @override
@@ -87,7 +94,6 @@ class _ExampleAppState extends State<ExampleApp> {
                     final item = _items[index];
                     return Card(
                       elevation: 0,
-                      color: Theme.of(context).primaryColor.withOpacity(0.2),
                       margin: const EdgeInsets.all(8),
                       child: ListTile(
                         title: Text(item.title,
@@ -96,7 +102,15 @@ class _ExampleAppState extends State<ExampleApp> {
                         subtitle: item.description != null
                             ? Text(item.description!)
                             : null,
-                        leading: item.leading,
+                        leading: item.imagePath != null
+                            ? Image.asset(
+                                item.imagePath!,
+                                width: 70,
+                                fit: BoxFit.cover,
+                              )
+                            : item.leading,
+                        minLeadingWidth: 10,
+                        // contentPadding: EdgeInsets.zero,
                         onTap: () {
                           Navigator.push(
                             context,
