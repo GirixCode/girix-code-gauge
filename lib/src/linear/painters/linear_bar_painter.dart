@@ -11,6 +11,7 @@ class LinearBarPainter extends CustomPainter {
   final double gapBetweenBars;
   final LinearNeedle? needle;
   final bool showNeedleInsideBar;
+  final GaugeTooltip? tooltip;
   LinearBarPainter({
     required this.gaugeValue,
     required this.barPointers,
@@ -18,6 +19,7 @@ class LinearBarPainter extends CustomPainter {
     this.gapBetweenBars = 0,
     this.needle,
     this.showNeedleInsideBar = true,
+    this.tooltip,
   });
   @override
   void paint(Canvas canvas, Size size) {
@@ -27,6 +29,9 @@ class LinearBarPainter extends CustomPainter {
     }
 
     _drawNeedle(canvas, size);
+
+    // Draw Tooltip
+    _drawTooltip(canvas, size);
   }
 
   @override
@@ -180,6 +185,104 @@ class LinearBarPainter extends CustomPainter {
         value: needleValue,
         needle: needle!,
       );
+    }
+  }
+
+  // Draw Tooltip
+  void _drawTooltip(
+    Canvas canvas,
+    Size size,
+  ) {
+    if (tooltip != null && tooltip!.enabled) {
+      final double minValue = gaugeValue.min;
+      final double maxValue = gaugeValue.max;
+      final double value = gaugeValue.value;
+
+      final double progress =
+          ((value - minValue) / (maxValue - minValue)).clamp(0.0, 1.0);
+
+      final Color strokeColor = tooltip!.borderColor ?? tooltip!.color;
+
+      final Paint paint = Paint()
+        ..color = tooltip!.paintingStyle == PaintingStyle.stroke
+            ? strokeColor
+            : tooltip!.color
+        ..strokeWidth = tooltip!.thickness
+        ..strokeCap = tooltip!.strokeCap
+        ..style = tooltip!.paintingStyle;
+
+      // Tooltip Size
+      final double tooltipWidth = tooltip!.size.width;
+      final double tooltipHeight = tooltip!.size.height;
+
+      // Tooltip Position in ---X----
+      final double tooltipX = size.width * progress;
+      //                     |
+      // Tooltip Position in Y
+      //                     |
+      double tooltipY = size.height / 2;
+
+      Offset tooltipBarStart = Offset(tooltipX, 0);
+      Offset tooltipBarEnd = Offset(tooltipX, 0);
+
+      if (tooltip!.position == GaugeTooltipPosition.top) {
+        tooltipY = -size.height / 2 - tooltip!.offset;
+        tooltipBarEnd = Offset(tooltipX, tooltipY + tooltipHeight / 2);
+      } else if (tooltip!.position == GaugeTooltipPosition.bottom) {
+        tooltipY = size.height + size.height / 2 + tooltip!.offset;
+        tooltipBarStart = Offset(tooltipX, size.height);
+        tooltipBarEnd = Offset(tooltipX, tooltipY - tooltipHeight / 2);
+      }
+
+      final Rect tooltipRect = Rect.fromLTWH(
+        tooltipX - tooltipWidth / 2,
+        tooltipY - tooltipHeight / 2,
+        tooltipWidth,
+        tooltipHeight,
+      );
+
+      final RRect rRect = RRect.fromRectAndRadius(
+        tooltipRect,
+        tooltip!.radius ?? Radius.zero,
+      );
+
+      canvas.drawRRect(rRect, paint);
+
+      log('GxLinearBarGauge: Tooltip Bar: TooltipX:-> $tooltipX, ToolTipY:-> $tooltipY, tooltipBarStart:-> $tooltipBarStart, tooltipBarEnd:-> $tooltipBarEnd, Size:-> $size');
+      if (tooltip!.type == GaugeTooltipType.normal) {
+        canvas.drawLine(
+            tooltipBarStart,
+            tooltipBarEnd,
+            Paint()
+              ..color = strokeColor
+              ..strokeWidth = tooltip!.thickness);
+      }
+
+      // Based on the Tooltip Size, we can adjust the Text Size
+      final double textSize =
+          tooltip?.textStyle?.fontSize ?? tooltip!.size.width / 4;
+      final Color textColor = tooltip?.textStyle?.color ?? strokeColor;
+
+      // Draw Tooltip Text
+      final TextPainter textPainter = TextPainter(
+          text: TextSpan(
+            text: value.toString(),
+            style: tooltip?.textStyle?.copyWith(
+              fontSize: textSize,
+              color: textColor,
+            ),
+          ),
+          textDirection: TextDirection.rtl,
+          textAlign: TextAlign.center);
+
+      textPainter.layout();
+      final double textWidth = textPainter.width;
+      final double textHeight = textPainter.height;
+
+      final double textX = tooltipX - textWidth / 2;
+      final double textY = tooltipY - textHeight / 2;
+
+      textPainter.paint(canvas, Offset(textX, textY));
     }
   }
 

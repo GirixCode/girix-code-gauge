@@ -63,6 +63,35 @@ class GaugeLabel {
   });
 }
 
+class GaugeTooltip {
+  final Size size;
+  final bool enabled;
+  final Color color;
+  final Color? borderColor;
+  final Radius? radius;
+  final GaugeTooltipType type;
+  final GaugeTooltipPosition position;
+  final PaintingStyle paintingStyle;
+  final double thickness;
+  final double offset;
+  final StrokeCap strokeCap;
+  final TextStyle? textStyle;
+  const GaugeTooltip({
+    this.enabled = true,
+    this.color = Colors.black,
+    this.radius,
+    this.type = GaugeTooltipType.normal,
+    this.position = GaugeTooltipPosition.top,
+    this.paintingStyle = PaintingStyle.fill,
+    this.thickness = 2.0,
+    this.offset = 10.0,
+    this.strokeCap = StrokeCap.butt,
+    this.size = const Size(60, 30),
+    this.textStyle,
+    this.borderColor,
+  });
+}
+
 /// Gauge value model
 ///
 /// This model is used to represent the value of a gauge. It contains the value, the minimum value and the maximum value.

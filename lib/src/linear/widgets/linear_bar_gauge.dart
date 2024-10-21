@@ -12,6 +12,7 @@ class GxLinearBarGauge extends StatelessWidget {
   final AlignmentGeometry alignment;
   final double gapBetweenBars;
   final bool showNeedleInsideBar;
+  final GaugeTooltip? tooltip;
   const GxLinearBarGauge({
     super.key,
     this.direction = LinearGaugeDirection.horizontal,
@@ -23,6 +24,7 @@ class GxLinearBarGauge extends StatelessWidget {
     this.gapBetweenBars = 0,
     this.alignment = Alignment.centerLeft,
     this.showNeedleInsideBar = true,
+    this.tooltip,
   });
 
   @override
@@ -38,7 +40,8 @@ class GxLinearBarGauge extends StatelessWidget {
               barPointers: barPointers,
               needle: needle,
               showNeedleInsideBar: showNeedleInsideBar,
-              direction: direction),
+              direction: direction,
+              tooltip: tooltip),
           size: size,
         ),
       ),

@@ -1,3 +1,19 @@
+enum GaugeTooltipPosition {
+  /// Tooltip position at the top of the gauge
+  top,
+
+  /// Tooltip position at the bottom of the gauge
+  bottom,
+}
+
+enum GaugeTooltipType {
+  /// Shows the tooltip for the gauge
+  normal,
+
+  /// Shows the tooltip for the gauge in a floating position
+  floatDock,
+}
+
 enum LinearElementPosition {
   /// Element position inside the gauge bounds
   ///
