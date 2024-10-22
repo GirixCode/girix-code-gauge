@@ -17,15 +17,15 @@ enum GaugeTooltipType {
 enum LinearElementPosition {
   /// Element position inside the gauge bounds
   ///
-  /// Horizontal: top of the Gauge.
-  ///
-  /// Vertical: Right of the Gauge.
-  inside,
-
-  /// Element position outside the gauge bounds.
   /// Horizontal: bottom of the Gauge.
   ///
   /// Vertical: Left of the Gauge.
+  inside,
+
+  /// Element position outside the gauge bounds.
+  /// Horizontal: Top of the Gauge.
+  ///
+  /// Vertical: Right of the Gauge.
   outside,
 
   /// Element position at the start of the gauge

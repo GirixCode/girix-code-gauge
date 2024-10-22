@@ -105,6 +105,6 @@ class LinearTickStyle {
   const LinearTickStyle({
     this.length = 8.0,
     this.thickness = 1.0,
-    this.color = Colors.black,
+    this.color = Colors.grey,
   });
 }

@@ -222,9 +222,7 @@ class _ExponentialScaleLinearGaugeBodyState
               ),
               minorTickStyle: const LinearTickStyle(
                   color: Colors.deepOrange, thickness: 2, length: 18),
-              value: const GaugeValue(
-                value: 80,
-              ),
+              value: 80,
               needle: const LinearNeedle(
                   enabled: true,
                   color: Colors.deepOrange,

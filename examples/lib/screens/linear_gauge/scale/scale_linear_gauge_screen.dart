@@ -1,5 +1,6 @@
 import 'package:examples/screens/linear_gauge/scale/components/default_linear_gauges.dart';
 import 'package:examples/screens/linear_gauge/scale/components/exponential_linear_gauges.dart';
+import 'package:examples/screens/linear_gauge/scale/components/multi_range_linear_gauges.dart';
 import 'package:flutter/material.dart';
 
 class MyScaleLinearGaugeScreen extends StatefulWidget {
@@ -31,6 +32,9 @@ class _MyScaleLinearGaugeScreenState extends State<MyScaleLinearGaugeScreen>
               // child: Text('Default'),
             ),
             Tab(
+              child: Text('Multi Range'),
+            ),
+            Tab(
               child: Text('Expontential'),
             ),
             Tab(
@@ -38,9 +42,6 @@ class _MyScaleLinearGaugeScreenState extends State<MyScaleLinearGaugeScreen>
             ),
             Tab(
               child: Text('Gradient'),
-            ),
-            Tab(
-              child: Text('Multi Range'),
             ),
           ],
         ),
@@ -50,15 +51,13 @@ class _MyScaleLinearGaugeScreenState extends State<MyScaleLinearGaugeScreen>
         controller: _tabController,
         children: const <Widget>[
           DefaultScaleLinearGaugeBody(),
+          MultiRangeScaleLinearGaugeBody(),
           ExponentialScaleLinearGaugeBody(),
           Center(
             child: Text("It's multi range here"),
           ),
           Center(
             child: Text("It's gradient here"),
-          ),
-          Center(
-            child: Text("It's multi range here"),
           ),
         ],
       ),

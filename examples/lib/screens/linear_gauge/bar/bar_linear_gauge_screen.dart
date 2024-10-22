@@ -159,48 +159,48 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                 ],
               )),
 
-          // const SizedBox(height: 10),
-          // buildCard(
-          //     'With TextAlign and Offset of Labels',
-          //     GxLinearBarGauge(
-          //       size: Size(width, 40),
-          //       value: const GaugeValue(
-          //         value: 60,
-          //         min: 0,
-          //         max: 100,
-          //       ),
-          //       gapBetweenBars: 5,
-          //       barPointers: [
-          //         LinearBarPointer(
-          //             label: const GaugeLabel(
-          //                 style: TextStyle(color: Colors.black87),
-          //                 label: 'TextAlign',
-          //                 textAlign: TextAlign.end),
-          //             value: 20,
-          //             thickness: 2,
-          //             paintingStyle: PaintingStyle.stroke,
-          //             color: Colors.black45),
-          //         LinearBarPointer(
-          //             paintingStyle: PaintingStyle.stroke,
-          //             label: const GaugeLabel(
-          //                 offset: Offset(0, -10),
-          //                 style: TextStyle(color: Colors.black87),
-          //                 label: 'Offset',
-          //                 textAlign: TextAlign.center),
-          //             color: Colors.black45,
-          //             value: 50,
-          //             thickness: 2),
-          //         LinearBarPointer(
-          //             paintingStyle: PaintingStyle.stroke,
-          //             label: const GaugeLabel(
-          //               label: 'Default',
-          //               style: TextStyle(color: Colors.black87),
-          //             ),
-          //             color: Colors.black45,
-          //             value: 30,
-          //             thickness: 2),
-          //       ],
-          //     )),
+          const SizedBox(height: 10),
+          buildCard(
+              'With TextAlign and Offset of Labels',
+              GxLinearBarGauge(
+                size: Size(width, 40),
+                value: const GaugeValue(
+                  value: 60,
+                  min: 0,
+                  max: 120,
+                ),
+                gapBetweenBars: 5,
+                barPointers: [
+                  LinearBarPointer(
+                      label: const GaugeLabel(
+                          style: TextStyle(color: Colors.black87),
+                          label: 'TextAlign label',
+                          textAlign: TextAlign.center),
+                      value: 40,
+                      thickness: 2,
+                      paintingStyle: PaintingStyle.stroke,
+                      color: Colors.black45),
+                  LinearBarPointer(
+                      paintingStyle: PaintingStyle.stroke,
+                      label: const GaugeLabel(
+                          offset: Offset(0, 0),
+                          style: TextStyle(color: Colors.black87),
+                          label: 'Offset label',
+                          textAlign: TextAlign.center),
+                      color: Colors.black45,
+                      value: 40,
+                      thickness: 2),
+                  LinearBarPointer(
+                      paintingStyle: PaintingStyle.stroke,
+                      label: const GaugeLabel(
+                        label: 'Default label',
+                        style: TextStyle(color: Colors.black87),
+                      ),
+                      color: Colors.black45,
+                      value: 40,
+                      thickness: 2),
+                ],
+              )),
 
           const SizedBox(height: 10),
           // Tooltip
@@ -270,7 +270,11 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
     String title,
     Widget child, {
     double? height,
+    bool visible = true,
   }) {
+    if (!visible) {
+      return const SizedBox();
+    }
     return Card(
       elevation: 0.1,
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),

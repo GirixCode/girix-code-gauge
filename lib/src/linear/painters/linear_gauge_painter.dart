@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/src/common/models/linear_gauge_common_model.dart';
 import 'package:girix_code_gauge/src/linear/models/linear_gauge_style.dart';
 import 'package:girix_code_gauge/src/linear/models/linear_needle_model.dart';
-import 'package:girix_code_gauge/src/linear/painters/needle_utils.dart';
+import 'package:girix_code_gauge/src/linear/utils/needle_utils.dart';
 
 /// [LinearGaugeProgressPainter] is a custom painter class that is used to paint the GxProgressLinearGauge widget.
 ///
