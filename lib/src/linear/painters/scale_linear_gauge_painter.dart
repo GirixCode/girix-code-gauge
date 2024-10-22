@@ -40,6 +40,7 @@ class ScaleLinearGaugePainter extends CustomPainter {
   final List<FillAreaPointer>? fillAreaPointers;
   final ValueToLabelStyleCallback? valueToLabelStyleCallback;
   final double barOffset;
+  final bool applyBarColorOnAxisTick;
   ScaleLinearGaugePainter({
     required this.gaugeType,
     required this.orientation,
@@ -69,6 +70,7 @@ class ScaleLinearGaugePainter extends CustomPainter {
     this.fillAreaPointers,
     this.valueToLabelStyleCallback,
     this.barOffset = 0.5,
+    this.applyBarColorOnAxisTick = false,
   });
 
   @override
@@ -120,10 +122,19 @@ class ScaleLinearGaugePainter extends CustomPainter {
         fillAreaPointers != oldDelegate.fillAreaPointers ||
         valueToLabelStyleCallback != oldDelegate.valueToLabelStyleCallback ||
         barHeight != oldDelegate.barHeight ||
-        barOffset != oldDelegate.barOffset;
+        barOffset != oldDelegate.barOffset ||
+        applyBarColorOnAxisTick != oldDelegate.applyBarColorOnAxisTick;
   }
 
   void _drawBars(Canvas canvas, Size size) {
+    final List<LinearElementPosition> allowedTickPosition =
+        <LinearElementPosition>[
+      LinearElementPosition.inside,
+      LinearElementPosition.outside
+    ];
+    if (!allowedTickPosition.contains(tickPosition)) {
+      return;
+    }
     if (barPointers == null) {
       return;
     }
@@ -139,10 +150,12 @@ class ScaleLinearGaugePainter extends CustomPainter {
 
     double barFromTop = height / 2;
 
+    final double offset = applyBarColorOnAxisTick ? -1 : barOffset;
+
     if (tickPosition == LinearElementPosition.inside) {
-      barFromTop = ((size.height / 2) - height) - barOffset;
+      barFromTop = ((size.height / 2) - height) - offset;
     } else if (tickPosition == LinearElementPosition.outside) {
-      barFromTop = size.height / 2 + barOffset;
+      barFromTop = size.height / 2 + offset;
     }
 
     final Size barSize = Size(size.width, height);
@@ -189,7 +202,7 @@ class ScaleLinearGaugePainter extends CustomPainter {
   void _drawDefaultGauge(Canvas canvas, Size size) {
     final double startX = axisSpaceExtent;
     final double endX = size.width - axisSpaceExtent;
-    if (showAxisTrack) {
+    if (showAxisTrack && !applyBarColorOnAxisTick) {
       final Paint trackPaint = Paint()
         ..color = axisTrackStyle.color
         ..strokeWidth = axisTrackStyle.thickness
@@ -403,11 +416,25 @@ class ScaleLinearGaugePainter extends CustomPainter {
         }
       }
 
+      final double tickValue = minimum + actualInterval * i;
+
       // Filter Major Tick Style based on the value and index
-      final LinearTickStyle filterMajorTickStyle =
-          valueToMajorTickStyleCallback != null
-              ? valueToMajorTickStyleCallback!(minimum + actualInterval * i, i)
-              : majorTickStyle;
+      LinearTickStyle filterMajorTickStyle = majorTickStyle;
+
+      // Check whether to apply the bar color on the axis tick
+      final bool allowFilterStyle = applyBarColorOnAxisTick &&
+          barPointers != null &&
+          barPointers!.isNotEmpty;
+
+      if (allowFilterStyle) {
+        log('GxScaleLinearGauge: Bar Color on Axis Tick: TickValue:-> $tickValue, index: $i, actualInterval: $actualInterval');
+
+        filterMajorTickStyle = _getFilteredTickStyle(majorTickStyle, tickValue);
+      } else if (valueToMajorTickStyleCallback != null) {
+        filterMajorTickStyle = valueToMajorTickStyleCallback!(tickValue, i);
+      } else {
+        filterMajorTickStyle = majorTickStyle;
+      }
 
       // Draw major tick
       canvas.drawLine(
@@ -425,12 +452,17 @@ class ScaleLinearGaugePainter extends CustomPainter {
               tickSpacing / (minorTicksPerInterval + 1);
           for (int j = 1; j <= minorTicksPerInterval; j++) {
             final double minorX = x + (minorTickSpacing * j);
+            final double minorTickValue = minimum + actualInterval * i + j;
+
+            final LinearTickStyle filterMinorTickStyle = allowFilterStyle
+                ? _getFilteredTickStyle(minorTickStyle, minorTickValue)
+                : minorTickStyle;
             canvas.drawLine(
               Offset(minorX, minorP1dY),
               Offset(minorX, minorP2dY),
               Paint()
-                ..color = minorTickStyle.color
-                ..strokeWidth = minorTickStyle.thickness,
+                ..color = filterMinorTickStyle.color
+                ..strokeWidth = filterMinorTickStyle.thickness,
             );
           }
         }
@@ -491,5 +523,22 @@ class ScaleLinearGaugePainter extends CustomPainter {
         }
       }
     }
+  }
+
+  // Helper method to get Tick Style color
+  LinearTickStyle _getFilteredTickStyle(
+      LinearTickStyle tickStyle, double tickValue) {
+    LinearTickStyle localStyle = tickStyle;
+    double startBarValue = minimum;
+    for (final LinearBarPointer barPointer in barPointers!) {
+      final double endBarValue = startBarValue + barPointer.value;
+      if (tickValue >= startBarValue && tickValue <= endBarValue) {
+        localStyle = localStyle.copyWith(color: barPointer.color);
+        break;
+      }
+      startBarValue = endBarValue;
+    }
+
+    return localStyle;
   }
 }

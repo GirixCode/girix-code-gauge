@@ -14,6 +14,7 @@ class _MultiRangeScaleLinearGaugeBodyState
     extends State<MultiRangeScaleLinearGaugeBody> {
   @override
   Widget build(BuildContext context) {
+    const double barValue = 100 / 3;
     return ListView(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
@@ -21,7 +22,7 @@ class _MultiRangeScaleLinearGaugeBodyState
       key: const Key('scale_linear_gauge_list'),
       children: [
         ItemCard(
-          title: 'With Tick outside',
+          title: 'With Tick outside bars',
           child: GxScaleLinearGauge(
               height: 60,
               minimum: 0,
@@ -53,23 +54,23 @@ class _MultiRangeScaleLinearGaugeBodyState
               barPointers: [
                 LinearBarPointer(
                     label: const GaugeLabel(label: 'Low'),
-                    value: 33,
+                    value: barValue,
                     thickness: 5,
                     color: Colors.brown),
                 LinearBarPointer(
                     label: const GaugeLabel(label: 'Medium'),
                     color: Colors.yellow.shade700,
-                    value: 33,
+                    value: barValue,
                     thickness: 5),
                 LinearBarPointer(
                     label: const GaugeLabel(label: 'High'),
                     color: Colors.cyan.shade700,
-                    value: 33,
+                    value: barValue,
                     thickness: 5),
               ]),
         ),
         ItemCard(
-          title: 'With Tick inside',
+          title: 'With Tick inside bars',
           child: GxScaleLinearGauge(
               height: 80,
               tickPosition: LinearElementPosition.inside,
@@ -95,7 +96,7 @@ class _MultiRangeScaleLinearGaugeBodyState
                     label: const GaugeLabel(
                         label: 'Developer',
                         style: TextStyle(color: Colors.black87)),
-                    value: 33,
+                    value: barValue,
                     thickness: 5,
                     color: Colors.orangeAccent.shade400),
                 LinearBarPointer(
@@ -103,14 +104,102 @@ class _MultiRangeScaleLinearGaugeBodyState
                         label: 'Designer',
                         style: TextStyle(color: Colors.black87)),
                     color: Colors.tealAccent,
-                    value: 33,
+                    value: barValue,
                     thickness: 5),
                 LinearBarPointer(
                     label: const GaugeLabel(
                         label: 'Tester',
                         style: TextStyle(color: Colors.black87)),
                     color: Colors.orangeAccent,
-                    value: 33,
+                    value: barValue,
+                    thickness: 5),
+              ]),
+        ),
+        const SizedBox(height: 10),
+        ItemCard(
+          title: 'With apply bar color on axis tick',
+          child: GxScaleLinearGauge(
+              height: 80,
+              tickPosition: LinearElementPosition.inside,
+              labelPosition: LinearGaugeLabelPosition.bottomCenter,
+              minorTickStyle: const LinearTickStyle(
+                length: 20,
+                thickness: 1,
+              ),
+              majorTickStyle: const LinearTickStyle(
+                length: 40,
+                thickness: 1,
+              ),
+              barHeight: 10,
+              barOffset: 80,
+              applyBarColorOnAxisTick: true,
+              barPointers: [
+                LinearBarPointer(
+                    value: barValue, thickness: 5, color: Colors.red.shade400),
+                LinearBarPointer(
+                    color: Colors.tealAccent.shade700,
+                    value: barValue,
+                    thickness: 5),
+                LinearBarPointer(
+                    color: Colors.orangeAccent.shade400,
+                    value: barValue,
+                    thickness: 5),
+              ]),
+        ),
+        const SizedBox(height: 10),
+        ItemCard(
+          title: 'With apply bar color on axis tick for in and out',
+          child: GxScaleLinearGauge(
+              height: 80,
+              tickPosition: LinearElementPosition.inAndOut,
+              minorTickStyle: const LinearTickStyle(
+                length: 10,
+                thickness: 1,
+              ),
+              majorTickStyle: const LinearTickStyle(
+                length: 40,
+                thickness: 2,
+              ),
+              applyBarColorOnAxisTick: true,
+              barPointers: [
+                LinearBarPointer(
+                    value: barValue, thickness: 5, color: Colors.red.shade400),
+                LinearBarPointer(
+                    color: Colors.tealAccent.shade700,
+                    value: barValue,
+                    thickness: 5),
+                LinearBarPointer(
+                    color: Colors.orangeAccent.shade400,
+                    value: barValue,
+                    thickness: 5),
+              ]),
+        ),
+        const SizedBox(height: 10),
+        ItemCard(
+          title: 'With apply bar color on axis tick and hide minor ticks',
+          child: GxScaleLinearGauge(
+              height: 80,
+              tickPosition: LinearElementPosition.inAndOut,
+              minorTickStyle: const LinearTickStyle(
+                length: 10,
+                thickness: 1,
+              ),
+              majorTickStyle: const LinearTickStyle(
+                length: 40,
+                thickness: 2,
+              ),
+              applyBarColorOnAxisTick: true,
+              showMinorTicks: false,
+              barPointers: [
+                LinearBarPointer(
+                    value: barValue, thickness: 5, color: Colors.red.shade400),
+                LinearBarPointer(
+                    color: Colors.tealAccent.shade700,
+                    value: barValue,
+                    thickness: 5),
+                LinearBarPointer(
+                    color: Colors.orangeAccent.shade400,
+                    value: barValue,
                     thickness: 5),
               ]),
         ),

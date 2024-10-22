@@ -77,7 +77,7 @@ class _DefaultScaleLinearGaugeBodyState
               interval: 20,
               minorTicksPerInterval: 5,
               axisSpaceExtent: 2,
-              labelPosition: LinearGaugeLabelPosition.bottomCenter,
+              labelPosition: LinearGaugeLabelPosition.topCenter,
               tickPosition: LinearElementPosition.outside,
               axisTrackStyle: const LinearAxisTrackStyle(
                 thickness: 2,

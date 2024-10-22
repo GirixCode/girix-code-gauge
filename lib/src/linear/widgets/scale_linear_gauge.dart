@@ -500,6 +500,22 @@ class GxScaleLinearGauge extends StatelessWidget {
   ///
   final ValueToLabelStyleCallback? valueToLabelStyleCallback;
 
+  /// Specifies whether to apply the bar color on the axis and the ticks.
+  ///
+  /// This will be applied only when the `barPointers` are not null.
+  ///
+  /// ``barOffset`` and `axis` will be ignored when this is set to true.
+  ///
+  /// The default value is `false`.
+  ///
+  /// ```dart
+  /// GxScaleLinearGauge(
+  ///  applyBarColorOnAxisTick: true,
+  /// )
+  /// ```
+  ///
+  final bool applyBarColorOnAxisTick;
+
   const GxScaleLinearGauge({
     super.key,
     this.gaugeType = ScaleLinearGaugeType.defaultGauge,
@@ -532,6 +548,7 @@ class GxScaleLinearGauge extends StatelessWidget {
     this.fillAreaPointers,
     this.valueToLabelStyleCallback,
     this.barOffset = 0.5,
+    this.applyBarColorOnAxisTick = false,
   })  : assert(minimum < maximum, 'min must be less than max'),
         assert(value >= minimum && value <= maximum,
             'value must be between min and max'),
@@ -574,6 +591,7 @@ class GxScaleLinearGauge extends StatelessWidget {
             valueToLabelStyleCallback: valueToLabelStyleCallback,
             barHeight: barHeight,
             barOffset: barOffset,
+            applyBarColorOnAxisTick: applyBarColorOnAxisTick,
           ),
           size: height == null || width == null
               ? Size.infinite

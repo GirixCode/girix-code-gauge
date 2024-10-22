@@ -107,4 +107,17 @@ class LinearTickStyle {
     this.thickness = 1.0,
     this.color = Colors.grey,
   });
+
+  // CopyWith method
+  LinearTickStyle copyWith({
+    double? length,
+    double? thickness,
+    Color? color,
+  }) {
+    return LinearTickStyle(
+      length: length ?? this.length,
+      thickness: thickness ?? this.thickness,
+      color: color ?? this.color,
+    );
+  }
 }
