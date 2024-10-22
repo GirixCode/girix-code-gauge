@@ -1,4 +1,3 @@
-import 'package:examples/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/gauges.dart';
 
@@ -71,7 +70,7 @@ class _DefaultScaleLinearGaugeBodyState
           buildCard(
             'With Tick outside',
             GxScaleLinearGauge(
-              height: 80,
+              height: 70,
               minimum: 0,
               maximum: 100,
               interval: 20,
@@ -98,18 +97,17 @@ class _DefaultScaleLinearGaugeBodyState
               ],
             ),
           ),
-          const ItemCard(
-            title: 'With Tick inside',
-            height: 150,
-            child: GxScaleLinearGauge(
+          buildCard(
+            'With Tick inside',
+            const GxScaleLinearGauge(
               height: 50,
               tickPosition: LinearElementPosition.inside,
               minorTickStyle: LinearTickStyle(
-                length: 50,
+                length: 20,
                 thickness: 1,
               ),
               majorTickStyle: LinearTickStyle(
-                length: 70,
+                length: 40,
                 thickness: 1,
               ),
               axisTrackStyle: LinearAxisTrackStyle(

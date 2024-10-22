@@ -24,7 +24,6 @@ class ScaleLinearGaugePainter extends CustomPainter {
   final int minorTicksPerInterval;
   final LinearTickStyle majorTickStyle;
   final LinearTickStyle minorTickStyle;
-  final List<LinearGaugeRange>? ranges;
   final List<LinearBarPointer>? barPointers;
   final List<LinearMarkerPointer>? markerPointers;
   final ValueToLabelFormatCallback? valueToLabelFormatCallback;
@@ -60,7 +59,6 @@ class ScaleLinearGaugePainter extends CustomPainter {
     required this.showMinorTicks,
     required this.showAxisTrack,
     required this.showAxisLabel,
-    this.ranges,
     this.barPointers,
     this.barHeight,
     this.markerPointers,
@@ -79,15 +77,6 @@ class ScaleLinearGaugePainter extends CustomPainter {
       case ScaleLinearGaugeType.defaultGauge:
         _drawDefaultGauge(canvas, size);
         break;
-      case ScaleLinearGaugeType.exponential:
-        _drawExponentialGauge(canvas, size);
-        break;
-      case ScaleLinearGaugeType.concave:
-        _drawConcaveGauge(canvas, size);
-        break;
-      case ScaleLinearGaugeType.gradient:
-        _drawGradientGauge(canvas, size);
-        break;
       case ScaleLinearGaugeType.multiRange:
         _drawMultiRangeGauge(canvas, size);
         break;
@@ -105,7 +94,6 @@ class ScaleLinearGaugePainter extends CustomPainter {
         minorTicksPerInterval != oldDelegate.minorTicksPerInterval ||
         majorTickStyle != oldDelegate.majorTickStyle ||
         minorTickStyle != oldDelegate.minorTickStyle ||
-        ranges != oldDelegate.ranges ||
         barPointers != oldDelegate.barPointers ||
         markerPointers != oldDelegate.markerPointers ||
         valueToLabelFormatCallback != oldDelegate.valueToLabelFormatCallback ||

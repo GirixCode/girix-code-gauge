@@ -248,32 +248,6 @@ class GxScaleLinearGauge extends StatelessWidget {
   ///
   final LinearTickStyle minorTickStyle;
 
-  /// Specifies the list of ranges of the gauge
-  ///
-  /// The default value is null.
-  ///
-  /// ```dart
-  /// GxScaleLinearGauge(
-  ///  ranges: [
-  ///   LinearGaugeRange(
-  ///     startValue: 0.0,
-  ///     endValue: 50.0,
-  ///     color: Colors.green,
-  ///     label: 'Low',
-  ///   ),
-  /// LinearGaugeRange(
-  ///     startValue: 50.0,
-  ///     endValue: 75.0,
-  ///     color: Colors.orange,
-  ///     label: 'Medium',
-  ///   ),
-  ///
-  ///   ]
-  /// )
-  /// ```
-  ///
-  final List<LinearGaugeRange>? ranges;
-
   /// Specifies the list of bar pointers of the gauge.
   ///
   /// The default value is null.
@@ -529,7 +503,6 @@ class GxScaleLinearGauge extends StatelessWidget {
     this.minorTicksPerInterval = 1,
     this.majorTickStyle = const LinearTickStyle(),
     this.minorTickStyle = const LinearTickStyle(),
-    this.ranges,
     this.barPointers,
     this.barHeight,
     this.markerPointers,
@@ -574,7 +547,6 @@ class GxScaleLinearGauge extends StatelessWidget {
             minorTicksPerInterval: minorTicksPerInterval,
             majorTickStyle: majorTickStyle,
             minorTickStyle: minorTickStyle,
-            ranges: ranges,
             barPointers: barPointers,
             markerPointers: markerPointers,
             valueToLabelFormatCallback: valueToLabelFormatCallback,

@@ -37,18 +37,18 @@ class LinearAxisTrackStyle {
   });
 }
 
-class LinearGaugeRange {
-  final double startValue;
-  final double endValue;
-  final Color color;
-  final String? label;
-  LinearGaugeRange({
-    required this.startValue,
-    required this.endValue,
-    required this.color,
-    this.label,
-  });
-}
+// class LinearGaugeRange {
+//   final double startValue;
+//   final double endValue;
+//   final Color color;
+//   final String? label;
+//   LinearGaugeRange({
+//     required this.startValue,
+//     required this.endValue,
+//     required this.color,
+//     this.label,
+//   });
+// }
 
 class LinearMarkerPointer {
   final double value;

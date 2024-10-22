@@ -9,9 +9,6 @@ enum GaugeTooltipPosition {
 enum GaugeTooltipType {
   /// Shows the tooltip for the gauge
   normal,
-
-  /// Shows the tooltip for the gauge in a floating position
-  floatDock,
 }
 
 enum LinearElementPosition {
@@ -41,13 +38,9 @@ enum LinearElementPosition {
 
 enum LinearGaugeAxisPosition { start, end, center }
 
-enum LinearGaugeDirection { horizontal, vertical }
+enum LinearGaugeDirection { horizontal }
 
 enum LinearGaugeLabelPosition {
-  // topRight,
-  // topLeft,
-  // bottomRight,
-  // bottomLeft,
   topCenter,
   bottomCenter,
 }
@@ -88,13 +81,9 @@ enum LinearGaugeNeedleType {
 
 enum LinearGaugeOrientation {
   horizontal,
-  vertical,
 }
 
 enum ScaleLinearGaugeType {
   defaultGauge,
-  exponential,
-  concave,
-  gradient,
   multiRange,
 }
