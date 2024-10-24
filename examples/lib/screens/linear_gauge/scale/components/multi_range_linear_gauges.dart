@@ -24,7 +24,6 @@ class _MultiRangeScaleLinearGaugeBodyState
         ItemCard(
           title: 'With Tick outside bars',
           child: GxScaleLinearGauge(
-              height: 60,
               minimum: 0,
               maximum: 100,
               interval: 20,
@@ -43,14 +42,8 @@ class _MultiRangeScaleLinearGaugeBodyState
                 length: 30,
                 thickness: 1,
               ),
-              markerPointers: [
-                LinearMarkerPointer(
-                  value: 50,
-                  marker: const Icon(Icons.circle, color: Colors.red, size: 10),
-                ),
-              ],
-              // barHeight: 20,
               barOffset: 1,
+              barHeight: 35,
               barPointers: [
                 LinearBarPointer(
                     label: const GaugeLabel(label: 'Low'),
@@ -72,7 +65,6 @@ class _MultiRangeScaleLinearGaugeBodyState
         ItemCard(
           title: 'With Tick inside bars',
           child: GxScaleLinearGauge(
-              height: 80,
               tickPosition: LinearElementPosition.inside,
               labelPosition: LinearGaugeLabelPosition.bottomCenter,
               minorTickStyle: const LinearTickStyle(
@@ -119,7 +111,6 @@ class _MultiRangeScaleLinearGaugeBodyState
         ItemCard(
           title: 'With apply bar color on axis tick',
           child: GxScaleLinearGauge(
-              height: 80,
               tickPosition: LinearElementPosition.inside,
               labelPosition: LinearGaugeLabelPosition.bottomCenter,
               minorTickStyle: const LinearTickStyle(
@@ -150,7 +141,6 @@ class _MultiRangeScaleLinearGaugeBodyState
         ItemCard(
           title: 'With apply bar color on axis tick for in and out',
           child: GxScaleLinearGauge(
-              height: 80,
               tickPosition: LinearElementPosition.inAndOut,
               minorTickStyle: const LinearTickStyle(
                 length: 10,
@@ -178,7 +168,6 @@ class _MultiRangeScaleLinearGaugeBodyState
         ItemCard(
           title: 'With apply bar color on axis tick and hide minor ticks',
           child: GxScaleLinearGauge(
-              height: 80,
               tickPosition: LinearElementPosition.inAndOut,
               minorTickStyle: const LinearTickStyle(
                 length: 10,

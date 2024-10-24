@@ -299,28 +299,15 @@ class GxScaleLinearGauge extends StatelessWidget {
   final List<LinearMarkerPointer>? markerPointers;
 
   /// Specifies the width of the gauge.
-  ///
   /// The default value is null.
   ///
   /// ```dart
   /// GxScaleLinearGauge(
-  ///  width: 300.0,
+  ///  size: Size.fromWidth(300),
   /// )
   /// ```
   ///
-  final double? width;
-
-  /// Specifies the height of the gauge.
-  ///
-  /// The default value is null.
-  ///
-  /// ```dart
-  /// GxScaleLinearGauge(
-  /// height: 100.0,
-  /// )
-  /// ```
-  ///
-  final double? height;
+  final Size? size;
 
   /// Specifies the value to label format callback of the gauge.
   ///
@@ -506,8 +493,7 @@ class GxScaleLinearGauge extends StatelessWidget {
     this.barPointers,
     this.barHeight,
     this.markerPointers,
-    this.width,
-    this.height,
+    this.size,
     this.valueToLabelFormatCallback,
     this.labelPosition = LinearGaugeLabelPosition.bottomCenter,
     this.tickPosition = LinearElementPosition.cross,
@@ -531,43 +517,37 @@ class GxScaleLinearGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height,
-      child: CustomPaint(
-          painter: ScaleLinearGaugePainter(
-            gaugeType: gaugeType,
-            orientation: orientation,
-            minimum: minimum,
-            maximum: maximum,
-            interval: interval,
-            axisSpaceExtent: axisSpaceExtent,
-            axisLabelStyle: axisLabelStyle,
-            axisTrackStyle: axisTrackStyle,
-            minorTicksPerInterval: minorTicksPerInterval,
-            majorTickStyle: majorTickStyle,
-            minorTickStyle: minorTickStyle,
-            barPointers: barPointers,
-            markerPointers: markerPointers,
-            valueToLabelFormatCallback: valueToLabelFormatCallback,
-            labelPosition: labelPosition,
-            tickPosition: tickPosition,
-            showMajorTicks: showMajorTicks,
-            showMinorTicks: showMinorTicks,
-            showAxisTrack: showAxisTrack,
-            showAxisLabel: showAxisLabel,
-            valueToMajorTickStyleCallback: valueToMajorTickStyleCallback,
-            value: value,
-            needle: needle,
-            fillAreaPointers: fillAreaPointers,
-            valueToLabelStyleCallback: valueToLabelStyleCallback,
-            barHeight: barHeight,
-            barOffset: barOffset,
-            applyBarColorOnAxisTick: applyBarColorOnAxisTick,
-          ),
-          size: height == null || width == null
-              ? Size.infinite
-              : Size(width!, height!)),
-    );
+    return CustomPaint(
+        painter: ScaleLinearGaugePainter(
+          gaugeType: gaugeType,
+          orientation: orientation,
+          minimum: minimum,
+          maximum: maximum,
+          interval: interval,
+          axisSpaceExtent: axisSpaceExtent,
+          axisLabelStyle: axisLabelStyle,
+          axisTrackStyle: axisTrackStyle,
+          minorTicksPerInterval: minorTicksPerInterval,
+          majorTickStyle: majorTickStyle,
+          minorTickStyle: minorTickStyle,
+          barPointers: barPointers,
+          markerPointers: markerPointers,
+          valueToLabelFormatCallback: valueToLabelFormatCallback,
+          labelPosition: labelPosition,
+          tickPosition: tickPosition,
+          showMajorTicks: showMajorTicks,
+          showMinorTicks: showMinorTicks,
+          showAxisTrack: showAxisTrack,
+          showAxisLabel: showAxisLabel,
+          valueToMajorTickStyleCallback: valueToMajorTickStyleCallback,
+          value: value,
+          needle: needle,
+          fillAreaPointers: fillAreaPointers,
+          valueToLabelStyleCallback: valueToLabelStyleCallback,
+          barHeight: barHeight,
+          barOffset: barOffset,
+          applyBarColorOnAxisTick: applyBarColorOnAxisTick,
+        ),
+        size: size ?? const Size.fromHeight(100));
   }
 }
