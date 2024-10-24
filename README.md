@@ -41,6 +41,7 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
         - [**8. Multi Range: Color on Axis Tick**](#8-multi-range-color-on-axis-tick)
           - [**Example**](#example-7)
         - [**9. Multi Range: Color on Axis Tick for In and Out**](#9-multi-range-color-on-axis-tick-for-in-and-out)
+          - [**Example**](#example-8)
   - [**Customization**](#customization)
   - [**License**](#license)
   - [**Additional Resources**](#additional-resources)
@@ -96,7 +97,7 @@ import 'package:girix_code_gauge/gauges.dart';
 
 #### **Progress Linear Gauge**
 
-he `GxProgressLinearGauge` widget is used to display a progress linear gauge.
+The `GxProgressLinearGauge` widget is used to display a progress linear gauge.
 
 ##### **Properties**
 
@@ -562,6 +563,8 @@ Create a range scale linear gauge with multiple ranges and apply bar color on ax
 
 <!-- ![500](./examples//assets/images/features/linear/scale-multi-range-apply-color-no-axis.png) -->
 <img src="./examples//assets/images/features/linear/scale-multi-range-apply-color-no-axis.png" alt="Multi Range: Color on Axis Tick for In and Out" width="100%"/>
+
+###### **Example**
 
 ```dart
 GxScaleLinearGauge(
