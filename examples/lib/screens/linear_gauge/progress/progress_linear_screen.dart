@@ -26,16 +26,12 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
         children: [
           // const SizedBox(height: 2),
 
-          ItemCard(
+          const ItemCard(
             height: 80,
-            title: 'Default Linear Gauge',
+            title: 'Default Progress Linear Gauge',
             child: GxProgressLinearGauge(
-              value: const GaugeValue(value: 50, min: 0, max: 100),
-              style: ProgressLinearStyle(
-                color: Colors.grey.shade400,
-                thickness: 10,
-              ),
-              key: const Key('linear_gauge_1'),
+              value: GaugeValue(value: 50),
+              key: Key('linear_gauge_1'),
             ),
           ),
           // const SizedBox(height: 2),
