@@ -1,1 +1,1 @@
-export 'linear_gauge_painter.dart';
+export 'progress_linear_painter.dart';

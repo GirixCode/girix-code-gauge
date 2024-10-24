@@ -55,11 +55,25 @@ class GaugeLabel {
   ///
   final Offset? offset;
 
+  /// Specifies the space extent of the label. Default is 0.0.
+  ///
+  /// [spaceExtent] double: The space extent of the label.
+  ///
+  /// ```dart
+  /// GaugeLabel(
+  ///  label: 'Label',
+  ///  spaceExtent: 0.0,
+  /// )
+  /// ```
+  ///
+  final double spaceExtent;
+
   const GaugeLabel({
     required this.label,
     this.textAlign = TextAlign.center,
     this.style,
     this.offset,
+    this.spaceExtent = 0.0,
   });
 }
 
@@ -75,10 +89,13 @@ class GaugeTooltip {
   final double thickness;
   final double offset;
   final StrokeCap strokeCap;
-  final TextStyle? textStyle;
+  final TextStyle textStyle;
+  final String? label;
+  final bool showPointer;
   const GaugeTooltip({
+    this.showPointer = true,
     this.enabled = true,
-    this.color = Colors.black,
+    this.color = Colors.grey,
     this.radius,
     this.type = GaugeTooltipType.normal,
     this.position = GaugeTooltipPosition.top,
@@ -87,8 +104,9 @@ class GaugeTooltip {
     this.offset = 10.0,
     this.strokeCap = StrokeCap.butt,
     this.size = const Size(60, 30),
-    this.textStyle,
+    this.textStyle = const TextStyle(),
     this.borderColor,
+    this.label,
   });
 }
 

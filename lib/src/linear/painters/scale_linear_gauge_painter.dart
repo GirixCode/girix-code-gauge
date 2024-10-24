@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:math' as math;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/src/common/models/enums.dart';
 import 'package:girix_code_gauge/src/common/models/linear_gauge_common_model.dart';
@@ -259,9 +258,9 @@ class ScaleLinearGaugePainter extends CustomPainter {
     }
 
     for (final FillAreaPointer fillAreaPointer in fillAreaPointers!) {
-      if (kDebugMode) {
-        log('GxScaleLinearGauge: Fill Area Pointer: ${fillAreaPointer.startValue} - ${fillAreaPointer.endValue}');
-      }
+      // if (kDebugMode) {
+      //   log('GxScaleLinearGauge: Fill Area Pointer: ${fillAreaPointer.startValue} - ${fillAreaPointer.endValue}');
+      // }
       final double startFillValue = fillAreaPointer.startValue;
       final double endFillValue = fillAreaPointer.endValue;
       final Color fillColor = fillAreaPointer.color;
@@ -294,13 +293,13 @@ class ScaleLinearGaugePainter extends CustomPainter {
   void _drawLinearMarkerPointer(Canvas canvas, Size size) {
     if (markerPointers != null && markerPointers!.isNotEmpty) {
       for (final LinearMarkerPointer markerPointer in markerPointers!) {
-        final double markerX = size.width / 2;
-        final double markerY = size.height / 2;
+        // final double markerX = size.width / 2;
+        // final double markerY = size.height / 2;
 
         // Draw the marker
-        if (kDebugMode) {
-          log('GxScaleLinearGauge: Marker Pointer: markerX: $markerX, markerY: $markerY');
-        }
+        // if (kDebugMode) {
+        //   log('GxScaleLinearGauge: Marker Pointer: markerX: $markerX, markerY: $markerY');
+        // }
 
         // Check Needle is enabled
         if (markerPointer.needle != null && markerPointer.needle!.enabled) {
@@ -325,6 +324,8 @@ class ScaleLinearGaugePainter extends CustomPainter {
     if (needle != null) {
       // Draw the needle if enabled
       if (needle!.enabled) {
+        // Calculate thickness by needle height and width
+
         // Draw the needle
         NeedleUtils.drawIt(
             canvas: canvas,
@@ -333,8 +334,7 @@ class ScaleLinearGaugePainter extends CustomPainter {
             minValue: minimum,
             value: value,
             needle: needle!,
-            thickness: needle!.offset,
-            dense: true);
+            thickness: _getThickness(needle!.size.width, needle!.size.height));
       }
     }
   }
@@ -415,7 +415,7 @@ class ScaleLinearGaugePainter extends CustomPainter {
           barPointers!.isNotEmpty;
 
       if (allowFilterStyle) {
-        log('GxScaleLinearGauge: Bar Color on Axis Tick: TickValue:-> $tickValue, index: $i, actualInterval: $actualInterval');
+        // log('GxScaleLinearGauge: Bar Color on Axis Tick: TickValue:-> $tickValue, index: $i, actualInterval: $actualInterval');
 
         filterMajorTickStyle = _getFilteredTickStyle(majorTickStyle, tickValue);
       } else if (valueToMajorTickStyleCallback != null) {
@@ -528,5 +528,9 @@ class ScaleLinearGaugePainter extends CustomPainter {
     }
 
     return localStyle;
+  }
+
+  double _getThickness(double width, double height) {
+    return math.sqrt(math.pow(width, 2) + math.pow(height, 2));
   }
 }

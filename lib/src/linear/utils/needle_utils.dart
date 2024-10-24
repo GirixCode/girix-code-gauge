@@ -27,27 +27,32 @@ class NeedleUtils {
     double needleY = size.height / 2;
 
     if (kDebugMode) {
-      log('GxProgressLinearGauge: Before needleX: $needleX and needleY: $needleY and progress: $progress');
+      log('GxProgressLinearGauge: Needle: Before needleX:-> $needleX and needleY:-> $needleY and progress:-> $progress');
     }
 
     final LinearGaugeNeedlePosition needlePosition = needle.position;
     final Color needleColor = needle.color;
     final double needleWidthSize = needle.size.width;
+    final double needleHeightSize = needle.size.height;
     final LinearGaugeNeedleType needleType = needle.needleType;
 
     //    |
     // -------- X+
     //    | Y+ needle
-    log('GxProgressLinearGauge: needlePosition: $needlePosition');
+    log('GxProgressLinearGauge: Needle: needlePosition:-> $needlePosition');
     switch (needlePosition) {
       case LinearGaugeNeedlePosition.top:
-        needleY = dense ? thickness : -thickness;
+        needleY = -(dense ? thickness : needleHeightSize / 2);
         break;
       case LinearGaugeNeedlePosition.bottom:
-        if (dense && size.height > thickness) {
-          needleY = size.height - thickness;
+        if (dense) {
+          if (size.height >= thickness) {
+            needleY = size.height + needleHeightSize / 2;
+          } else {
+            needleY = size.height + thickness / 2;
+          }
         } else {
-          needleY = size.height + thickness;
+          needleY = size.height;
         }
         break;
       case LinearGaugeNeedlePosition.center:
@@ -57,8 +62,11 @@ class NeedleUtils {
     }
 
     if (kDebugMode) {
-      log('GxProgressLinearGauge: After needleX: $needleX and needleY: $needleY height: ${size.height}');
+      log('GxProgressLinearGauge: Needle: After needleX:-> $needleX and needleY:-> $needleY Canvas height:-> ${size.height}, thickness:-> $thickness needleWidthSize:-> $needleWidthSize, needleHeightSize:-> $needleHeightSize, Dense:-> $dense');
     }
+
+    // Computed needle X
+    // needleX = needleX - needleWidthSize / 4;
 
     final Paint needlePaint = Paint()
       ..color = needleColor
@@ -117,7 +125,7 @@ class NeedleUtils {
       required Size size,
       required GaugeValue gaugeValue,
       bool dense = false,
-      required LinearGaugeStyle style,
+      required ProgressLinearStyle style,
       required LinearNeedle needle,
       void Function(Canvas canvas, Offset position)? customDrawNeedle}) {
     return drawIt(

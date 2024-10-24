@@ -3,7 +3,7 @@
 import 'dart:async';
 
 import 'package:examples/screens/linear_gauge/bar/bar_linear_gauge_screen.dart';
-import 'package:examples/screens/linear_gauge/progress/progress_linear_gauge.dart';
+import 'package:examples/screens/linear_gauge/progress/progress_linear_screen.dart';
 import 'package:examples/screens/linear_gauge/scale/scale_linear_gauge_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -73,10 +73,10 @@ class _ExampleAppState extends State<ExampleApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Girix Shape Example',
+      title: 'GirixCode: Linear Gauges Example',
       home: Scaffold(
           appBar: AppBar(
-            title: const Text('Girix Shape Example'),
+            title: const Text('GirixCode: Linear Gauges Example'),
             actions: [
               IconButton(
                 icon: const Icon(Icons.refresh),

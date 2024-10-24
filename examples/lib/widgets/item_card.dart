@@ -21,14 +21,16 @@ class ItemCard extends StatelessWidget {
     }
     return Card(
       elevation: 0.1,
+      // color: Colors.white,
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
       child: SizedBox(
         height: height,
+        width: MediaQuery.sizeOf(context).width,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(title,
                   style: const TextStyle(fontSize: 16, color: Colors.black54)),

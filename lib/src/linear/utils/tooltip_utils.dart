@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/src/common/models/models.dart';
 
@@ -29,7 +27,7 @@ class TooltipUtils {
     final double tooltipHeight = tooltip.size.height;
 
     // Tooltip Position in ---X----
-    final double tooltipX = size.width * progress;
+    double tooltipX = size.width * progress;
     //                     |
     // Tooltip Position in Y
     //                     |
@@ -47,12 +45,31 @@ class TooltipUtils {
       tooltipBarEnd = Offset(tooltipX, tooltipY - tooltipHeight / 2);
     }
 
-    final Rect tooltipRect = Rect.fromLTWH(
+    Rect tooltipRect = Rect.fromLTWH(
       tooltipX - tooltipWidth / 2,
       tooltipY - tooltipHeight / 2,
       tooltipWidth,
       tooltipHeight,
     );
+
+    // check Overflow
+    final bool isOverflowRight = tooltipRect.right > size.width;
+    final bool isOverflowLeft = tooltipRect.left < 0;
+    if (isOverflowRight) {
+      tooltipRect = Rect.fromLTWH(
+        size.width - tooltipWidth,
+        tooltipY - tooltipHeight / 2,
+        tooltipWidth,
+        tooltipHeight,
+      );
+    } else if (isOverflowLeft) {
+      tooltipRect = Rect.fromLTWH(
+        0,
+        tooltipY - tooltipHeight / 2,
+        tooltipWidth,
+        tooltipHeight,
+      );
+    }
 
     final RRect rRect = RRect.fromRectAndRadius(
       tooltipRect,
@@ -60,9 +77,7 @@ class TooltipUtils {
     );
 
     canvas.drawRRect(rRect, paint);
-
-    log('GxLinearBarGauge: Tooltip Bar: TooltipX:-> $tooltipX, ToolTipY:-> $tooltipY, tooltipBarStart:-> $tooltipBarStart, tooltipBarEnd:-> $tooltipBarEnd, Size:-> $size');
-    if (tooltip.type == GaugeTooltipType.normal) {
+    if (tooltip.type == GaugeTooltipType.normal && tooltip.showPointer) {
       canvas.drawLine(
           tooltipBarStart,
           tooltipBarEnd,
@@ -72,16 +87,15 @@ class TooltipUtils {
             ..strokeWidth = tooltip.thickness);
     }
 
+    // Tooltip text painter
     // Based on the Tooltip Size, we can adjust the Text Size
-    final double textSize =
-        tooltip.textStyle?.fontSize ?? tooltip.size.width / 4;
-    final Color textColor = tooltip.textStyle?.color ?? strokeColor;
+    final double? textSize = tooltip.textStyle.fontSize;
+    final Color textColor = tooltip.textStyle.color ?? strokeColor;
 
-    // Draw Tooltip Text
     final TextPainter textPainter = TextPainter(
         text: TextSpan(
-          text: value.toString(),
-          style: tooltip.textStyle?.copyWith(
+          text: tooltip.label ?? value.toString(),
+          style: tooltip.textStyle.copyWith(
             fontSize: textSize,
             color: textColor,
           ),
@@ -92,6 +106,12 @@ class TooltipUtils {
     textPainter.layout();
     final double textWidth = textPainter.width;
     final double textHeight = textPainter.height;
+
+    if (isOverflowRight) {
+      tooltipX = size.width - tooltipWidth / 2;
+    } else if (isOverflowLeft) {
+      tooltipX = tooltipWidth / 2;
+    }
 
     final double textX = tooltipX - textWidth / 2;
     final double textY = tooltipY - textHeight / 2;

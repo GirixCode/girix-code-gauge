@@ -1,7 +1,5 @@
 // lib/src/linear/widgets/animated_progress_linear_gauge.dart
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/gauges.dart';
 
@@ -9,19 +7,25 @@ class GxAnimatedProgressLinearGauge extends StatefulWidget {
   final double value;
   final GaugeAnimationType animationType;
   final Duration duration;
-  final LinearGaugeStyle foregroundStyle;
-  final LinearGaugeStyle backgroundStyle;
+  final ProgressLinearStyle style;
   final LinearNeedle? needle;
   final void Function(Canvas canvas, Offset position)? customDrawNeedle;
+  final bool reverse;
+  final bool showLabel;
+  final double? height;
+  final GaugeLabel? label;
   const GxAnimatedProgressLinearGauge({
     super.key,
     required this.value,
     this.animationType = GaugeAnimationType.linear,
     this.duration = const Duration(milliseconds: 1000),
-    required this.foregroundStyle,
-    required this.backgroundStyle,
+    required this.style,
     this.needle,
     this.customDrawNeedle,
+    this.reverse = false,
+    this.showLabel = false,
+    this.height,
+    this.label,
   });
 
   @override
@@ -38,13 +42,15 @@ class _AnimatedProgressLinearGaugeState
 
   @override
   Widget build(BuildContext context) {
-    log('GxProgressLinearGauge: [Animated] ${_animation.value}');
     return GxProgressLinearGauge(
       value: GaugeValue(value: _animation.value),
-      foregroundStyle: widget.foregroundStyle,
-      backgroundStyle: widget.backgroundStyle,
+      style: widget.style,
       needle: widget.needle,
       customDrawNeedle: widget.customDrawNeedle,
+      reverse: widget.reverse,
+      showLabel: widget.showLabel,
+      height: widget.height,
+      label: widget.label,
     );
   }
 

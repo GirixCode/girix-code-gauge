@@ -1,3 +1,4 @@
+import 'package:examples/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/gauges.dart';
 
@@ -18,9 +19,9 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
       ),
       body: ListView(
         children: [
-          buildCard(
-              'Default Linear Bar Gauge',
-              GxLinearBarGauge(
+          ItemCard(
+              title: 'Default Linear Bar Gauge',
+              child: GxLinearBarGauge(
                 size: Size(width, 40),
                 value: const GaugeValue(value: 60, max: 99),
                 barPointers: [
@@ -31,9 +32,9 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                       color: Colors.cyanAccent, value: 33, thickness: 5),
                 ],
               )),
-          buildCard(
-              "With Gap Between Bars",
-              GxLinearBarGauge(
+          ItemCard(
+              title: "With Gap Between Bars",
+              child: GxLinearBarGauge(
                 size: const Size(410, 40),
                 value: const GaugeValue(
                   value: 60,
@@ -55,10 +56,10 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
 
           const SizedBox(height: 10),
           // Customized Bar Gauge Style with Gap
-          buildCard(
-              "Customized Bar Gauge Style with Gap",
-              GxLinearBarGauge(
-                size: const Size(410, 40),
+          ItemCard(
+              title: "Customized Bar Gauge Style with Gap",
+              child: GxLinearBarGauge(
+                size: const Size.fromHeight(40),
                 value: const GaugeValue(
                   value: 130,
                   min: 0,
@@ -90,9 +91,9 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                 ],
               )),
           const SizedBox(height: 10),
-          buildCard(
-              "With a needle and Gap",
-              GxLinearBarGauge(
+          ItemCard(
+              title: "With a needle and Gap",
+              child: GxLinearBarGauge(
                 size: const Size(410, 25),
                 value: const GaugeValue(
                   value: 70,
@@ -100,9 +101,22 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                   max: 100,
                 ),
                 gapBetweenBars: 5,
+                tooltip: const GaugeTooltip(
+                    label: 'REC 70/30',
+                    offset: 20,
+                    showPointer: false,
+                    thickness: 2,
+                    color: Colors.black,
+                    strokeCap: StrokeCap.round,
+                    radius: Radius.circular(5),
+                    paintingStyle: PaintingStyle.stroke,
+                    size: Size(100, 30),
+                    textStyle: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                    borderColor: Colors.black12),
                 needle: const LinearNeedle(
                     enabled: true,
-                    color: Colors.blueGrey,
+                    color: Colors.green,
                     size: Size(1.5, 75),
                     position: LinearGaugeNeedlePosition.bottom,
                     needleType: LinearGaugeNeedleType.pipe),
@@ -125,9 +139,9 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
               )),
 
           const SizedBox(height: 10),
-          buildCard(
-              'With Labels',
-              GxLinearBarGauge(
+          ItemCard(
+              title: 'With Labels',
+              child: GxLinearBarGauge(
                 size: Size(width, 40),
                 value: const GaugeValue(
                   value: 60,
@@ -160,9 +174,9 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
               )),
 
           const SizedBox(height: 10),
-          buildCard(
-              'With TextAlign and Offset of Labels',
-              GxLinearBarGauge(
+          ItemCard(
+              title: 'With TextAlign and Offset of Labels',
+              child: GxLinearBarGauge(
                 size: Size(width, 40),
                 value: const GaugeValue(
                   value: 60,
@@ -204,12 +218,13 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
 
           const SizedBox(height: 10),
           // Tooltip
-          buildCard(
-              'With Tooltip',
-              GxLinearBarGauge(
+          ItemCard(
+              title: 'With Tooltip',
+              height: 120,
+              child: GxLinearBarGauge(
                 size: Size(width, 40),
                 value: const GaugeValue(
-                  value: 85,
+                  value: 95,
                   min: 0,
                   max: 100,
                 ),
@@ -256,8 +271,7 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                       value: 33,
                       thickness: 2),
                 ],
-              ),
-              height: 120),
+              )),
           const SizedBox(height: 10),
 
           const SizedBox(height: 100),

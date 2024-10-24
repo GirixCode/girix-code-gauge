@@ -29,22 +29,16 @@ class GxLinearBarGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.fromSize(
+    return CustomPaint(
+      painter: LinearBarPainter(
+          gapBetweenBars: gapBetweenBars,
+          gaugeValue: value,
+          barPointers: barPointers,
+          needle: needle,
+          showNeedleInsideBar: showNeedleInsideBar,
+          direction: direction,
+          tooltip: tooltip),
       size: size,
-      child: FittedBox(
-        alignment: alignment,
-        child: CustomPaint(
-          painter: LinearBarPainter(
-              gapBetweenBars: gapBetweenBars,
-              gaugeValue: value,
-              barPointers: barPointers,
-              needle: needle,
-              showNeedleInsideBar: showNeedleInsideBar,
-              direction: direction,
-              tooltip: tooltip),
-          size: size,
-        ),
-      ),
     );
   }
 }
