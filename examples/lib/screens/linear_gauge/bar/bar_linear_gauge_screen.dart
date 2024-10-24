@@ -32,6 +32,41 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                       color: Colors.cyanAccent, value: 33, thickness: 5),
                 ],
               )),
+
+          ItemCard(
+              title: 'With Labels',
+              child: GxLinearBarGauge(
+                size: Size(width, 40),
+                value: const GaugeValue(
+                  value: 60,
+                  min: 0,
+                  max: 120,
+                ),
+                barPointers: [
+                  LinearBarPointer(
+                      label: const GaugeLabel(
+                        label: 'Low',
+                      ),
+                      value: 33,
+                      thickness: 5,
+                      color: Colors.deepOrangeAccent),
+                  LinearBarPointer(
+                      label: const GaugeLabel(
+                        label: 'Medium',
+                      ),
+                      color: Colors.yellow.shade800,
+                      value: 54,
+                      thickness: 5),
+                  LinearBarPointer(
+                      label: const GaugeLabel(
+                        label: 'High',
+                      ),
+                      color: Colors.greenAccent.shade700,
+                      value: 33,
+                      thickness: 5),
+                ],
+              )),
+
           ItemCard(
               title: "With Gap Between Bars",
               child: GxLinearBarGauge(
@@ -44,13 +79,13 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                 gapBetweenBars: 6,
                 barPointers: [
                   LinearBarPointer(
-                      value: 25, thickness: 5, color: Colors.green),
+                      value: 25, thickness: 5, color: Colors.blueGrey.shade100),
                   LinearBarPointer(
-                      color: Colors.redAccent, value: 25, thickness: 5),
+                      color: Colors.blueGrey.shade200, value: 25, thickness: 5),
                   LinearBarPointer(
-                      color: Colors.amber, value: 25, thickness: 5),
+                      color: Colors.blueGrey.shade300, value: 25, thickness: 5),
                   LinearBarPointer(
-                      color: Colors.blueAccent, value: 25, thickness: 5),
+                      color: Colors.blueGrey, value: 25, thickness: 5),
                 ],
               )),
 
@@ -61,30 +96,36 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
               child: GxLinearBarGauge(
                 size: const Size.fromHeight(40),
                 value: const GaugeValue(
-                  value: 130,
+                  value: 30,
                   min: 0,
-                  max: 200,
+                  max: 100,
                 ),
                 gapBetweenBars: 10,
                 barPointers: [
                   LinearBarPointer(
-                      value: 20,
-                      thickness: 5,
-                      color: Colors.green,
+                      value: 30,
+                      label: const GaugeLabel(label: '30'),
+                      thickness: 2,
+                      color: Colors.orange,
                       strokeCap: StrokeCap.round,
-                      paintingStyle: PaintingStyle.stroke,
-                      radius: const Radius.circular(20)),
+                      paintingStyle: PaintingStyle.fill,
+                      radius: const Radius.circular(2)),
                   LinearBarPointer(
                       color: Colors.orange,
-                      value: 130,
-                      thickness: 5,
+                      value: 40,
+                      thickness: 2,
+                      label: const GaugeLabel(
+                          label: '40', style: TextStyle(color: Colors.black)),
                       strokeCap: StrokeCap.round,
                       paintingStyle: PaintingStyle.stroke,
                       radius: const Radius.circular(2)),
                   LinearBarPointer(
-                      color: Colors.brown,
-                      value: 50,
-                      thickness: 5,
+                      color: Colors.orange,
+                      value: 30,
+                      label: const GaugeLabel(
+                        label: '30',
+                      ),
+                      thickness: 2,
                       strokeCap: StrokeCap.round,
                       paintingStyle: PaintingStyle.fill,
                       radius: const Radius.circular(2)),
@@ -92,7 +133,7 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
               )),
           const SizedBox(height: 10),
           ItemCard(
-              title: "With a needle and Gap",
+              title: "With a needle, \ntooltip and inside bar",
               child: GxLinearBarGauge(
                 size: const Size(410, 25),
                 value: const GaugeValue(
@@ -101,19 +142,20 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                   max: 100,
                 ),
                 gapBetweenBars: 5,
+                showNeedleInsideBar: true,
                 tooltip: const GaugeTooltip(
-                    label: 'REC 70/30',
+                    label: 'REC {value}',
                     offset: 20,
                     showPointer: false,
                     thickness: 2,
-                    color: Colors.black,
+                    color: Colors.green,
                     strokeCap: StrokeCap.round,
                     radius: Radius.circular(5),
                     paintingStyle: PaintingStyle.stroke,
                     size: Size(100, 30),
                     textStyle: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
-                    borderColor: Colors.black12),
+                    borderColor: Colors.green),
                 needle: const LinearNeedle(
                     enabled: true,
                     color: Colors.green,
@@ -137,42 +179,6 @@ class _MyBarLinearGaugeScreenState extends State<MyBarLinearGaugeScreen> {
                   //     color: Colors.blueGrey.shade600, value: 50, thickness: 5),
                 ],
               )),
-
-          const SizedBox(height: 10),
-          ItemCard(
-              title: 'With Labels',
-              child: GxLinearBarGauge(
-                size: Size(width, 40),
-                value: const GaugeValue(
-                  value: 60,
-                  min: 0,
-                  max: 100,
-                ),
-                barPointers: [
-                  LinearBarPointer(
-                      label: const GaugeLabel(
-                        label: 'Low',
-                      ),
-                      value: 20,
-                      thickness: 5,
-                      color: Colors.deepOrangeAccent),
-                  LinearBarPointer(
-                      label: const GaugeLabel(
-                        label: 'Medium',
-                      ),
-                      color: Colors.yellow.shade800,
-                      value: 50,
-                      thickness: 5),
-                  LinearBarPointer(
-                      label: const GaugeLabel(
-                        label: 'High',
-                      ),
-                      color: Colors.greenAccent.shade700,
-                      value: 30,
-                      thickness: 5),
-                ],
-              )),
-
           const SizedBox(height: 10),
           ItemCard(
               title: 'With TextAlign and Offset of Labels',

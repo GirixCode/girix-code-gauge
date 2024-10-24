@@ -149,15 +149,27 @@ class LinearBarUtils {
       // Find out the no of gaps between bars
       final int noOfGaps = barPointers.length - 1;
 
+      log('GxLinearBarGauge: Needle: No of Gaps: $noOfGaps');
+
       // Check whether the needleValue is inside the gap range
       if (noOfGaps > 0) {
         for (int index = 0; index < noOfGaps; index++) {
           final double startValue = barPointers[index].value;
           final double endValue = startValue + gapBetweenBars;
+          log('GxLinearBarGauge: Needle: Value: $needleValue, Start: $startValue, End: $endValue');
 
-          if (needleValue > startValue && needleValue < endValue) {
-            log('GxLinearBarGauge: Needle Value: $needleValue is inside the gap range');
+          if (needleValue == startValue) {
+            needleValue = startValue - gapBetweenBars / 2;
+            log('GxLinearBarGauge: Needle: Updated Value: $needleValue is equal to startValue after gap');
+            break;
+          } else if (needleValue > startValue && needleValue < endValue) {
+            needleValue = needleValue;
+            log('GxLinearBarGauge: Needle: Updated Value: $needleValue is equal to endValue');
+            break;
+          } else if (needleValue > startValue && needleValue < endValue) {
             needleValue += gapBetweenBars;
+            log('GxLinearBarGauge: Needle: Updated Value: $needleValue is inside the gap range');
+
             break;
           }
         }

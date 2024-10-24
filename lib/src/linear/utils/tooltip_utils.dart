@@ -91,10 +91,20 @@ class TooltipUtils {
     // Based on the Tooltip Size, we can adjust the Text Size
     final double? textSize = tooltip.textStyle.fontSize;
     final Color textColor = tooltip.textStyle.color ?? strokeColor;
+    late final String tooltipText;
+    if (tooltip.label == null) {
+      tooltipText = value.toString();
+    } else {
+      if (tooltip.label!.contains('{value}')) {
+        tooltipText = tooltip.label!.replaceAll('{value}', value.toString());
+      } else {
+        tooltipText = tooltip.label.toString();
+      }
+    }
 
     final TextPainter textPainter = TextPainter(
         text: TextSpan(
-          text: tooltip.label ?? value.toString(),
+          text: tooltipText,
           style: tooltip.textStyle.copyWith(
             fontSize: textSize,
             color: textColor,

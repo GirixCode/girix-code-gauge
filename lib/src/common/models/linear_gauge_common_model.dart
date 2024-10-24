@@ -18,7 +18,7 @@ class GaugeLabel {
   /// ```
   final String label;
 
-  /// Specifies the style of the label. Default is null.
+  /// Specifies the style of the label. Default is TextStyle() .
   ///
   /// [style] TextStyle: The style of the label.
   /// ```dart
@@ -27,7 +27,7 @@ class GaugeLabel {
   ///  style: TextStyle(color: Colors.black),
   /// )
   /// ```
-  final TextStyle? style;
+  final TextStyle style;
 
   /// Specifies the text alignment of the label. Default is TextAlign.center.
   ///
@@ -71,7 +71,7 @@ class GaugeLabel {
   const GaugeLabel({
     required this.label,
     this.textAlign = TextAlign.center,
-    this.style,
+    this.style = const TextStyle(),
     this.offset,
     this.spaceExtent = 0.0,
   });
