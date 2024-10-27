@@ -1,6 +1,6 @@
 # Girix Code Gauge
 
-![alt](./examples//assets/images/banner/2.png)
+![alt](./examples//assets/images/banner/1.png)
 
 A Flutter package for creating customizable progress linear, linear gauges, radial gauges, and more. **girix_code_gauge** provides a collection of widgets to easily integrate dynamic and visually appealing gauges and shapes into the applications.
 
@@ -24,24 +24,27 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
         - [**3. Add Label**](#3-add-label)
           - [**Example**](#example-1)
         - [**4. Animated Progress Linear Gauge**](#4-animated-progress-linear-gauge)
+      - [**Stepper Gauge**](#stepper-gauge)
+        - [**1. Default Stepper**](#1-default-stepper)
+          - [**Example**](#example-2)
       - [**Scale Linear Gauge**](#scale-linear-gauge)
         - [**Properties of ScaleLinearGauge**](#properties-of-scalelineargauge)
         - [**1. Default Scale Linear Gauge**](#1-default-scale-linear-gauge)
         - [**2. With basic Customized Style**](#2-with-basic-customized-style)
         - [**3. Axis Tick Position**](#3-axis-tick-position)
-          - [**Example**](#example-2)
-        - [**4. Customized Axis and Major Tick Style**](#4-customized-axis-and-major-tick-style)
           - [**Example**](#example-3)
-        - [**5. Customized Scale Linear Needle**](#5-customized-scale-linear-needle)
+        - [**4. Customized Axis and Major Tick Style**](#4-customized-axis-and-major-tick-style)
           - [**Example**](#example-4)
-        - [**6. Fill Area and Marker Pointers**](#6-fill-area-and-marker-pointers)
+        - [**5. Customized Scale Linear Needle**](#5-customized-scale-linear-needle)
           - [**Example**](#example-5)
-        - [**7. Multi Range Scale Linear Gauge**](#7-multi-range-scale-linear-gauge)
+        - [**6. Fill Area and Marker Pointers**](#6-fill-area-and-marker-pointers)
           - [**Example**](#example-6)
-        - [**8. Multi Range: Color on Axis Tick**](#8-multi-range-color-on-axis-tick)
+        - [**7. Multi Range Scale Linear Gauge**](#7-multi-range-scale-linear-gauge)
           - [**Example**](#example-7)
-        - [**9. Multi Range: Color on Axis Tick for In and Out**](#9-multi-range-color-on-axis-tick-for-in-and-out)
+        - [**8. Multi Range: Color on Axis Tick**](#8-multi-range-color-on-axis-tick)
           - [**Example**](#example-8)
+        - [**9. Multi Range: Color on Axis Tick for In and Out**](#9-multi-range-color-on-axis-tick-for-in-and-out)
+          - [**Example**](#example-9)
   - [**Customization**](#customization)
   - [**License**](#license)
   - [**Additional Resources**](#additional-resources)
@@ -226,6 +229,54 @@ SizedBox(
     )
 )
 ```
+
+---
+
+#### **Stepper Gauge**
+
+`GxStepperLinearGauge` is a linear gauge that displays the progress of a process in a step-by-step manner.
+
+Properties of `GxStepperLinearGauge`:
+
+- `value`: The current value of the gauge.
+- `stepperPointers`: The list of pointers to be displayed in the gauge. Each pointer represents a step in the process.
+
+##### **1. Default Stepper**
+
+<img src="./examples//assets/images/features/linear/stepper_default.png" alt="Label" width="100%"/>
+
+###### **Example**
+
+```dart
+ const TextStyle textStyle = TextStyle(
+      fontSize: 12,
+      color: Colors.black,
+    );
+
+GxStepperLinearGauge(
+    value: GaugeValue(
+        value: 77,
+        min: 0,     // Optional
+        max: 100    // Optional
+    ),
+    stepperPointers: [
+        StepperPointer(
+            label: GaugeLabel(label: 'Ordered', style: textStyle)
+        ),
+        StepperPointer(
+            label: GaugeLabel(label: 'Packed', style: textStyle)
+        ),
+        StepperPointer(
+            label: GaugeLabel(label: 'Shipped', style: textStyle)
+        ),
+        StepperPointer(
+            label: GaugeLabel(label: 'Delivered', style: textStyle)
+        )
+    ]
+),
+```
+
+---
 
 #### **Scale Linear Gauge**
 

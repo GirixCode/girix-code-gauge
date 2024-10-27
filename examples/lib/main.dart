@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:examples/screens/linear_gauge/bar/bar_linear_gauge_screen.dart';
 import 'package:examples/screens/linear_gauge/progress/progress_linear_screen.dart';
 import 'package:examples/screens/linear_gauge/scale/scale_linear_gauge_screen.dart';
+import 'package:examples/screens/linear_gauge/stepper/stepper_linear_gauge.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -68,6 +69,14 @@ class _ExampleAppState extends State<ExampleApp> {
         code: 'MyBarLinearGaugeScreen()',
         leading: const Icon(Icons.bar_chart_sharp),
         imagePath: 'assets/images/features/linear_bar_gauge.jpeg'),
+    FeatureItem(
+        title: 'Stepper Linear Gauge',
+        description:
+            'The Stepper Linear Gauge is used to display a linear gauge with steps.',
+        widget: () => const StepperLinearScreen(),
+        code: 'StepperLinearScreen()',
+        leading: const Icon(Icons.bar_chart_sharp),
+        imagePath: 'assets/images/features/linear_stepper_gauge.png'),
   ];
 
   @override

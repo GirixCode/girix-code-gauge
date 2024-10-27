@@ -87,3 +87,14 @@ enum ScaleLinearGaugeType {
   defaultGauge,
   multiRange,
 }
+
+enum StepperShape {
+  /// Stepper shape is a circle shape ●
+  circle,
+
+  /// Stepper shape is a rectangle shape ■
+  rectangle,
+
+  /// Stepper shape is a diamond shape ✦
+  diamond,
+}
