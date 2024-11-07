@@ -20,9 +20,9 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
       - [**Progress Linear Gauge**](#progress-linear-gauge)
         - [**Properties**](#properties)
         - [**1. Default**](#1-default)
-        - [**2. Add Needle and It's customization**](#2-add-needle-and-its-customization)
+        - [**2. Needle**](#2-needle)
           - [**Example**](#example)
-        - [**3. Add Label**](#3-add-label)
+        - [**3. Label**](#3-label)
           - [**Example**](#example-1)
         - [**4. Animated Progress Linear Gauge**](#4-animated-progress-linear-gauge)
       - [**Stepper Gauge**](#stepper-gauge)
@@ -30,17 +30,17 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
           - [**Example**](#example-2)
       - [**Scale Linear Gauge**](#scale-linear-gauge)
         - [**Properties of ScaleLinearGauge**](#properties-of-scalelineargauge)
-        - [**1. Default Scale Linear Gauge**](#1-default-scale-linear-gauge)
-        - [**2. With basic Customized Style**](#2-with-basic-customized-style)
+        - [\*_1. Default Scale_](#1-default-scale)
+        - [**2. Basic Style**](#2-basic-style)
         - [**3. Axis Tick Position**](#3-axis-tick-position)
           - [**Example**](#example-3)
-        - [**4. Customized Axis and Major Tick Style**](#4-customized-axis-and-major-tick-style)
+        - [**4. Axis and Major Tick Style**](#4-axis-and-major-tick-style)
           - [**Example**](#example-4)
-        - [**5. Customized Scale Linear Needle**](#5-customized-scale-linear-needle)
+        - [**5. Needle**](#5-needle)
           - [**Example**](#example-5)
         - [**6. Fill Area and Marker Pointers**](#6-fill-area-and-marker-pointers)
           - [**Example**](#example-6)
-        - [**7. Multi Range Scale Linear Gauge**](#7-multi-range-scale-linear-gauge)
+        - [**7. Multi Range**](#7-multi-range)
           - [**Example**](#example-7)
         - [**8. Multi Range: Color on Axis Tick**](#8-multi-range-color-on-axis-tick)
           - [**Example**](#example-8)
@@ -172,7 +172,7 @@ SizedBox(
 )
 ```
 
-##### **2. Add Needle and It's customization**
+##### **2. Needle**
 
 Add a linear needle to the progress linear gauge widget by passing the `needle` property. You can customize the needle by changing the `position`, `size`, `color`, and `needleType`.
 You can add a style to the gauge by passing the `style` property.
@@ -199,7 +199,7 @@ SizedBox(
 )
 ```
 
-##### **3. Add Label**
+##### **3. Label**
 
 Add a label to the progress linear gauge widget by passing the `label` property. You can customize the label by changing the `label`, `style`, `textAlign`, and `spaceExtent`. You can show the label by passing the `showLabel` property. The `{value}` in the label will be replaced by the actual value of the gauge.
 
@@ -327,7 +327,7 @@ The Scale Linear Gauge is used to display a linear gauge with scale with differe
 - `showAxisTrack` - Whether to show the axis track. Default is `true`.
 - `showMinorTicks` - Whether to show the minor ticks. Default is `true`.
 
-##### **1. Default Scale Linear Gauge**
+##### \*_1. Default Scale_
 
 Create a default scale linear gauge widget and add it to your widget.
 
@@ -335,7 +335,7 @@ Create a default scale linear gauge widget and add it to your widget.
 GxScaleLinearGauge()
 ```
 
-##### **2. With basic Customized Style**
+##### **2. Basic Style**
 
 Create a scale linear gauge widget with basic customized style with minimum, maximum, interval, minorTicksPerInterval, axisSpaceExtent, majorTickStyle.
 
@@ -381,7 +381,7 @@ GxScaleLinearGauge(
  )
 ```
 
-##### **4. Customized Axis and Major Tick Style**
+##### **4. Axis and Major Tick Style**
 
 Create a scale linear gauge widget with customized axis and major tick style with `axisLabelStyle`, `valueToLabelFormatCallback`, `labelPosition`, `majorTickStyle`, `axisTrackStyle`, `minorTickStyle` properties.
 
@@ -415,7 +415,7 @@ GxScaleLinearGauge(
 )
 ```
 
-##### **5. Customized Scale Linear Needle**
+##### **5. Needle**
 
 Create a scale linear gauge widget with customized linear needle with `needle`, `offset`, `enabled`, `color`, `size`, `position`, `needleType` properties.
 
@@ -537,7 +537,7 @@ GxScaleLinearGauge(
     )
 ```
 
-##### **7. Multi Range Scale Linear Gauge**
+##### **7. Multi Range**
 
 Create a range scale linear gauge with multiple ranges.
 
