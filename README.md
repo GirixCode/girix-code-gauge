@@ -1,6 +1,6 @@
 # Girix Code Gauge
 
-![alt](./examples//assets/images/banner/1.png)
+![alt](./example//assets/images/banner/1.png)
 
 A Flutter package for creating customizable progress linear, linear gauges, radial gauges, and more. **girix_code_gauge** provides a collection of widgets to easily integrate dynamic and visually appealing gauges and shapes into the applications.
 
@@ -83,9 +83,9 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
 
 ## **Preview**
 
-## ![alt](./examples//assets/images/features/linear/linear-preview.png)
+## ![alt](./example//assets/images/features/linear/linear-preview.png)
 
-![alt](./examples//assets/images/features/radial/radial-preview.png)
+![alt](./example//assets/images/features/radial/radial-preview.png)
 
 ---
 
@@ -177,7 +177,7 @@ SizedBox(
 Add a linear needle to the progress linear gauge widget by passing the `needle` property. You can customize the needle by changing the `position`, `size`, `color`, and `needleType`.
 You can add a style to the gauge by passing the `style` property.
 
-<img src="./examples//assets/images/features/linear/progress-needle-center.png" alt="Add Needle and It's customization" width="100%"/>
+<img src="./example//assets/images/features/linear/progress-needle-center.png" alt="Add Needle and It's customization" width="100%"/>
 
 ###### **Example**
 
@@ -203,7 +203,7 @@ SizedBox(
 
 Add a label to the progress linear gauge widget by passing the `label` property. You can customize the label by changing the `label`, `style`, `textAlign`, and `spaceExtent`. You can show the label by passing the `showLabel` property. The `{value}` in the label will be replaced by the actual value of the gauge.
 
-<img src="./examples//assets/images/features/linear/progress-label.png" alt="Label" width="100%"/>
+<img src="./example//assets/images/features/linear/progress-label.png" alt="Label" width="100%"/>
 
 ###### **Example**
 
@@ -263,7 +263,7 @@ Properties of `GxStepperLinearGauge`:
 
 ##### **1. Default Stepper**
 
-<img src="./examples//assets/images/features/linear/stepper_default.png" alt="Label" width="100%"/>
+<img src="./example//assets/images/features/linear/stepper_default.png" alt="Label" width="100%"/>
 
 ###### **Example**
 
@@ -358,9 +358,9 @@ GxScaleLinearGauge(
 
 Create a scale linear gauge widget with tick position such as `inside`, `outside`, `outAndIn`, `inAndOut`.
 
-<!-- ![alt](./examples//assets/images/features/linear/scale-inside.png) -->
+<!-- ![alt](./example//assets/images/features/linear/scale-inside.png) -->
 
-<img src="./examples//assets/images/features/linear/scale-inside.png" alt="Axis Tick Position" width="100%"/>
+<img src="./example//assets/images/features/linear/scale-inside.png" alt="Axis Tick Position" width="100%"/>
 
 ###### **Example**
 
@@ -385,9 +385,9 @@ GxScaleLinearGauge(
 
 Create a scale linear gauge widget with customized axis and major tick style with `axisLabelStyle`, `valueToLabelFormatCallback`, `labelPosition`, `majorTickStyle`, `axisTrackStyle`, `minorTickStyle` properties.
 
-<!-- ![alt](./examples//assets/images/features/linear/scale-custom-axis-major-style.png) -->
+<!-- ![alt](./example//assets/images/features/linear/scale-custom-axis-major-style.png) -->
 
-<img src="./examples//assets/images/features/linear/scale-custom-axis-major-style.png" alt="Customized Axis and Major Tick Style" width="100%"/>
+<img src="./example//assets/images/features/linear/scale-custom-axis-major-style.png" alt="Customized Axis and Major Tick Style" width="100%"/>
 
 ###### **Example**
 
@@ -419,9 +419,9 @@ GxScaleLinearGauge(
 
 Create a scale linear gauge widget with customized linear needle with `needle`, `offset`, `enabled`, `color`, `size`, `position`, `needleType` properties.
 
-<!-- ![alt](./examples//assets/images/features/linear/scale-needle-position.png) -->
+<!-- ![alt](./example//assets/images/features/linear/scale-needle-position.png) -->
 
-<img src="./examples//assets/images/features/linear/scale-needle-position.png" alt="Customized Scale Linear Needle" width="100%"/>
+<img src="./example//assets/images/features/linear/scale-needle-position.png" alt="Customized Scale Linear Needle" width="100%"/>
 
 ###### **Example**
 
@@ -463,9 +463,9 @@ GxScaleLinearGauge(
 
 Create a scale linear gauge widget with fill area and marker pointers with `fillAreaPointers`, `markerPointers` properties.
 
-<!-- ![alt](./examples//assets/images/features/linear/scale-filled-area.png) -->
+<!-- ![alt](./example//assets/images/features/linear/scale-filled-area.png) -->
 
-<img src="./examples//assets/images/features/linear/scale-filled-area.png" alt="Fill Area and Marker Pointers" width="100%"/>
+<img src="./example//assets/images/features/linear/scale-filled-area.png" alt="Fill Area and Marker Pointers" width="100%"/>
 
 ###### **Example**
 
@@ -541,9 +541,9 @@ GxScaleLinearGauge(
 
 Create a range scale linear gauge with multiple ranges.
 
-<!-- ![alt](./examples//assets/images/features/linear/scale-multi-range.png) -->
+<!-- ![alt](./example//assets/images/features/linear/scale-multi-range.png) -->
 
-<img src="./examples//assets/images/features/linear/scale-multi-range.png" alt="Multi Range Scale Linear Gauge" width="100%"/>
+<img src="./example//assets/images/features/linear/scale-multi-range.png" alt="Multi Range Scale Linear Gauge" width="100%"/>
 
 ###### **Example**
 
@@ -593,8 +593,8 @@ GxScaleLinearGauge(
 
 Create a range scale linear gauge with multiple ranges and apply bar color on axis tick using `applyBarColorOnAxisTick` property.
 
-<!-- ![alt](./examples//assets/images/features/linear/scale-multi-range-apply-color.png) -->
-<img src="./examples//assets/images/features/linear/scale-multi-range-apply-color.png" alt="Multi Range: Color on Axis Tick" width="100%"/>
+<!-- ![alt](./example//assets/images/features/linear/scale-multi-range-apply-color.png) -->
+<img src="./example//assets/images/features/linear/scale-multi-range-apply-color.png" alt="Multi Range: Color on Axis Tick" width="100%"/>
 
 ###### **Example**
 
@@ -632,8 +632,8 @@ GxScaleLinearGauge(
 
 Create a range scale linear gauge with multiple ranges and apply bar color on axis tick for in and out.
 
-<!-- ![500](./examples//assets/images/features/linear/scale-multi-range-apply-color-no-axis.png) -->
-<img src="./examples//assets/images/features/linear/scale-multi-range-apply-color-no-axis.png" alt="Multi Range: Color on Axis Tick for In and Out" width="100%"/>
+<!-- ![500](./example//assets/images/features/linear/scale-multi-range-apply-color-no-axis.png) -->
+<img src="./example//assets/images/features/linear/scale-multi-range-apply-color-no-axis.png" alt="Multi Range: Color on Axis Tick for In and Out" width="100%"/>
 
 ###### **Example**
 
@@ -696,7 +696,7 @@ The `GxRadialGauge` widget is used to display a RadialGauge with different style
 
 ##### **1. Default**
 
-<img src="./examples/assets/images/features/radial/default.png" alt="Label" width="100%"/>
+<img src="./example/assets/images/features/radial/default.png" alt="Label" width="100%"/>
 
 ###### **Example 1**
 
@@ -728,7 +728,7 @@ GxRadialGauge(
 By using `startAngleInDegree` and `sweepAngleInDegree` properties, we can customise the start and swipe angle of the gauge.
 Find out more about angle on canvas, visit [flutter canvas arc](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/canvas_draw_arc.png#gh-light-mode-only)
 
-<img src="./examples/assets/images/features/radial/angle.png" alt="Label" width="100%"/>
+<img src="./example/assets/images/features/radial/angle.png" alt="Label" width="100%"/>
 
 ###### **Example 2**
 
@@ -766,7 +766,7 @@ GxRadialGauge(
 
 By using `majorTickStyle` and `minorTickStyle` properties, we can customise the major and minor ticks of the gauge respectively.
 
-<img src="./examples/assets/images/features/radial/tick.png" alt="Label" width="100%"/>
+<img src="./example/assets/images/features/radial/tick.png" alt="Label" width="100%"/>
 
 ###### **Example 3**
 
@@ -871,7 +871,7 @@ GxRadialGauge(
 
 By using `needle` property, we can customise the needle of the gauge. The `showNeedle` property is used to show and hide the needle.
 
-<img src="./examples/assets/images/features/radial/needle.png" alt="Label" width="100%"/>
+<img src="./example/assets/images/features/radial/needle.png" alt="Label" width="100%"/>
 
 ###### **Example 4**
 
@@ -992,7 +992,7 @@ GxRadialGauge(
 
 By using `pointers` property, we can add pointers to the gauge.
 
-<img src="./examples/assets/images/features/radial/pointer.png" alt="Label" width="100%"/>
+<img src="./example/assets/images/features/radial/pointer.png" alt="Label" width="100%"/>
 
 ###### **Example 5**
 
@@ -1123,7 +1123,7 @@ GxRadialGauge(
 
 By using `gradient` property of the `RadialGaugeStyle` , we can customise the style of the gauge.
 
-<img src="./examples/assets/images/features/radial/gradient.png" alt="Label" width="100%"/>
+<img src="./example/assets/images/features/radial/gradient.png" alt="Label" width="100%"/>
 
 ###### **Example 6**
 
@@ -1219,7 +1219,7 @@ GxRadialGauge(
 
 By using `rangeBars` property, we can plot the range bars.
 
-<img src="./examples/assets/images/features/radial/range.png" alt="Label" width="100%"/>
+<img src="./example/assets/images/features/radial/range.png" alt="Label" width="100%"/>
 
 ###### **Example 7**
 
@@ -1282,7 +1282,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## **Additional Resources**
 
 - **Documentation**: API Reference
-- **Example Project**: Check out the [example app](./examples/) for a full implementation.
+- **Example Project**: Check out the [example app](./example/) for a full implementation.
 - **Issue Tracker**: Have a bug or a feature request? Please open an [issue](https://github.com/mjfoxena/girix-code-gauge/issues).
 
 ---
