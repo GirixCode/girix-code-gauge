@@ -183,7 +183,8 @@ class _DefaultScaleLinearGaugeBodyState
               color: Colors.deepOrange,
               fontSize: 14,
             ),
-            valueToLabelFormatCallback: (value, index) => value,
+            valueToLabelFormatCallback: (value, index) =>
+                value.toInt().toString(),
             labelPosition: LinearGaugeLabelPosition.topCenter,
             majorTickStyle: const LinearTickStyle(
               length: 40,
@@ -222,7 +223,9 @@ class _DefaultScaleLinearGaugeBodyState
                   color: Colors.black26),
               showMinorTicks: false,
               valueToLabelFormatCallback: (value, index) =>
-                  value.length == 1 ? '0$value' : value,
+                  value.toInt().toString().length == 1
+                      ? '0$value'
+                      : value.toInt().toString(),
               markerPointers: [
                 LinearMarkerPointer(
                   value: 10,
@@ -277,7 +280,9 @@ class _DefaultScaleLinearGaugeBodyState
               );
             },
             valueToLabelFormatCallback: (value, index) =>
-                value.length == 1 ? '0$value' : value,
+                value.toInt().toString().length == 1
+                    ? '0$value'
+                    : value.toInt().toString(),
             markerPointers: [
               LinearMarkerPointer(
                 value: 10,
@@ -347,7 +352,9 @@ class _DefaultScaleLinearGaugeBodyState
               );
             },
             valueToLabelFormatCallback: (value, index) =>
-                value.length == 1 ? '0$value' : value,
+                value.toInt().toString().length == 1
+                    ? '0$value'
+                    : value.toInt().toString(),
             markerPointers: [
               LinearMarkerPointer(
                 value: 10,

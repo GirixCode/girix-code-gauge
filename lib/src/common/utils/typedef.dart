@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:girix_code_gauge/src/linear/models/scale_linear_gauge_model.dart';
+import 'package:girix_code_gauge/gauges.dart';
+
+typedef ValueToLabelCallback = GaugeLabel Function(double value, int index);
 
 /// Callback to format the value to be displayed as label.
 ///
@@ -10,12 +12,12 @@ import 'package:girix_code_gauge/src/linear/models/scale_linear_gauge_model.dart
 /// The [index] argument represents the index of the value.
 ///
 /// ```dart
-/// String valueToLabelFormat(String value, int index) {
+/// String valueToLabelFormat(double value, int index) {
 ///   return value;
 /// }
 /// ```
 ///
-typedef ValueToLabelFormatCallback = String Function(String value, int index);
+typedef ValueToLabelFormatCallback = String Function(double value, int index);
 
 typedef ValueToLabelStyleCallback = TextStyle Function(double value, int index);
 
@@ -38,4 +40,13 @@ typedef ValueToLabelStyleCallback = TextStyle Function(double value, int index);
 /// ```
 ///
 typedef ValueToMajorTickStyleCallback = LinearTickStyle Function(
+    double value, int index);
+
+/// Callback to format the value to be displayed as radial tick label.
+///
+/// The [ValueToRadialLabelStyleCallback] is used to format the value to be displayed as radial tick label in the gauge.
+typedef ValueToRadialLabelStyleCallback = RadialTickLabelStyle Function(
+    double value, int index);
+
+typedef ValueToRadialMajorTickCallback = RadialTickStyle Function(
     double value, int index);

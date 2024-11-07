@@ -6,6 +6,7 @@ import 'package:examples/screens/linear_gauge/bar/bar_linear_gauge_screen.dart';
 import 'package:examples/screens/linear_gauge/progress/progress_linear_screen.dart';
 import 'package:examples/screens/linear_gauge/scale/scale_linear_gauge_screen.dart';
 import 'package:examples/screens/linear_gauge/stepper/stepper_linear_gauge.dart';
+import 'package:examples/screens/radial/radial_gauge_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -42,7 +43,8 @@ class _ExampleAppState extends State<ExampleApp> {
 
   late final ScrollController _scrollController;
 
-  final List<FeatureItem> _items = [
+  final List<dynamic> _items = [
+    "Linear Gauge",
     FeatureItem(
       title: 'Progress Linear Gauge',
       description:
@@ -77,15 +79,28 @@ class _ExampleAppState extends State<ExampleApp> {
         code: 'StepperLinearScreen()',
         leading: const Icon(Icons.bar_chart_sharp),
         imagePath: 'assets/images/features/linear_stepper_gauge.png'),
+    "Radial Gauge",
+    FeatureItem(
+      title: 'Radial Gauge',
+      description: 'The Radial Gauge is used to display a radial gauge.',
+      widget: () => const RadialGuageScreen(),
+      code: 'RadialGuageScreen()',
+      imagePath: 'assets/images/features/radial_gauge.png',
+      leading: const Icon(
+        Icons.pie_chart_rounded,
+        size: 70,
+        color: Colors.blue,
+      ),
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'GirixCode: Linear Gauges Example',
+      title: 'GirixCode: Gauges Example',
       home: Scaffold(
           appBar: AppBar(
-            title: const Text('GirixCode: Linear Gauges Example'),
+            title: const Text('GirixCode: Gauges Example'),
             actions: [
               IconButton(
                 icon: const Icon(Icons.refresh),
@@ -100,7 +115,20 @@ class _ExampleAppState extends State<ExampleApp> {
                   controller: _scrollController,
                   itemCount: _items.length,
                   itemBuilder: (context, index) {
-                    final item = _items[index];
+                    if (_items[index] is String) {
+                      return Container(
+                        color: Colors.grey.shade200,
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          _items[index],
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      );
+                    }
+                    final FeatureItem item = _items[index];
                     return Card(
                       elevation: 0,
                       margin: const EdgeInsets.all(8),
@@ -114,7 +142,8 @@ class _ExampleAppState extends State<ExampleApp> {
                         leading: item.imagePath != null
                             ? Image.asset(
                                 item.imagePath!,
-                                width: 70,
+                                width: 80,
+                                height: 110,
                                 fit: BoxFit.cover,
                               )
                             : item.leading,

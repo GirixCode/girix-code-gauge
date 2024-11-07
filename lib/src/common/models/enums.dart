@@ -83,6 +83,44 @@ enum LinearGaugeOrientation {
   horizontal,
 }
 
+enum RadialElementAlignment {
+  /// Allign the ticks at the start of the gauge
+  start,
+
+  /// Allign the ticks at the end of the gauge
+  end,
+
+  /// Allign the ticks at the center of the gauge
+  center,
+}
+
+enum RadialElementPosition {
+  /// Position the ticks to the inside of the gauge
+  inside,
+
+  /// Position the ticks to the outside of the gauge
+  outside,
+}
+
+/// Radial Gause
+///
+///
+///
+///
+enum RadialNeedleShape {
+  /// Needle with a line shape
+  line,
+
+  /// Needle with a tapperedLine (triangle shape)
+  tapperedLine,
+}
+
+enum RadialPointerShape {
+  circle,
+  triangle,
+  custom,
+}
+
 enum ScaleLinearGaugeType {
   defaultGauge,
   multiRange,

@@ -479,11 +479,13 @@ class ScaleLinearGaugePainter extends CustomPainter {
             textAlign: TextAlign.left,
             textDirection: TextDirection.rtl,
             textWidthBasis: TextWidthBasis.longestLine);
-        final String label = (minimum + actualInterval * i).toStringAsFixed(0);
+
+        final double actualValue = minimum + actualInterval * i;
+        final String label = actualValue.toStringAsFixed(0);
         textPainter
           ..text = TextSpan(
             text: valueToLabelFormatCallback != null
-                ? valueToLabelFormatCallback!(label, i)
+                ? valueToLabelFormatCallback!(actualValue, i)
                 : label,
             style: labelStyle,
           )

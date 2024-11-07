@@ -6,12 +6,14 @@ class ItemCard extends StatelessWidget {
   final Widget child;
   final double? height;
   final bool visible;
+  final Color? color;
   const ItemCard({
     super.key,
     required this.title,
     required this.child,
     this.height,
     this.visible = true,
+    this.color,
   });
 
   @override
@@ -21,7 +23,7 @@ class ItemCard extends StatelessWidget {
     }
     return Card(
       elevation: 0.1,
-      // color: Colors.white,
+      color: color,
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
       child: SizedBox(
         height: height,

@@ -12,10 +12,11 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
   - [**Table of Contents**](#table-of-contents)
   - [**Features**](#features)
   - [**Preview**](#preview)
+  - [](#)
   - [**Installation**](#installation)
   - [**Getting Started**](#getting-started)
     - [**Importing the Package**](#importing-the-package)
-    - [**Usage Examples**](#usage-examples)
+    - [**Usage: Linear Gauge**](#usage-linear-gauge)
       - [**Progress Linear Gauge**](#progress-linear-gauge)
         - [**Properties**](#properties)
         - [**1. Default**](#1-default)
@@ -45,6 +46,23 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
           - [**Example**](#example-8)
         - [**9. Multi Range: Color on Axis Tick for In and Out**](#9-multi-range-color-on-axis-tick-for-in-and-out)
           - [**Example**](#example-9)
+    - [**Usage: Radial Gauge**](#usage-radial-gauge)
+      - [**GxRadialGauge**](#gxradialgauge)
+        - [**Properties**](#properties-1)
+        - [**1. Default**](#1-default-1)
+          - [**Example 1**](#example-1)
+        - [**2. Angle customisation**](#2-angle-customisation)
+          - [**Example 2**](#example-2)
+        - [**3. Major and minor Tick customisation**](#3-major-and-minor-tick-customisation)
+          - [**Example 3**](#example-3)
+        - [**4. Needle customisation**](#4-needle-customisation)
+          - [**Example 4**](#example-4)
+        - [**5. Pointers**](#5-pointers)
+          - [**Example 5**](#example-5)
+        - [**6. Gradient color**](#6-gradient-color)
+          - [**Example 6**](#example-6)
+        - [**7. Ranges**](#7-ranges)
+          - [**Example 7**](#example-7)
   - [**Customization**](#customization)
   - [**License**](#license)
   - [**Additional Resources**](#additional-resources)
@@ -65,7 +83,9 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
 
 ## **Preview**
 
-![alt](./examples//assets/images/features/linear/linear-preview.png)
+## ![alt](./examples//assets/images/features/linear/linear-preview.png)
+
+![alt](./examples//assets/images/features/radial/radial-preview.png)
 
 ---
 
@@ -96,7 +116,7 @@ Import `girix_code_gauge` in your Dart code:
 import 'package:girix_code_gauge/gauges.dart';
 ```
 
-### **Usage Examples**
+### **Usage: Linear Gauge**
 
 #### **Progress Linear Gauge**
 
@@ -642,6 +662,603 @@ GxScaleLinearGauge(
             thickness: 5),
         ]
     )
+```
+
+### **Usage: Radial Gauge**
+
+#### **GxRadialGauge**
+
+The `GxRadialGauge` widget is used to display a RadialGauge with different styles of customization.
+
+##### **Properties**
+
+- `value` : The value of the gauge. The value is required.
+- `style` : The style of the gauge. The default value is `RadialGaugeStyle()`. The style is optional.
+- `size` : The size of the gauge. The default value is `Size(200, 200)`. The size is optional.
+- `labelTickStyle` : The style of the label tick. The default value is `RadialTickLabelStyle()`. The labelTickStyle is optional.
+- `showMajorTicks` : The default value is `false`. The showMajorTicks is optional.
+- `showMinorTicks` : The default value is `false`. The showMinorTicks is optional.
+- `showLabels` : The default value is `false`. The showLabels is optional.
+- `majorTickStyle` : The default value is `RadialTickStyle()`. The majorTickStyle is optional.
+- `minorTickStyle` : The default value is `RadialTickStyle()`. The minorTickStyle is optional.
+- `interval` : The default value is `10`. The interval is optional.
+- `minorTicksPerInterval` : The default value is `10`. The minorTicksPerInterval is optional.
+- `startAngleInDegree` : The default value is `0`. The startAngleInDegree is optional.
+- `sweepAngleInDegree` : The default value is `360`. The sweepAngleInDegree is optional.
+- `showValueAtCenter` : The default value is `true`. The showValueAtCenter is optional.
+- `showNeedle` : The default value is `false`. The showNeedle is optional.
+- `needle` : The needle of the gauge. The needle is optional.
+- `valueToLabelFormatCallback` : The value to label format callback. The valueToLabelFormatCallback is optional.
+- `valueToLabelStyleCallback` : The value to label style callback. The valueToLabelStyleCallback is optional.
+- `valueToMajorTickCallback` : The value to label style callback. The valueToMajorTickCallback is optional.
+- `pointers` : The radial pointers. The pointers is optional.
+- `rangeBars` : The range bars. The rangeBars is optional.
+
+##### **1. Default**
+
+<img src="./examples/assets/images/features/radial/default.png" alt="Label" width="100%"/>
+
+###### **Example 1**
+
+```dart
+GxRadialGauge(
+    size: twinSize,
+    value: GaugeValue(
+        value: value,
+    ),
+    style: const RadialGaugeStyle(
+        color: Colors.orange, thickness: 20
+    )
+),
+GxRadialGauge(
+    size: twinSize,
+    value: GaugeValue(
+        value: value,
+    ),
+    style: const RadialGaugeStyle(
+        backgroundColor: Colors.amber,
+        color: Colors.green,
+        thickness: 20
+    )
+),
+```
+
+##### **2. Angle customisation**
+
+By using `startAngleInDegree` and `sweepAngleInDegree` properties, we can customise the start and swipe angle of the gauge.
+Find out more about angle on canvas, visit [flutter canvas arc](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/canvas_draw_arc.png#gh-light-mode-only)
+
+<img src="./examples/assets/images/features/radial/angle.png" alt="Label" width="100%"/>
+
+###### **Example 2**
+
+```dart
+ GxRadialGauge(
+    showValueAtCenter: true,
+    size: twinSize,
+    startAngleInDegree: 180,
+    sweepAngleInDegree: 180,
+    value: GaugeValue(
+        value: value,
+    ),
+    style: const RadialGaugeStyle(
+        strokeCap: StrokeCap.butt,
+        color: Colors.amber,
+        thickness: 20
+    )
+),
+GxRadialGauge(
+    showValueAtCenter: true,
+    size: twinSize,
+    startAngleInDegree: 270,
+    sweepAngleInDegree: 180,
+    value: GaugeValue(
+        value: value,
+    ),
+    style: RadialGaugeStyle(
+        color: Colors.cyanAccent.shade700,
+        thickness: 20
+    )
+),
+```
+
+##### **3. Major and minor Tick customisation**
+
+By using `majorTickStyle` and `minorTickStyle` properties, we can customise the major and minor ticks of the gauge respectively.
+
+<img src="./examples/assets/images/features/radial/tick.png" alt="Label" width="100%"/>
+
+###### **Example 3**
+
+```dart
+// 1st row
+GxRadialGauge(
+    size: twinSize,
+    startAngleInDegree: 135,
+    sweepAngleInDegree: 270,
+    value: GaugeValue(
+        value: 75,
+    ),
+    showMajorTicks: true,
+    interval: 10,
+    majorTickStyle: const RadialTickStyle(
+        position: RadialElementPosition.inside,
+        alignment: RadialElementAlignment.end,
+        length: 20,
+        thickness: 2,
+        color: Colors.blue),
+    style:
+        const RadialGaugeStyle(color: Colors.blue, thickness: 20),
+),
+GxRadialGauge(
+    size: twinSize,
+    startAngleInDegree: 180,
+    value: GaugeValue(
+        value: 75,
+    ),
+    showMajorTicks: true,
+    interval: 5,
+    valueToMajorTickCallback: (value, index) {
+    final bool isOdd = index.isOdd;
+    return RadialTickStyle(
+        position: RadialElementPosition.outside,
+        alignment: RadialElementAlignment.start,
+        length: 20,
+        thickness: 2,
+        color: isOdd
+            ? Colors.deepOrange.shade200
+            : Colors.deepOrange.shade300);
+    },
+    style: const RadialGaugeStyle(
+        color: Colors.deepOrange, thickness: 20),
+),
+
+// 2nd row
+ GxRadialGauge(
+    value: GaugeValue(
+        value: 75,
+    ),
+    showMajorTicks: true,
+    showMinorTicks: true,
+    minorTicksPerInterval: 20,
+    showLabels: true,
+    interval: 10,
+    labelTickStyle: const RadialTickLabelStyle(
+        padding: 2, position: RadialElementPosition.outside),
+    majorTickStyle: const RadialTickStyle(
+        position: RadialElementPosition.inside,
+        alignment: RadialElementAlignment.end,
+        length: 20,
+        thickness: 2,
+        color: Colors.red),
+    minorTickStyle: const RadialTickStyle(
+        position: RadialElementPosition.outside,
+        alignment: RadialElementAlignment.center,
+        length: 20,
+        thickness: 1,
+        color: Colors.redAccent),
+    style: const RadialGaugeStyle(
+        strokeCap: StrokeCap.butt,
+        color: Colors.orangeAccent,
+        thickness: 25),
+),
+GxRadialGauge(
+    value: GaugeValue(
+        value: 75,
+    ),
+    showMajorTicks: true,
+    showMinorTicks: true,
+    showLabels: true,
+    interval: 10,
+    majorTickStyle: const RadialTickStyle(
+        position: RadialElementPosition.inside,
+        alignment: RadialElementAlignment.center,
+        length: 15,
+        thickness: 3,
+        color: Colors.blue),
+    minorTickStyle: const RadialTickStyle(
+        position: RadialElementPosition.outside,
+        alignment: RadialElementAlignment.center,
+        length: 20,
+        thickness: 1,
+        color: Colors.lightBlueAccent),
+    style: const RadialGaugeStyle(
+        color: Colors.lightBlueAccent, thickness: 15),
+),
+```
+
+##### **4. Needle customisation**
+
+By using `needle` property, we can customise the needle of the gauge. The `showNeedle` property is used to show and hide the needle.
+
+<img src="./examples/assets/images/features/radial/needle.png" alt="Label" width="100%"/>
+
+###### **Example 4**
+
+```dart
+// 1st row
+GxRadialGauge(
+    showValueAtCenter: false,
+    value: GaugeValue(
+        value: 75,
+    ),
+    showLabels: true,
+    interval: 10,
+    showNeedle: true,
+    needle: const RadialNeedle(
+        circle: NeedleCircle(
+            radius: 10, paintingStyle: PaintingStyle.fill),
+        color: Colors.red,
+        bottomOffset: 1.0,
+        thickness: 20,
+        topOffest: 0,
+        alignment: RadialElementAlignment.start),
+    style:
+        const RadialGaugeStyle(color: Colors.cyan, thickness: 10),
+),
+GxRadialGauge(
+    showValueAtCenter: false,
+    startAngleInDegree: 135,
+    sweepAngleInDegree: 270,
+    value: GaugeValue(
+        value: 75,
+    ),
+    interval: 10,
+    showNeedle: true,
+    needle: const RadialNeedle(
+        circle: NeedleCircle(
+            radius: 12,
+            strokeWidth: 5,
+            innerColor: Colors.orange,
+            paintingStyle: PaintingStyle.stroke),
+        color: Colors.indigo,
+        bottomOffset: 1.0,
+        thickness: 20,
+        topOffest: 0,
+        alignment: RadialElementAlignment.end),
+    style: const RadialGaugeStyle(
+        color: Colors.indigo, thickness: 15),
+),
+
+// 2nd row
+GxRadialGauge(
+    showValueAtCenter: false,
+    startAngleInDegree: 90,
+    sweepAngleInDegree: 180,
+    size: twinSize,
+    value: GaugeValue(
+        value: 75
+    ),
+    interval: 10,
+    showNeedle: true,
+    showMajorTicks: true,
+    valueToMajorTickCallback: (tickValue, index) {
+    return RadialTickStyle(
+        position: RadialElementPosition.inside,
+        alignment: RadialElementAlignment.end,
+        length: 12,
+        thickness: 2,
+        color: tickValue < value
+            ? Colors.amber
+            : Colors.amber.withOpacity(0.3)
+        );
+    },
+    needle: const RadialNeedle(
+        circle: NeedleCircle(
+            radius: 8,
+            strokeWidth: 5,
+            innerColor: Colors.orange,
+            paintingStyle: PaintingStyle.fill
+        ),
+        color: Colors.brown,
+        bottomOffset: 20.0,
+        thickness: 10,
+        topOffest: 12,
+        alignment: RadialElementAlignment.start
+    ),
+    style: const RadialGaugeStyle(
+        color: Colors.amber, thickness: 15
+    )
+),
+GxRadialGauge(
+    showValueAtCenter: false,
+    size: twinSize,
+    value: GaugeValue(
+        value: 75
+    ),
+    showLabels: true,
+    interval: 10,
+    showNeedle: true,
+    needle: const RadialNeedle(
+        shape: RadialNeedleShape.line,
+        circle: NeedleCircle(
+            radius: 8,
+            strokeWidth: 4,
+            paintingStyle: PaintingStyle.stroke
+        ),
+        color: Colors.grey,
+        bottomOffset: 20.0,
+        thickness: 4,
+        topOffest: 0,
+        alignment: RadialElementAlignment.start
+    ),
+    style: const RadialGaugeStyle(
+        color: Colors.blueGrey, thickness: 10
+    )
+),
+```
+
+##### **5. Pointers**
+
+By using `pointers` property, we can add pointers to the gauge.
+
+<img src="./examples/assets/images/features/radial/pointer.png" alt="Label" width="100%"/>
+
+###### **Example 5**
+
+```dart
+ GxRadialGauge(
+    showValueAtCenter: false,
+    startAngleInDegree: 270,
+    size: twinSize,
+    value: GaugeValue(value: ratioValue, min: 0, max: 144),
+    showLabels: true,
+    labelTickStyle: const RadialTickLabelStyle(
+        padding: 20,
+    ),
+    interval: 12,
+    style: const RadialGaugeStyle(
+        color: Colors.pinkAccent, thickness: 15),
+    valueToLabelFormatCallback: (value, index) {
+        if (index == 0) {
+            return '';
+        }
+        return (value / 12).toInt().toString();
+    },
+    pointers: [
+        RadialPointer(
+            value: ratioValue,
+            shape: RadialPointerShape.circle,
+            showNeedle: false,
+            style: const RadialPointerStyle(
+                color: Colors.indigoAccent,
+                paintingStyle: PaintingStyle.fill,
+                size: 12,
+                thickness: 2
+            ),
+        ),
+        RadialPointer(
+            value: hours * 5,
+            shape: RadialPointerShape.circle,
+            showPointer: false,
+            style: const RadialPointerStyle(
+                color: Colors.blueGrey,
+                paintingStyle: PaintingStyle.fill,
+                size: 12,
+                thickness: 2),
+            needle: const RadialNeedle(
+                thickness: 3.5,
+                topOffest: -30,
+                color: Colors.black,
+                shape: RadialNeedleShape.line,
+                alignment: RadialElementAlignment.end
+            )
+        ),
+        RadialPointer(
+            value: minutes,
+            showPointer: false,
+            needle: const RadialNeedle(
+                thickness: 2.5,
+                color: Colors.indigo,
+                shape: RadialNeedleShape.line,
+                topOffest: -10,
+                alignment: RadialElementAlignment.end
+            )
+        ),
+        RadialPointer(
+            value: seconds,
+            showPointer: false,
+            needle: const RadialNeedle(
+                thickness: 2,
+                color: Colors.indigo,
+                shape: RadialNeedleShape.line,
+                topOffest: -28,
+                bottomOffset: 10,
+                alignment: RadialElementAlignment.end
+            )
+        ),
+    ],
+),
+GxRadialGauge(
+    showValueAtCenter: false,
+    size: twinSize,
+    startAngleInDegree: 180,
+    value: GaugeValue(
+        value: 75,
+    ),
+    interval: 20,
+    style: const RadialGaugeStyle(
+        color: Colors.indigoAccent, thickness: 15),
+    pointers: [
+        RadialPointer(
+            alignment: RadialElementAlignment.start,
+            value: value,
+            shape: RadialPointerShape.triangle,
+            style: const RadialPointerStyle(
+                color: Colors.indigoAccent,
+                paintingStyle: PaintingStyle.fill,
+                size: 20,
+                thickness: 2
+            ),
+        ),
+        RadialPointer(
+            value: value,
+            shape: RadialPointerShape.circle,
+            alignment: RadialElementAlignment.center,
+            showNeedle: true,
+            showPointer: true,
+            style: const RadialPointerStyle(
+                color: Colors.pinkAccent,
+                paintingStyle: PaintingStyle.fill,
+                size: 12,
+                thickness: 2
+            ),
+            needle: const RadialNeedle(
+                thickness: 2,
+                bottomOffset: 20,
+                circle: NeedleCircle(
+                    color: Colors.pinkAccent,
+                    strokeWidth: 3,
+                    paintingStyle: PaintingStyle.stroke),
+                color: Colors.pinkAccent,
+                shape: RadialNeedleShape.line,
+                alignment: RadialElementAlignment.end
+            )
+        ),
+    ],
+),
+```
+
+##### **6. Gradient color**
+
+By using `gradient` property of the `RadialGaugeStyle` , we can customise the style of the gauge.
+
+<img src="./examples/assets/images/features/radial/gradient.png" alt="Label" width="100%"/>
+
+###### **Example 6**
+
+```dart
+GxRadialGauge(
+    showValueAtCenter: true,
+    value: GaugeValue(
+        value: value,
+    ),
+    showLabels: false,
+    labelTickStyle: const RadialTickLabelStyle(
+        padding: 30,
+    ),
+    interval: 10,
+    style: const RadialGaugeStyle(
+        color: Colors.cyan,
+        thickness: 35,
+        gradient: LinearGradient(
+            colors: [
+                Colors.cyan,
+                Colors.blue,
+                Colors.purple,
+                Colors.pinkAccent,
+                Colors.redAccent,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.0, 0.2, 0.4, 0.6, 1.0]
+        ),
+    ),
+),
+GxRadialGauge(
+    showValueAtCenter: false,
+    startAngleInDegree: 180,
+    sweepAngleInDegree: 180,
+
+    value: GaugeValue(
+        value: 75,
+    ),
+    showLabels: true,
+    showMajorTicks: true,
+    showNeedle: true,
+    needle: const RadialNeedle(
+        color: Colors.lightBlue,
+        shape: RadialNeedleShape.tapperedLine,
+        thickness: 18,
+        alignment: RadialElementAlignment.end,
+        circle: NeedleCircle(
+            radius: 15,
+        ),
+        gradient: LinearGradient(colors: [
+            Colors.yellow,
+            Colors.indigo,
+            Colors.lightBlue,
+            Colors.limeAccent,
+            Colors.redAccent,
+        ]),
+    ),
+    majorTickStyle: const RadialTickStyle(
+        color: Colors.pink,
+        thickness: 1,
+        length: 25,
+        position: RadialElementPosition.outside,
+        alignment: RadialElementAlignment.start
+    ),
+    labelTickStyle: const RadialTickLabelStyle(
+        padding: 20,
+        position: RadialElementPosition.outside,
+    ),
+    interval: 10,
+    style: const RadialGaugeStyle(
+        color: Colors.pink,
+        thickness: 35,
+        backgroundGradient: LinearGradient(colors: [
+            Colors.yellow,
+            Colors.indigo,
+            Colors.lightBlue,
+            Colors.limeAccent,
+            Colors.redAccent,
+        ]),
+        gradient: LinearGradient(colors: [
+            Colors.yellow,
+            Colors.indigo,
+            Colors.lightBlue,
+            Colors.limeAccent,
+            Colors.redAccent,
+        ]),
+    ),
+)
+```
+
+##### **7. Ranges**
+
+By using `rangeBars` property, we can plot the range bars.
+
+<img src="./examples/assets/images/features/radial/range.png" alt="Label" width="100%"/>
+
+###### **Example 7**
+
+```dart
+GxRadialGauge(
+    value: GaugeValue(
+        value: 75,
+    ),
+    showLabels: true,
+    labelTickStyle: const RadialTickLabelStyle(
+        padding: 30,
+    ),
+    interval: 10,
+    style: const RadialGaugeStyle(
+        color: Colors.cyan,
+        thickness: 5,
+    ),
+    rangeBars: const [
+        RadialBarRange(
+            offset: 10,
+            height: 30,
+            startValue: 0,
+            endValue: 33,
+            color: Colors.green,
+        ),
+        RadialBarRange(
+            height: 30,
+            startValue: 33,
+            endValue: 66,
+            color: Colors.yellow,
+        ),
+        RadialBarRange(
+            height: 30,
+            startValue: 66,
+            endValue: 100,
+            color: Colors.red,
+        ),
+    ],
+),
 ```
 
 ## **Customization**
