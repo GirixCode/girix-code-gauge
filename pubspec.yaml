@@ -10,12 +10,11 @@ platforms:
   ios:
   web:
 topics:
+  - linear
+  - radial
   - gauge
-  - Linear Gauge
-  - Radial Gauge
-  - Flutter Gauge
-  - Progress Indicator
-  - Stepper
+  - progress-indicator
+  - steppers
 
 environment:
   sdk: ^3.5.1
