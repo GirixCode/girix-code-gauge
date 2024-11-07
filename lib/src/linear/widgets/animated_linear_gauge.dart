@@ -1,7 +1,7 @@
 // lib/src/linear/widgets/animated_progress_linear_gauge.dart
 
 import 'package:flutter/material.dart';
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 class GxAnimatedProgressLinearGauge extends StatefulWidget {
   final double value;

@@ -5,7 +5,7 @@ import 'package:examples/screens/radial/components/default/default_radial_tick_l
 import 'package:examples/screens/radial/components/default/default_radial_ticks.dart';
 import 'package:examples/widgets/item_card.dart';
 import 'package:flutter/material.dart';
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 class DefaultRadialGaugeBody extends StatelessWidget {
   final double value;

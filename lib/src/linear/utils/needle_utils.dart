@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 class NeedleUtils {
   static void drawIt({

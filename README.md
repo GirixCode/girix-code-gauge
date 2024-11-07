@@ -113,7 +113,7 @@ flutter pub get
 Import `girix_code_gauge` in your Dart code:
 
 ```dart
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 ```
 
 ### **Usage: Linear Gauge**

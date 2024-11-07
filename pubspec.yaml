@@ -1,8 +1,21 @@
 name: girix_code_gauge
 description: "A Flutter package for drawing custom shapes and gauges."
 version: 0.0.1
-homepage: "https://github.com/mjfoxena/girix-shape.git"
-author: "Mrutyunjaya Giri <mrutyunjaya@foxena.com>"
+homepage: "https://github.com/GirixCode/girix-code-gauge"
+repository: "https://github.com/GirixCode/girix-code-gauge"
+issue_tracker: "https://github.com/GirixCode/girix-code-gauge/issues"
+documentation: "https://github.com/GirixCode/girix-code-gauge?tab=readme-ov-file#girix-code-gauge"
+platforms:
+  android:
+  ios:
+  web:
+topics:
+  - gauge
+  - Linear Gauge
+  - Radial Gauge
+  - Flutter Gauge
+  - Progress Indicator
+  - Stepper
 
 environment:
   sdk: ^3.5.1

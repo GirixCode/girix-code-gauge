@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 import 'package:girix_code_gauge/src/linear/utils/linear_bar_utils.dart';
 import 'package:girix_code_gauge/src/linear/utils/tooltip_utils.dart';
 

@@ -1,6 +1,6 @@
 import 'package:examples/widgets/item_card.dart';
 import 'package:flutter/material.dart';
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 class DefaultScaleLinearGaugeBody extends StatefulWidget {
   const DefaultScaleLinearGaugeBody({super.key});

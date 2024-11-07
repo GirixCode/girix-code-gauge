@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:examples/widgets/item_card.dart';
 import 'package:flutter/material.dart';
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 class GradientRadialGaugeBody extends StatelessWidget {
   final double value;
@@ -17,113 +17,102 @@ class GradientRadialGaugeBody extends StatelessWidget {
     const Size twinSize = Size(250, 250);
     return ListView(
       children: [
-        SizedBox(
-          height: twinSize.height + 120,
-          child: Row(
-            children: [
-              Expanded(
-                child: ItemCard(
-                  title: 'Foreground Gradient',
-                  child: Center(
-                    child: GxRadialGauge(
-                      showValueAtCenter: true,
-                      size: twinSize,
-                      value: GaugeValue(
-                        value: value,
-                      ),
-                      showLabels: false,
-                      labelTickStyle: const RadialTickLabelStyle(
-                        padding: 30,
-                      ),
-                      interval: 10,
-                      style: const RadialGaugeStyle(
-                        color: Colors.cyan,
-                        thickness: 35,
-                        gradient: LinearGradient(
-                            colors: [
-                              Colors.cyan,
-                              Colors.blue,
-                              Colors.purple,
-                              Colors.pinkAccent,
-                              Colors.redAccent,
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            stops: [0.0, 0.2, 0.4, 0.6, 1.0]),
-                      ),
+        ItemCard(
+          title: 'Foreground Gradient',
+          child: Center(
+            child: GxRadialGauge(
+              showValueAtCenter: true,
+              size: twinSize,
+              value: GaugeValue(
+                value: value,
+              ),
+              showLabels: false,
+              labelTickStyle: const RadialTickLabelStyle(
+                padding: 30,
+              ),
+              interval: 10,
+              style: const RadialGaugeStyle(
+                color: Colors.cyan,
+                thickness: 35,
+                gradient: LinearGradient(
+                    colors: [
+                      Colors.cyan,
+                      Colors.blue,
+                      Colors.purple,
+                      Colors.pinkAccent,
+                      Colors.redAccent,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.0, 0.2, 0.4, 0.6, 1.0]),
+              ),
+            ),
+          ),
+        ),
+        ItemCard(
+            title: 'Foreground and Background Gradient',
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: GxRadialGauge(
+                  showValueAtCenter: false,
+                  startAngleInDegree: 180,
+                  sweepAngleInDegree: 180,
+                  size: twinSize,
+                  value: GaugeValue(
+                    value: value,
+                  ),
+                  showLabels: true,
+                  showMajorTicks: true,
+                  showNeedle: true,
+                  needle: const RadialNeedle(
+                    color: Colors.lightBlue,
+                    shape: RadialNeedleShape.tapperedLine,
+                    thickness: 18,
+                    alignment: RadialElementAlignment.end,
+                    circle: NeedleCircle(
+                      radius: 15,
                     ),
+                    gradient: LinearGradient(colors: [
+                      Colors.yellow,
+                      Colors.indigo,
+                      Colors.lightBlue,
+                      Colors.limeAccent,
+                      Colors.redAccent,
+                    ]),
+                  ),
+                  majorTickStyle: const RadialTickStyle(
+                      color: Colors.pink,
+                      thickness: 1,
+                      length: 25,
+                      position: RadialElementPosition.outside,
+                      alignment: RadialElementAlignment.start),
+                  labelTickStyle: const RadialTickLabelStyle(
+                    padding: 20,
+                    position: RadialElementPosition.outside,
+                  ),
+                  interval: 10,
+                  style: const RadialGaugeStyle(
+                    color: Colors.pink,
+                    thickness: 35,
+                    backgroundGradient: LinearGradient(colors: [
+                      Colors.yellow,
+                      Colors.indigo,
+                      Colors.lightBlue,
+                      Colors.limeAccent,
+                      Colors.redAccent,
+                    ]),
+                    gradient: LinearGradient(colors: [
+                      Colors.yellow,
+                      Colors.indigo,
+                      Colors.lightBlue,
+                      Colors.limeAccent,
+                      Colors.redAccent,
+                    ]),
                   ),
                 ),
               ),
-              Expanded(
-                child: ItemCard(
-                    title: 'Foreground and Background Gradient',
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 40),
-                        child: GxRadialGauge(
-                          showValueAtCenter: false,
-                          startAngleInDegree: 180,
-                          sweepAngleInDegree: 180,
-                          size: twinSize,
-                          value: GaugeValue(
-                            value: value,
-                          ),
-                          showLabels: true,
-                          showMajorTicks: true,
-                          showNeedle: true,
-                          needle: const RadialNeedle(
-                            color: Colors.lightBlue,
-                            shape: RadialNeedleShape.tapperedLine,
-                            thickness: 18,
-                            alignment: RadialElementAlignment.end,
-                            circle: NeedleCircle(
-                              radius: 15,
-                            ),
-                            gradient: LinearGradient(colors: [
-                              Colors.yellow,
-                              Colors.indigo,
-                              Colors.lightBlue,
-                              Colors.limeAccent,
-                              Colors.redAccent,
-                            ]),
-                          ),
-                          majorTickStyle: const RadialTickStyle(
-                              color: Colors.pink,
-                              thickness: 1,
-                              length: 25,
-                              position: RadialElementPosition.outside,
-                              alignment: RadialElementAlignment.start),
-                          labelTickStyle: const RadialTickLabelStyle(
-                            padding: 20,
-                            position: RadialElementPosition.outside,
-                          ),
-                          interval: 10,
-                          style: const RadialGaugeStyle(
-                            color: Colors.pink,
-                            thickness: 35,
-                            backgroundGradient: LinearGradient(colors: [
-                              Colors.yellow,
-                              Colors.indigo,
-                              Colors.lightBlue,
-                              Colors.limeAccent,
-                              Colors.redAccent,
-                            ]),
-                            gradient: LinearGradient(colors: [
-                              Colors.yellow,
-                              Colors.indigo,
-                              Colors.lightBlue,
-                              Colors.limeAccent,
-                              Colors.redAccent,
-                            ]),
-                          ),
-                        ),
-                      ),
-                    )),
-              ),
-            ],
-          ),
-        ),
+            )),
         ItemCard(
             title: 'With Circular Gradient',
             child: Center(

@@ -1,6 +1,4 @@
-// lib/girix_shape.dart
-
-library gauges;
+library girix_code_gauge;
 
 // Common exports
 export 'src/common/animations/animations.dart';

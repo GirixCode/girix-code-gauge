@@ -3,7 +3,7 @@ import 'dart:math' as math;
 
 import 'package:examples/widgets/item_card.dart';
 import 'package:flutter/material.dart';
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 class MyProgressLinearGauge extends StatefulWidget {
   const MyProgressLinearGauge({super.key});

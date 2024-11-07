@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:girix_code_gauge/gauges.dart';
+import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 typedef ValueToLabelCallback = GaugeLabel Function(double value, int index);
 
