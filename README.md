@@ -2,8 +2,6 @@
 
 ![alt](./example//assets/images/banner/1.png)
 
-A Flutter package for creating customizable progress linear, linear gauges, radial gauges, and more. **girix_code_gauge** provides a collection of widgets to easily integrate dynamic and visually appealing gauges and shapes into the applications.
-
 ---
 
 ## **Table of Contents**
