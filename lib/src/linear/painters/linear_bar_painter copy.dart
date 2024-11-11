@@ -1,17 +1,15 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 class LinearBarPainter extends CustomPainter {
-  final GaugeValue gaugeValue;
-  final List<LinearBarPointer> barPointers;
-  final LinearGaugeDirection direction;
   LinearBarPainter({
     required this.gaugeValue,
     required this.barPointers,
     required this.direction,
   });
+  final GaugeValue gaugeValue;
+  final List<LinearBarPointer> barPointers;
+  final LinearGaugeDirection direction;
   @override
   void paint(Canvas canvas, Size size) {
     // draw the gauge
@@ -33,17 +31,17 @@ class LinearBarPainter extends CustomPainter {
     // Gauge Value
     final double minValue = gaugeValue.min;
     final double maxValue = gaugeValue.max;
-    final double currentValue = gaugeValue.value;
+    // final double currentValue = gaugeValue.value;
 
     // Bar
     double startValue = 0;
     double endValue = 0;
 
-    log('GxLinearBarGauge: Size: $size');
+    // log('GxLinearBarGauge: Size: $size');
 
     for (int index = 0; index < barPointers.length; index++) {
       final LinearBarPointer barPointer = barPointers[index];
-      log('GxLinearBarGauge: Index: $index, BarValue: ${barPointer.value}');
+      // log('GxLinearBarGauge: Index: $index, BarValue: ${barPointer.value}');
       final Paint paintAxis = Paint()
         ..color = barPointer.color
         ..strokeWidth = barPointer.thickness
@@ -57,8 +55,8 @@ class LinearBarPainter extends CustomPainter {
       final double barEndValue =
           ((endValue - minValue) / (maxValue - minValue)) * size.width;
 
-      log('GxLinearBarGauge: Start Value: $startValue => $barStartValue');
-      log('GxLinearBarGauge: End Value: $endValue => $barEndValue');
+      // log('GxLinearBarGauge: Start Value: $startValue => $barStartValue');
+      // log('GxLinearBarGauge: End Value: $endValue => $barEndValue');
       final Rect rect =
           Rect.fromLTWH(barStartValue, 0, barEndValue, size.height);
       final RRect rRect =
@@ -68,7 +66,7 @@ class LinearBarPainter extends CustomPainter {
 
       startValue = endValue;
 
-      log('GxLinearBarGauge: Bar Drawn ======================');
+      // log('GxLinearBarGauge: Bar Drawn ======================');
     }
   }
 }

@@ -4,13 +4,6 @@ import 'package:girix_code_gauge/src/linear/utils/linear_bar_utils.dart';
 import 'package:girix_code_gauge/src/linear/utils/tooltip_utils.dart';
 
 class LinearBarPainter extends CustomPainter {
-  final GaugeValue gaugeValue;
-  final List<LinearBarPointer> barPointers;
-  final LinearGaugeDirection direction;
-  final double gapBetweenBars;
-  final LinearNeedle? needle;
-  final bool showNeedleInsideBar;
-  final GaugeTooltip? tooltip;
   LinearBarPainter({
     required this.gaugeValue,
     required this.barPointers,
@@ -20,6 +13,13 @@ class LinearBarPainter extends CustomPainter {
     this.showNeedleInsideBar = true,
     this.tooltip,
   });
+  final GaugeValue gaugeValue;
+  final List<LinearBarPointer> barPointers;
+  final LinearGaugeDirection direction;
+  final double gapBetweenBars;
+  final LinearNeedle? needle;
+  final bool showNeedleInsideBar;
+  final GaugeTooltip? tooltip;
   @override
   void paint(Canvas canvas, Size size) {
     // draw the gauge

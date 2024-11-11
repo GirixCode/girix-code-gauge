@@ -10,6 +10,31 @@ import 'package:girix_code_gauge/src/radial/painters/radial_gauge_painter.dart';
 ///
 ///
 class GxRadialGauge extends StatelessWidget {
+  const GxRadialGauge({
+    super.key,
+    required this.value,
+    this.style = const RadialGaugeStyle(),
+    this.size = const Size(200, 200),
+    this.labelTickStyle = const RadialTickLabelStyle(),
+    this.showMajorTicks = false,
+    this.showMinorTicks = false,
+    this.showLabels = false,
+    this.majorTickStyle = const RadialTickStyle(),
+    this.minorTickStyle = const RadialTickStyle(),
+    this.interval = 10,
+    this.minorTicksPerInterval = 10,
+    this.startAngleInDegree = 0,
+    this.sweepAngleInDegree = 360,
+    this.showValueAtCenter = true,
+    this.showNeedle = false,
+    this.needle,
+    this.valueToLabelFormatCallback,
+    this.valueToLabelStyleCallback,
+    this.valueToMajorTickCallback,
+    this.pointers,
+    this.rangeBars,
+  });
+
   /// Specifies the value of the gauge.
   ///   * [value] : The value of the gauge. The value is required.
   ///
@@ -299,31 +324,6 @@ class GxRadialGauge extends StatelessWidget {
   /// )
   /// ```
   final List<RadialBarRange>? rangeBars;
-
-  const GxRadialGauge({
-    super.key,
-    required this.value,
-    this.style = const RadialGaugeStyle(),
-    this.size = const Size(200, 200),
-    this.labelTickStyle = const RadialTickLabelStyle(),
-    this.showMajorTicks = false,
-    this.showMinorTicks = false,
-    this.showLabels = false,
-    this.majorTickStyle = const RadialTickStyle(),
-    this.minorTickStyle = const RadialTickStyle(),
-    this.interval = 10,
-    this.minorTicksPerInterval = 10,
-    this.startAngleInDegree = 0,
-    this.sweepAngleInDegree = 360,
-    this.showValueAtCenter = true,
-    this.showNeedle = false,
-    this.needle,
-    this.valueToLabelFormatCallback,
-    this.valueToLabelStyleCallback,
-    this.valueToMajorTickCallback,
-    this.pointers,
-    this.rangeBars,
-  });
 
   @override
   Widget build(BuildContext context) {

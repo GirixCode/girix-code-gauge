@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -11,34 +10,6 @@ import 'package:girix_code_gauge/src/linear/utils/linear_bar_utils.dart';
 import 'package:girix_code_gauge/src/linear/utils/needle_utils.dart';
 
 class ScaleLinearGaugePainter extends CustomPainter {
-  final ScaleLinearGaugeType gaugeType;
-  final LinearGaugeOrientation orientation;
-  final double minimum;
-  final double maximum;
-  final double value;
-  final double? interval;
-  final double axisSpaceExtent;
-  final TextStyle? axisLabelStyle;
-  final LinearAxisTrackStyle axisTrackStyle;
-  final int minorTicksPerInterval;
-  final LinearTickStyle majorTickStyle;
-  final LinearTickStyle minorTickStyle;
-  final List<LinearBarPointer>? barPointers;
-  final List<LinearMarkerPointer>? markerPointers;
-  final ValueToLabelFormatCallback? valueToLabelFormatCallback;
-  final LinearGaugeLabelPosition labelPosition;
-  final LinearElementPosition tickPosition;
-  final bool showMajorTicks;
-  final bool showMinorTicks;
-  final bool showAxisTrack;
-  final bool showAxisLabel;
-  final ValueToMajorTickStyleCallback? valueToMajorTickStyleCallback;
-  final LinearNeedle? needle;
-  final double? barHeight;
-  final List<FillAreaPointer>? fillAreaPointers;
-  final ValueToLabelStyleCallback? valueToLabelStyleCallback;
-  final double barOffset;
-  final bool applyBarColorOnAxisTick;
   ScaleLinearGaugePainter({
     required this.gaugeType,
     required this.orientation,
@@ -69,6 +40,34 @@ class ScaleLinearGaugePainter extends CustomPainter {
     this.barOffset = 0.5,
     this.applyBarColorOnAxisTick = false,
   });
+  final ScaleLinearGaugeType gaugeType;
+  final LinearGaugeOrientation orientation;
+  final double minimum;
+  final double maximum;
+  final double value;
+  final double? interval;
+  final double axisSpaceExtent;
+  final TextStyle? axisLabelStyle;
+  final LinearAxisTrackStyle axisTrackStyle;
+  final int minorTicksPerInterval;
+  final LinearTickStyle majorTickStyle;
+  final LinearTickStyle minorTickStyle;
+  final List<LinearBarPointer>? barPointers;
+  final List<LinearMarkerPointer>? markerPointers;
+  final ValueToLabelFormatCallback? valueToLabelFormatCallback;
+  final LinearGaugeLabelPosition labelPosition;
+  final LinearElementPosition tickPosition;
+  final bool showMajorTicks;
+  final bool showMinorTicks;
+  final bool showAxisTrack;
+  final bool showAxisLabel;
+  final ValueToMajorTickStyleCallback? valueToMajorTickStyleCallback;
+  final LinearNeedle? needle;
+  final double? barHeight;
+  final List<FillAreaPointer>? fillAreaPointers;
+  final ValueToLabelStyleCallback? valueToLabelStyleCallback;
+  final double barOffset;
+  final bool applyBarColorOnAxisTick;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -146,8 +145,6 @@ class ScaleLinearGaugePainter extends CustomPainter {
     }
 
     final Size barSize = Size(size.width, height);
-
-    log('GxScaleLinearGauge: Bar barSize:-> $barSize, height: $height, barFromTop:-> $barFromTop,  size: $size');
 
     LinearBarUtils.drawBars(
         canvas: canvas,
@@ -258,9 +255,6 @@ class ScaleLinearGaugePainter extends CustomPainter {
     }
 
     for (final FillAreaPointer fillAreaPointer in fillAreaPointers!) {
-      // if (kDebugMode) {
-      //   log('GxScaleLinearGauge: Fill Area Pointer: ${fillAreaPointer.startValue} - ${fillAreaPointer.endValue}');
-      // }
       final double startFillValue = fillAreaPointer.startValue;
       final double endFillValue = fillAreaPointer.endValue;
       final Color fillColor = fillAreaPointer.color;
@@ -295,11 +289,6 @@ class ScaleLinearGaugePainter extends CustomPainter {
       for (final LinearMarkerPointer markerPointer in markerPointers!) {
         // final double markerX = size.width / 2;
         // final double markerY = size.height / 2;
-
-        // Draw the marker
-        // if (kDebugMode) {
-        //   log('GxScaleLinearGauge: Marker Pointer: markerX: $markerX, markerY: $markerY');
-        // }
 
         // Check Needle is enabled
         if (markerPointer.needle != null && markerPointer.needle!.enabled) {
@@ -415,8 +404,6 @@ class ScaleLinearGaugePainter extends CustomPainter {
           barPointers!.isNotEmpty;
 
       if (allowFilterStyle) {
-        // log('GxScaleLinearGauge: Bar Color on Axis Tick: TickValue:-> $tickValue, index: $i, actualInterval: $actualInterval');
-
         filterMajorTickStyle = _getFilteredTickStyle(majorTickStyle, tickValue);
       } else if (valueToMajorTickStyleCallback != null) {
         filterMajorTickStyle = valueToMajorTickStyleCallback!(tickValue, i);

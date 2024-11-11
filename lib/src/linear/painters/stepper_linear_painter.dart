@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/src/common/models/models.dart';
 import 'package:girix_code_gauge/src/linear/models/linear_gauge_style.dart';
@@ -7,16 +5,6 @@ import 'package:girix_code_gauge/src/linear/models/stepper_linear_gauge_model.da
 import 'package:girix_code_gauge/src/linear/utils/color_utils.dart';
 
 class StepperLinearPainter extends CustomPainter {
-  final GaugeValue gaugeValue;
-  final List<StepperPointer> stepperPointers;
-  final ProgressLinearStyle style;
-  final StepperShape shape;
-  final double shapeSize;
-  final TextStyle activeStyle;
-  final TextStyle inActiveStyle;
-  final double offset;
-  final Function? onPointerTap;
-  late Size? size;
   StepperLinearPainter({
     required this.gaugeValue,
     required this.stepperPointers,
@@ -28,6 +16,16 @@ class StepperLinearPainter extends CustomPainter {
     required this.inActiveStyle,
     this.onPointerTap,
   });
+  final GaugeValue gaugeValue;
+  final List<StepperPointer> stepperPointers;
+  final ProgressLinearStyle style;
+  final StepperShape shape;
+  final double shapeSize;
+  final TextStyle activeStyle;
+  final TextStyle inActiveStyle;
+  final double offset;
+  final Function? onPointerTap;
+  late Size? size;
   bool checkListEquality(
       List<StepperPointer> list1, List<StepperPointer> list2) {
     if (list1.length != list2.length) {
@@ -44,11 +42,10 @@ class StepperLinearPainter extends CustomPainter {
   @override
   bool hitTest(Offset position) {
     // Find out the nearest value based on the position
-    if (size != null) {
-      final double rem = position.dx / size!.width;
+    // if (size != null) {
+    //   final double rem = position.dx / size!.width;
 
-      log('StepperLinearPainter: hitTest:-> $position, Remain:-> $rem');
-    }
+    // }
 
     return true;
   }
@@ -67,7 +64,6 @@ class StepperLinearPainter extends CustomPainter {
         shape != oldDelegate.shape ||
         shapeSize != oldDelegate.shapeSize ||
         activeStyle != oldDelegate.activeStyle;
-    log('StepperLinearPainter: shouldRepaint:-> $isRepent');
     return isRepent;
   }
 
@@ -92,7 +88,6 @@ class StepperLinearPainter extends CustomPainter {
     final double progress = actualProgress;
 
     final int actualInterval = stepperPointers.length;
-    log('StepperLinearPainter: ShapeSize:-> $shapeSize, actualInterval:-> $actualInterval, maxValue:-> $maxValue, minValue:-> $minValue, size:-> $size, progress:-> $progress, actualProgress:-> $actualProgress');
 
     // Draw axis Line
     final Offset axisStart = Offset(
@@ -117,8 +112,6 @@ class StepperLinearPainter extends CustomPainter {
     // Draw the Stepper Pointer
     final double stepWidth = axisWidth / (actualInterval - 1);
 
-    log('StepperLinearPainter: stepWidth:-> $stepWidth');
-
     for (int i = 0; i <= actualInterval - 1; i++) {
       final double x = i * stepWidth;
       final double y = axisHeight / 2;
@@ -127,7 +120,6 @@ class StepperLinearPainter extends CustomPainter {
 
       // Check if the stepper pointer is in the progress line
       final bool isPointerInLine = x <= progress;
-      log('StepperLinearPainter: isPointerInLine:-> $isPointerInLine, x:-> $x, progress:-> $progress, startPoint:-> $startPoint, endPoint:-> $endPoint');
 
       final Paint stepperPaint = Paint()
         ..color = isPointerInLine

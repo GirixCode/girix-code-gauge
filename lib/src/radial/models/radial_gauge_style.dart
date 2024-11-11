@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/src/common/models/models.dart';
 
 class NeedleCircle {
+  const NeedleCircle({
+    this.color,
+    this.radius = 5,
+    this.strokeWidth = 1.0,
+    this.paintingStyle = PaintingStyle.fill,
+    this.innerColor,
+  });
   // [Temporary Fix for Needle Overlapping by adding innerColor]
   final Color? color;
   final double radius;
@@ -14,25 +21,11 @@ class NeedleCircle {
   /// The default value is null.
   ///
   final Color? innerColor;
-
-  const NeedleCircle({
-    this.color,
-    this.radius = 5,
-    this.strokeWidth = 1.0,
-    this.paintingStyle = PaintingStyle.fill,
-    this.innerColor,
-  });
 }
 
 // Radial
 
 class RadialBarRange {
-  final double startValue;
-  final double endValue;
-  final GaugeLabel label;
-  final Color? color;
-  final double height;
-  final double offset;
   const RadialBarRange({
     required this.startValue,
     required this.endValue,
@@ -41,6 +34,12 @@ class RadialBarRange {
     this.height = 10,
     this.offset = 0,
   });
+  final double startValue;
+  final double endValue;
+  final GaugeLabel label;
+  final Color? color;
+  final double height;
+  final double offset;
 }
 
 /// [RadialGaugeStyle] is a class that holds the style properties for the RadialGauge widget.
@@ -56,6 +55,16 @@ class RadialBarRange {
 /// - [thickness]: The stroke width of the RadialGauge widget. It is set to 10.0 by default.
 ///
 class RadialGaugeStyle {
+  const RadialGaugeStyle({
+    this.backgroundColor,
+    this.color = Colors.blue,
+    this.thickness = 10.0,
+    this.strokeCap = StrokeCap.round,
+    this.paintingStyle = PaintingStyle.stroke,
+    this.gradient,
+    this.backgroundGradient,
+  });
+
   /// Specifies the background color of the RadialGauge widget. The default value is the opacity of the [color] property.
   ///
 
@@ -83,29 +92,10 @@ class RadialGaugeStyle {
   final Gradient? gradient;
 
   final Gradient? backgroundGradient;
-
-  const RadialGaugeStyle({
-    this.backgroundColor,
-    this.color = Colors.blue,
-    this.thickness = 10.0,
-    this.strokeCap = StrokeCap.round,
-    this.paintingStyle = PaintingStyle.stroke,
-    this.gradient,
-    this.backgroundGradient,
-  });
 }
 
 // Radial Gauge Needle
 class RadialNeedle {
-  final Color color;
-  final double? bottomOffset;
-  final double? topOffest;
-  final RadialElementAlignment alignment;
-  final NeedleCircle circle;
-  final double thickness;
-  final RadialNeedleShape shape;
-  final StrokeCap strokeCap;
-  final Gradient? gradient;
   const RadialNeedle({
     this.color = Colors.red,
     this.topOffest,
@@ -117,16 +107,18 @@ class RadialNeedle {
     this.strokeCap = StrokeCap.round,
     this.gradient,
   });
+  final Color color;
+  final double? bottomOffset;
+  final double? topOffest;
+  final RadialElementAlignment alignment;
+  final NeedleCircle circle;
+  final double thickness;
+  final RadialNeedleShape shape;
+  final StrokeCap strokeCap;
+  final Gradient? gradient;
 }
 
 class RadialPointer {
-  final double value;
-  final RadialNeedle? needle;
-  final RadialElementAlignment alignment;
-  final RadialPointerShape shape;
-  final RadialPointerStyle style;
-  final bool showNeedle;
-  final bool showPointer;
   const RadialPointer({
     required this.value,
     this.style = const RadialPointerStyle(),
@@ -136,37 +128,52 @@ class RadialPointer {
     this.showNeedle = true,
     this.showPointer = true,
   });
+  final double value;
+  final RadialNeedle? needle;
+  final RadialElementAlignment alignment;
+  final RadialPointerShape shape;
+  final RadialPointerStyle style;
+  final bool showNeedle;
+  final bool showPointer;
 }
 
 /// radial Pointers
 ///
 class RadialPointerStyle {
-  final Color color;
-  final double thickness;
-  final PaintingStyle paintingStyle;
-  final double size;
   const RadialPointerStyle({
     this.color = Colors.red,
     this.thickness = 10.0,
     this.paintingStyle = PaintingStyle.fill,
     this.size = 10.0,
   });
+  final Color color;
+  final double thickness;
+  final PaintingStyle paintingStyle;
+  final double size;
 }
 
 class RadialTickLabelStyle {
-  final TextStyle style;
-  final RadialElementPosition position;
-  final double padding;
-  final double offset;
   const RadialTickLabelStyle({
     this.style = const TextStyle(fontSize: 12, color: Colors.black),
     this.position = RadialElementPosition.inside,
     this.padding = 20,
     this.offset = 0,
   });
+  final TextStyle style;
+  final RadialElementPosition position;
+  final double padding;
+  final double offset;
 }
 
 class RadialTickStyle {
+  const RadialTickStyle({
+    this.length = 8.0,
+    this.thickness = 1.0,
+    this.color = Colors.grey,
+    this.alignment = RadialElementAlignment.center,
+    this.position = RadialElementPosition.inside,
+  });
+
   /// Specifies the length (size) of the tick in the linear gauge.
   ///
   /// The default value is 8.0.
@@ -197,14 +204,6 @@ class RadialTickStyle {
   /// The default value is RadialElementPosition.center.
   ///
   final RadialElementPosition position;
-
-  const RadialTickStyle({
-    this.length = 8.0,
-    this.thickness = 1.0,
-    this.color = Colors.grey,
-    this.alignment = RadialElementAlignment.center,
-    this.position = RadialElementPosition.inside,
-  });
 
   // CopyWith method
   RadialTickStyle copyWith({

@@ -1,7 +1,5 @@
-import 'dart:developer';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:girix_code_gauge/girix_code_gauge.dart';
 
 class NeedleUtils {
@@ -26,10 +24,6 @@ class NeedleUtils {
     final double needleX = (size.width * progress) - denseValue;
     double needleY = size.height / 2;
 
-    if (kDebugMode) {
-      log('GxProgressLinearGauge: Needle: Before needleX:-> $needleX and needleY:-> $needleY and progress:-> $progress');
-    }
-
     final LinearGaugeNeedlePosition needlePosition = needle.position;
     final Color needleColor = needle.color;
     final double needleWidthSize = needle.size.width;
@@ -39,7 +33,7 @@ class NeedleUtils {
     //    |
     // -------- X+
     //    | Y+ needle
-    log('GxProgressLinearGauge: Needle: needlePosition:-> $needlePosition');
+
     switch (needlePosition) {
       case LinearGaugeNeedlePosition.top:
         needleY = -(dense ? thickness : needleHeightSize / 2);
@@ -59,10 +53,6 @@ class NeedleUtils {
         // Use the calculated needleX based on the value
         // needleX = size.height / 2;
         break;
-    }
-
-    if (kDebugMode) {
-      log('GxProgressLinearGauge: Needle: After needleX:-> $needleX and needleY:-> $needleY Canvas height:-> ${size.height}, thickness:-> $thickness needleWidthSize:-> $needleWidthSize, needleHeightSize:-> $needleHeightSize, Dense:-> $dense');
     }
 
     // Computed needle X

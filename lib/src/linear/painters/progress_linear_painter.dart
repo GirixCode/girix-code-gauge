@@ -17,14 +17,6 @@ import 'package:girix_code_gauge/src/linear/utils/needle_utils.dart';
 /// - [style]: An instance of the [ProgressLinearStyle] class that holds the style properties of the gauge.
 ///
 class ProgressLinearPainter extends CustomPainter {
-  final GaugeValue gaugeValue;
-  final ProgressLinearStyle style;
-  final GaugeLabel? label;
-  final LinearNeedle? needle;
-  final void Function(Canvas canvas, Offset position)? customDrawNeedle;
-  final bool reverse;
-  final bool showLabel;
-  final double? height;
   ProgressLinearPainter({
     required this.gaugeValue,
     this.needle,
@@ -35,6 +27,14 @@ class ProgressLinearPainter extends CustomPainter {
     required this.style,
     this.label,
   });
+  final GaugeValue gaugeValue;
+  final ProgressLinearStyle style;
+  final GaugeLabel? label;
+  final LinearNeedle? needle;
+  final void Function(Canvas canvas, Offset position)? customDrawNeedle;
+  final bool reverse;
+  final bool showLabel;
+  final double? height;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -122,8 +122,6 @@ class ProgressLinearPainter extends CustomPainter {
           foregroundPaint,
         );
       }
-
-      // log('GxProgressLinearGauge: Dense: Progress: $progress, ProgressWidth: $progressWidth, Size: $size');
     } else {
       final Rect rect = Rect.fromLTWH(0, 0, barWidth, barHeight);
       final RRect rrect =
@@ -173,8 +171,6 @@ class ProgressLinearPainter extends CustomPainter {
 
       // Paint the text on the canvas
       textPainter.paint(canvas, Offset(x, y));
-
-      // log('GxProgressLinearGauge: Label: ${textPainter.size} and Offset: $offset');
     }
   }
 

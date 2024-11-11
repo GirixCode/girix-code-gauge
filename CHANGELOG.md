@@ -1,5 +1,14 @@
 # CHANGELOGS
 
+## 0.0.4
+
+- Doc Updated
+- Logs Removed
+
+## 0.0.2
+
+- Doc Updated
+
 ## 0.0.1
 
 - Initial release of the package.

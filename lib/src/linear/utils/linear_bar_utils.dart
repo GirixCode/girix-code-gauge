@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:girix_code_gauge/src/common/models/linear_gauge_common_model.dart';
 import 'package:girix_code_gauge/src/linear/models/linear_needle_model.dart';
@@ -21,7 +19,6 @@ class LinearBarUtils {
     final double height = size.height;
     final double width = size.width;
 
-    // log('GxLinearBarGauge: Size: $size, minValue: $minValue, maxValue: $maxValue');
     double startValue = minValue;
 
     // Gap Value between bars wrt to the width
@@ -31,7 +28,7 @@ class LinearBarUtils {
     final int noOfGaps = barPointers.length - 1;
 
     // Calculate the size after gap between bars
-    final double widthAfterGap = size.width - (gapValue * noOfGaps);
+    // final double widthAfterGap = size.width - (gapValue * noOfGaps);
 
     for (int index = 0; index < barPointers.length; index++) {
       final LinearBarPointer barPointer = barPointers[index];
@@ -59,7 +56,6 @@ class LinearBarUtils {
 
         // Adjust the size to bartoDrawnValue because of the [noOfGaps] and BarPointers.length
         barToDrawnWidth = tempBarToDrawn + (gapToDrawn / barPointers.length);
-        log('GxLinearBarGauge: Gap Value for $index: Bar Range:-> $startValue-$barToDrawnWidth and GapValue:-> $gapValue, Width Size:-> ${size.width}-$widthAfterGap');
       }
 
       final Rect barRect = Rect.fromLTWH(
@@ -76,8 +72,6 @@ class LinearBarUtils {
 
       canvas.drawRRect(rRect, paintAxis);
       startValue += barToDrawnWidth;
-
-      log('GxLinearBarGauge: ======================$index======================');
 
       // Text label and style
 
@@ -101,7 +95,6 @@ class LinearBarUtils {
         if (barPointer.label!.offset != null) {
           textX += barPointer.label!.offset!.dx;
           textY += barPointer.label!.offset!.dy;
-          log('GxLinearBarGauge: Text Offset: $textX, $textY');
         } else {
           switch (barPointer.label!.textAlign!) {
             case TextAlign.center:
@@ -122,8 +115,6 @@ class LinearBarUtils {
               break;
           }
         }
-
-        log('GxLinearBarGauge: Text: $textX, $textY=>');
 
         textPainter.paint(canvas, Offset(textX, textY));
       }
@@ -148,27 +139,20 @@ class LinearBarUtils {
     if (gapBetweenBars > 0 && showNeedleInsideBar) {
       // Find out the no of gaps between bars
       final int noOfGaps = barPointers.length - 1;
-
-      log('GxLinearBarGauge: Needle: No of Gaps: $noOfGaps');
-
       // Check whether the needleValue is inside the gap range
       if (noOfGaps > 0) {
         for (int index = 0; index < noOfGaps; index++) {
           final double startValue = barPointers[index].value;
           final double endValue = startValue + gapBetweenBars;
-          log('GxLinearBarGauge: Needle: Value: $needleValue, Start: $startValue, End: $endValue');
 
           if (needleValue == startValue) {
             needleValue = startValue - gapBetweenBars / 2;
-            log('GxLinearBarGauge: Needle: Updated Value: $needleValue is equal to startValue after gap');
             break;
           } else if (needleValue > startValue && needleValue < endValue) {
             needleValue = needleValue;
-            log('GxLinearBarGauge: Needle: Updated Value: $needleValue is equal to endValue');
             break;
           } else if (needleValue > startValue && needleValue < endValue) {
             needleValue += gapBetweenBars;
-            log('GxLinearBarGauge: Needle: Updated Value: $needleValue is inside the gap range');
 
             break;
           }

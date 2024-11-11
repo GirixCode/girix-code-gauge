@@ -12,7 +12,6 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
   - [**Table of Contents**](#table-of-contents)
   - [**Features**](#features)
   - [**Preview**](#preview)
-  - [](#)
   - [**Installation**](#installation)
   - [**Getting Started**](#getting-started)
     - [**Importing the Package**](#importing-the-package)
@@ -83,7 +82,7 @@ A Flutter package for creating customizable progress linear, linear gauges, radi
 
 ## **Preview**
 
-## ![alt](https://raw.githubusercontent.com/GirixCode/girix-code-gauge/refs/heads/main/example/assets/images/features/linear/linear-preview.png)
+![alt](https://raw.githubusercontent.com/GirixCode/girix-code-gauge/refs/heads/main/example/assets/images/features/linear/linear-preview.png)
 
 ![alt](https://raw.githubusercontent.com/GirixCode/girix-code-gauge/main/example/assets/images/features/radial/radial-preview.png)
 
@@ -95,7 +94,7 @@ Add the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  girix_code_gauge: ^0.0.1
+  girix_code_gauge: latest
 ```
 
 Then run:
@@ -728,7 +727,7 @@ GxRadialGauge(
 By using `startAngleInDegree` and `sweepAngleInDegree` properties, we can customise the start and swipe angle of the gauge.
 Find out more about angle on canvas, visit [flutter canvas arc](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/canvas_draw_arc.png#gh-light-mode-only)
 
-<img src="https://raw.githubusercontent.com/GirixCode/girix-code-gauge/main/example/assets/images/features/radial/default.png" alt="Label" width="100%"/>
+<img src="https://raw.githubusercontent.com/GirixCode/girix-code-gauge/main/example/assets/images/features/radial/angle.png" alt="Label" width="100%"/>
 
 ###### **Example 2**
 

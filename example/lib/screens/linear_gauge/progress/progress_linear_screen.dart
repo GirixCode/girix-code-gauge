@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:examples/widgets/item_card.dart';
@@ -235,7 +234,7 @@ class _MyProgressLinearGaugeState extends State<MyProgressLinearGauge> {
 
 // My Custom Needle
   void _drawCustomNeedle(Canvas canvas, Offset position) {
-    log('GxProgressLinearGauge: Custom Needle');
+    // log('GxProgressLinearGauge: Custom Needle');
     final Paint customPaint = Paint()
       ..color = Colors.green.shade600
       ..style = PaintingStyle.fill;

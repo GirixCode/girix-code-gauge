@@ -18,29 +18,6 @@ import 'package:girix_code_gauge/src/radial/utils/angle_utils.dart';
 /// - [style]: An instance of the [RadialGaugeStyle] class that holds the style properties of the gauge.
 ///
 class RadialGaugePainter extends CustomPainter {
-  final GaugeValue value;
-  final RadialGaugeStyle style;
-  final RadialTickStyle majorTickStyle;
-  final RadialTickStyle minorTickStyle;
-  final RadialTickLabelStyle labelTickStyle;
-  final int interval;
-  final int minorTicksPerInterval;
-  final double startAngleInDegree;
-  final double sweepAngleInDegree;
-  final bool showMajorTicks;
-  final bool showMinorTicks;
-  final bool showLabels;
-  final bool showValueAtCenter;
-  final bool showNeedle;
-  final RadialNeedle? needle;
-  final Color needleCircleInnerColor;
-  // Marker Pointer
-  final List<RadialPointer>? pointers;
-  // Callbacks
-  final ValueToLabelFormatCallback? valueToLabelFormatCallback;
-  final ValueToRadialMajorTickCallback? valueToMajorTickCallback;
-  final ValueToRadialLabelStyleCallback? valueToLabelStyleCallback;
-  List<RadialBarRange>? rangeBars;
   RadialGaugePainter({
     required this.value,
     required this.style,
@@ -64,6 +41,29 @@ class RadialGaugePainter extends CustomPainter {
     this.valueToLabelStyleCallback,
     this.rangeBars,
   });
+  final GaugeValue value;
+  final RadialGaugeStyle style;
+  final RadialTickStyle majorTickStyle;
+  final RadialTickStyle minorTickStyle;
+  final RadialTickLabelStyle labelTickStyle;
+  final int interval;
+  final int minorTicksPerInterval;
+  final double startAngleInDegree;
+  final double sweepAngleInDegree;
+  final bool showMajorTicks;
+  final bool showMinorTicks;
+  final bool showLabels;
+  final bool showValueAtCenter;
+  final bool showNeedle;
+  final RadialNeedle? needle;
+  final Color needleCircleInnerColor;
+  // Marker Pointer
+  final List<RadialPointer>? pointers;
+  // Callbacks
+  final ValueToLabelFormatCallback? valueToLabelFormatCallback;
+  final ValueToRadialMajorTickCallback? valueToMajorTickCallback;
+  final ValueToRadialLabelStyleCallback? valueToLabelStyleCallback;
+  List<RadialBarRange>? rangeBars;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -657,9 +657,6 @@ class RadialGaugePainter extends CustomPainter {
 
     final double textX = center.dx - (textWidth / 2);
     final double textY = center.dy - (textHeight / 2);
-
-    // log.log(
-    //     'GxRadialGaugePainter: Text: Value:-> ${value.value}, TextWidth:-> $textWidth, TextHeight:-> $textHeight, TextX:-> $textX, TextY:-> $textY');
 
     textPainter.paint(canvas, Offset(textX, textY));
   }
